@@ -4,6 +4,9 @@ import SwiftUI
 struct RootView: View {
     @Environment(\.modelContext) private var context
     @Environment(\.scenePhase) private var scenePhase
+    @Query private var settingsRows: [UserSettings]
+
+    private var appearance: AppAppearance { settingsRows.first?.appearance ?? .system }
 
     var body: some View {
         TabView {
@@ -14,6 +17,7 @@ struct RootView: View {
             SettingsView()
                 .tabItem { Label("Settings", systemImage: "gearshape.fill") }
         }
+        .preferredColorScheme(appearance.colorScheme)
         .task {
             // Make sure the settings row exists before any view reads it.
             _ = UserSettings.current(in: context)

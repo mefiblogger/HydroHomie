@@ -77,7 +77,7 @@ struct HistoryView: View {
             )
             .foregroundStyle(
                 day.totalML >= settings.dailyGoalML
-                    ? Color.teal.gradient
+                    ? Color.goal.gradient
                     : Color.accentColor.gradient
             )
             .cornerRadius(4)

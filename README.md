@@ -57,6 +57,18 @@ when the entitlement isn't granted, so an unsigned build still runs.
 HealthKit mirroring and widget refresh all happen there, so behaviour is identical no
 matter which screen originated the change.
 
+**Colour lives in the asset catalog, not in code.** `AccentColor` (#7B3BA5), `GoalColor`
+and `RingTrack` each define a light and a dark variant, and `Shared/Theme.swift`
+exposes the latter two as `Color.goal` / `Color.ringTrack`. The catalog is compiled
+into both the app and the widget, so a colour change lands in both at once. The
+dark accent is a lightened #A870CC — the base purple is too dark to read against a
+black ground.
+
+**Appearance is a stored preference.** Settings offers System / Light / Dark, applied
+with `.preferredColorScheme`. Note this governs the app only: widgets always follow
+the system appearance, so a phone in light mode shows a light widget even when the
+app is pinned to dark.
+
 **The widget writes directly to the store.** `AddDrinkIntent` runs in the widget's own
 process, inserts the entry and reloads the timeline, so logging from the home screen
 never launches the app.
@@ -70,6 +82,7 @@ xcodebuild -project HydroHomie.xcodeproj -scheme HydroHomie \
 
 ## Not yet implemented
 
+- The Settings appearance picker does not affect the widget (see above)
 - Reminder scheduling is wired up but the permission flow hasn't been exercised end to end
 - No app icon artwork — `AppIcon.appiconset` is an empty 1024×1024 slot
 - HealthKit is write-only; nothing reads back water logged by other apps

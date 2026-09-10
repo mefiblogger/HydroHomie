@@ -100,7 +100,7 @@ struct HydroHomieWidgetView: View {
     private var ring: some View {
         ZStack {
             Circle()
-                .stroke(Color.accentColor.opacity(0.15), lineWidth: 10)
+                .stroke(Color.ringTrack, lineWidth: 10)
             Circle()
                 .trim(from: 0, to: min(entry.progress, 1))
                 .stroke(

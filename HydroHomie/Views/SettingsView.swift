@@ -56,6 +56,15 @@ struct SettingsView: View {
                          : "New entries are written to Health as dietary water.")
                 }
 
+                Section("Appearance") {
+                    Picker("Theme", selection: appearanceBinding) {
+                        ForEach(AppAppearance.allCases) { option in
+                            Text(option.displayName).tag(option)
+                        }
+                    }
+                    .pickerStyle(.segmented)
+                }
+
                 Section {
                     LabeledContent("Version", value: appVersion)
                 }
@@ -136,6 +145,13 @@ struct SettingsView: View {
                     save()
                 }
             }
+        )
+    }
+
+    private var appearanceBinding: Binding<AppAppearance> {
+        Binding(
+            get: { settings.appearance },
+            set: { settings.appearance = $0; save() }
         )
     }
 

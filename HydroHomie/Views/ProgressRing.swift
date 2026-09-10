@@ -12,7 +12,7 @@ struct ProgressRing: View {
     var body: some View {
         ZStack {
             Circle()
-                .stroke(Color.accentColor.opacity(0.15), lineWidth: lineWidth)
+                .stroke(Color.ringTrack, lineWidth: lineWidth)
 
             Circle()
                 .trim(from: 0, to: clamped)
@@ -30,7 +30,7 @@ struct ProgressRing: View {
                 Circle()
                     .trim(from: 0, to: overflow)
                     .stroke(
-                        Color.teal.opacity(0.85),
+                        Color.goal,
                         style: StrokeStyle(lineWidth: lineWidth / 2.5, lineCap: .round)
                     )
                     .rotationEffect(.degrees(-90))

@@ -57,7 +57,7 @@ struct TodayView: View {
                 if progress >= 1 {
                     Label("Goal reached", systemImage: "checkmark.seal.fill")
                         .font(.caption.weight(.semibold))
-                        .foregroundStyle(.teal)
+                        .foregroundStyle(Color.goal)
                         .padding(.top, 2)
                 }
             }

@@ -13,12 +13,18 @@ final class UserSettings {
     var reminderStartHour: Int = 8
     var reminderEndHour: Int = 22
     var healthKitEnabled: Bool = false
+    var appearanceRawValue: String = AppAppearance.system.rawValue
 
     init() {}
 
     var unit: VolumeUnit {
         get { VolumeUnit(rawValue: unitRawValue) ?? .millilitres }
         set { unitRawValue = newValue.rawValue }
+    }
+
+    var appearance: AppAppearance {
+        get { AppAppearance(rawValue: appearanceRawValue) ?? .system }
+        set { appearanceRawValue = newValue.rawValue }
     }
 
     /// Returns the settings row, creating it on first launch.

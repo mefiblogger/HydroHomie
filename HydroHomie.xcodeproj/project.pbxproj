@@ -14,6 +14,8 @@
 		AA0000000000000000000114 /* HydrationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000104 /* HydrationStore.swift */; };
 		AA0000000000000000000115 /* AddDrinkIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000105 /* AddDrinkIntent.swift */; };
 		AA0000000000000000000116 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000106 /* Assets.xcassets */; };
+		AA0000000000000000000117 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000107 /* Theme.swift */; };
+		AA0000000000000000000127 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000107 /* Theme.swift */; };
 		AA0000000000000000000120 /* VolumeUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000100 /* VolumeUnit.swift */; };
 		AA0000000000000000000121 /* DrinkEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000101 /* DrinkEntry.swift */; };
 		AA0000000000000000000122 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000102 /* UserSettings.swift */; };
@@ -70,6 +72,7 @@
 		AA0000000000000000000104 /* HydrationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HydrationStore.swift; sourceTree = "<group>"; };
 		AA0000000000000000000105 /* AddDrinkIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDrinkIntent.swift; sourceTree = "<group>"; };
 		AA0000000000000000000106 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AA0000000000000000000107 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -154,6 +157,7 @@
 				AA0000000000000000000091 /* Models */,
 				AA0000000000000000000092 /* Persistence */,
 				AA0000000000000000000093 /* Intents */,
+				AA0000000000000000000107 /* Theme.swift */,
 				AA0000000000000000000106 /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -332,6 +336,7 @@
 				AA0000000000000000000113 /* SharedModelContainer.swift in Sources */,
 				AA0000000000000000000114 /* HydrationStore.swift in Sources */,
 				AA0000000000000000000115 /* AddDrinkIntent.swift in Sources */,
+				AA0000000000000000000117 /* Theme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,6 +350,7 @@
 				AA0000000000000000000123 /* SharedModelContainer.swift in Sources */,
 				AA0000000000000000000124 /* HydrationStore.swift in Sources */,
 				AA0000000000000000000125 /* AddDrinkIntent.swift in Sources */,
+				AA0000000000000000000127 /* Theme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
