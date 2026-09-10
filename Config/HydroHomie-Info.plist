@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Water</string>
+	<string>HydroHomie</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -23,9 +23,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSHealthShareUsageDescription</key>
-	<string>Water Tracker reads your water intake so your totals stay in sync with Apple Health.</string>
+	<string>HydroHomie reads your water intake so your totals stay in sync with Apple Health.</string>
 	<key>NSHealthUpdateUsageDescription</key>
-	<string>Water Tracker saves the drinks you log to Apple Health as dietary water.</string>
+	<string>HydroHomie saves the drinks you log to Apple Health as dietary water.</string>
 	<key>UILaunchScreen</key>
 	<dict>
 		<key>UIColorName</key>

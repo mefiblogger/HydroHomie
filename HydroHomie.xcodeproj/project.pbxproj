@@ -21,7 +21,7 @@
 		AA0000000000000000000124 /* HydrationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000104 /* HydrationStore.swift */; };
 		AA0000000000000000000125 /* AddDrinkIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000105 /* AddDrinkIntent.swift */; };
 		AA0000000000000000000126 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000106 /* Assets.xcassets */; };
-		AA0000000000000000000060 /* WaterTrackerWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000021 /* WaterTrackerWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		AA0000000000000000000060 /* HydroHomieWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000021 /* HydroHomieWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,14 +30,14 @@
 			containerPortal = AA0000000000000000000001 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = AA0000000000000000000041;
-			remoteInfo = WaterTrackerWidget;
+			remoteInfo = HydroHomieWidget;
 		};
 		AA0000000000000000000073 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AA0000000000000000000001 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = AA0000000000000000000040;
-			remoteInfo = WaterTracker;
+			remoteInfo = HydroHomie;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -48,7 +48,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				AA0000000000000000000060 /* WaterTrackerWidget.appex in Embed Foundation Extensions */,
+				AA0000000000000000000060 /* HydroHomieWidget.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -56,13 +56,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		AA0000000000000000000020 /* WaterTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WaterTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		AA0000000000000000000021 /* WaterTrackerWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WaterTrackerWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		AA0000000000000000000022 /* WaterTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WaterTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		AA0000000000000000000030 /* WaterTracker-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WaterTracker-Info.plist"; sourceTree = "<group>"; };
-		AA0000000000000000000031 /* WaterTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WaterTracker.entitlements; sourceTree = "<group>"; };
-		AA0000000000000000000032 /* WaterTrackerWidget-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WaterTrackerWidget-Info.plist"; sourceTree = "<group>"; };
-		AA0000000000000000000033 /* WaterTrackerWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WaterTrackerWidget.entitlements; sourceTree = "<group>"; };
+		AA0000000000000000000020 /* HydroHomie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HydroHomie.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA0000000000000000000021 /* HydroHomieWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = HydroHomieWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA0000000000000000000022 /* HydroHomieTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HydroHomieTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA0000000000000000000030 /* HydroHomie-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HydroHomie-Info.plist"; sourceTree = "<group>"; };
+		AA0000000000000000000031 /* HydroHomie.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HydroHomie.entitlements; sourceTree = "<group>"; };
+		AA0000000000000000000032 /* HydroHomieWidget-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HydroHomieWidget-Info.plist"; sourceTree = "<group>"; };
+		AA0000000000000000000033 /* HydroHomieWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HydroHomieWidget.entitlements; sourceTree = "<group>"; };
 		AA0000000000000000000100 /* VolumeUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeUnit.swift; sourceTree = "<group>"; };
 		AA0000000000000000000101 /* DrinkEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkEntry.swift; sourceTree = "<group>"; };
 		AA0000000000000000000102 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
@@ -73,19 +73,19 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		AA0000000000000000000011 /* WaterTracker */ = {
+		AA0000000000000000000011 /* HydroHomie */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = WaterTracker;
+			path = HydroHomie;
 			sourceTree = "<group>";
 		};
-		AA0000000000000000000012 /* WaterTrackerWidget */ = {
+		AA0000000000000000000012 /* HydroHomieWidget */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = WaterTrackerWidget;
+			path = HydroHomieWidget;
 			sourceTree = "<group>";
 		};
-		AA0000000000000000000013 /* WaterTrackerTests */ = {
+		AA0000000000000000000013 /* HydroHomieTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = WaterTrackerTests;
+			path = HydroHomieTests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -119,9 +119,9 @@
 			isa = PBXGroup;
 			children = (
 				AA0000000000000000000090 /* Shared */,
-				AA0000000000000000000011 /* WaterTracker */,
-				AA0000000000000000000012 /* WaterTrackerWidget */,
-				AA0000000000000000000013 /* WaterTrackerTests */,
+				AA0000000000000000000011 /* HydroHomie */,
+				AA0000000000000000000012 /* HydroHomieWidget */,
+				AA0000000000000000000013 /* HydroHomieTests */,
 				AA0000000000000000000004 /* Config */,
 				AA0000000000000000000003 /* Products */,
 			);
@@ -130,9 +130,9 @@
 		AA0000000000000000000003 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AA0000000000000000000020 /* WaterTracker.app */,
-				AA0000000000000000000021 /* WaterTrackerWidget.appex */,
-				AA0000000000000000000022 /* WaterTrackerTests.xctest */,
+				AA0000000000000000000020 /* HydroHomie.app */,
+				AA0000000000000000000021 /* HydroHomieWidget.appex */,
+				AA0000000000000000000022 /* HydroHomieTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -140,10 +140,10 @@
 		AA0000000000000000000004 /* Config */ = {
 			isa = PBXGroup;
 			children = (
-				AA0000000000000000000030 /* WaterTracker-Info.plist */,
-				AA0000000000000000000031 /* WaterTracker.entitlements */,
-				AA0000000000000000000032 /* WaterTrackerWidget-Info.plist */,
-				AA0000000000000000000033 /* WaterTrackerWidget.entitlements */,
+				AA0000000000000000000030 /* HydroHomie-Info.plist */,
+				AA0000000000000000000031 /* HydroHomie.entitlements */,
+				AA0000000000000000000032 /* HydroHomieWidget-Info.plist */,
+				AA0000000000000000000033 /* HydroHomieWidget.entitlements */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -189,9 +189,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AA0000000000000000000040 /* WaterTracker */ = {
+		AA0000000000000000000040 /* HydroHomie */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AA0000000000000000000085 /* Build configuration list for PBXNativeTarget "WaterTracker" */;
+			buildConfigurationList = AA0000000000000000000085 /* Build configuration list for PBXNativeTarget "HydroHomie" */;
 			buildPhases = (
 				AA0000000000000000000050 /* Sources */,
 				AA0000000000000000000051 /* Frameworks */,
@@ -204,16 +204,16 @@
 				AA0000000000000000000070 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				AA0000000000000000000011 /* WaterTracker */,
+				AA0000000000000000000011 /* HydroHomie */,
 			);
-			name = WaterTracker;
-			productName = WaterTracker;
-			productReference = AA0000000000000000000020 /* WaterTracker.app */;
+			name = HydroHomie;
+			productName = HydroHomie;
+			productReference = AA0000000000000000000020 /* HydroHomie.app */;
 			productType = "com.apple.product-type.application";
 		};
-		AA0000000000000000000041 /* WaterTrackerWidget */ = {
+		AA0000000000000000000041 /* HydroHomieWidget */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AA0000000000000000000088 /* Build configuration list for PBXNativeTarget "WaterTrackerWidget" */;
+			buildConfigurationList = AA0000000000000000000088 /* Build configuration list for PBXNativeTarget "HydroHomieWidget" */;
 			buildPhases = (
 				AA0000000000000000000054 /* Sources */,
 				AA0000000000000000000055 /* Frameworks */,
@@ -224,16 +224,16 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				AA0000000000000000000012 /* WaterTrackerWidget */,
+				AA0000000000000000000012 /* HydroHomieWidget */,
 			);
-			name = WaterTrackerWidget;
-			productName = WaterTrackerWidget;
-			productReference = AA0000000000000000000021 /* WaterTrackerWidget.appex */;
+			name = HydroHomieWidget;
+			productName = HydroHomieWidget;
+			productReference = AA0000000000000000000021 /* HydroHomieWidget.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		AA0000000000000000000042 /* WaterTrackerTests */ = {
+		AA0000000000000000000042 /* HydroHomieTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AA000000000000000000008B /* Build configuration list for PBXNativeTarget "WaterTrackerTests" */;
+			buildConfigurationList = AA000000000000000000008B /* Build configuration list for PBXNativeTarget "HydroHomieTests" */;
 			buildPhases = (
 				AA0000000000000000000057 /* Sources */,
 				AA0000000000000000000058 /* Frameworks */,
@@ -245,11 +245,11 @@
 				AA0000000000000000000072 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				AA0000000000000000000013 /* WaterTrackerTests */,
+				AA0000000000000000000013 /* HydroHomieTests */,
 			);
-			name = WaterTrackerTests;
-			productName = WaterTrackerTests;
-			productReference = AA0000000000000000000022 /* WaterTrackerTests.xctest */;
+			name = HydroHomieTests;
+			productName = HydroHomieTests;
+			productReference = AA0000000000000000000022 /* HydroHomieTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -274,7 +274,7 @@
 					};
 				};
 			};
-			buildConfigurationList = AA0000000000000000000082 /* Build configuration list for PBXProject "WaterTracker" */;
+			buildConfigurationList = AA0000000000000000000082 /* Build configuration list for PBXProject "HydroHomie" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -288,9 +288,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AA0000000000000000000040 /* WaterTracker */,
-				AA0000000000000000000041 /* WaterTrackerWidget */,
-				AA0000000000000000000042 /* WaterTrackerTests */,
+				AA0000000000000000000040 /* HydroHomie */,
+				AA0000000000000000000041 /* HydroHomieWidget */,
+				AA0000000000000000000042 /* HydroHomieTests */,
 			);
 		};
 /* End PBXProject section */
@@ -360,12 +360,12 @@
 /* Begin PBXTargetDependency section */
 		AA0000000000000000000070 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = AA0000000000000000000041 /* WaterTrackerWidget */;
+			target = AA0000000000000000000041 /* HydroHomieWidget */;
 			targetProxy = AA0000000000000000000071 /* PBXContainerItemProxy */;
 		};
 		AA0000000000000000000072 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = AA0000000000000000000040 /* WaterTracker */;
+			target = AA0000000000000000000040 /* HydroHomie */;
 			targetProxy = AA0000000000000000000073 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -421,19 +421,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Config/WaterTracker.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Config/HydroHomie.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = "Config/WaterTracker-Info.plist";
+				INFOPLIST_FILE = "Config/HydroHomie-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.watertracker.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hydrohomie.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -445,19 +445,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Config/WaterTracker.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Config/HydroHomie.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = "Config/WaterTracker-Info.plist";
+				INFOPLIST_FILE = "Config/HydroHomie-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.watertracker.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hydrohomie.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -469,20 +469,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = "";
-				CODE_SIGN_ENTITLEMENTS = Config/WaterTrackerWidget.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Config/HydroHomieWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = "Config/WaterTrackerWidget-Info.plist";
+				INFOPLIST_FILE = "Config/HydroHomieWidget-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.watertracker.app.widget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hydrohomie.app.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -495,20 +495,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = "";
-				CODE_SIGN_ENTITLEMENTS = Config/WaterTrackerWidget.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Config/HydroHomieWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = "Config/WaterTrackerWidget-Info.plist";
+				INFOPLIST_FILE = "Config/HydroHomieWidget-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.watertracker.app.widget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hydrohomie.app.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -525,10 +525,10 @@
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.watertracker.app.tests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hydrohomie.app.tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WaterTracker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WaterTracker";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HydroHomie.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/HydroHomie";
 			};
 			name = Debug;
 		};
@@ -541,17 +541,17 @@
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.watertracker.app.tests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hydrohomie.app.tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WaterTracker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WaterTracker";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HydroHomie.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/HydroHomie";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AA0000000000000000000082 /* Build configuration list for PBXProject "WaterTracker" */ = {
+		AA0000000000000000000082 /* Build configuration list for PBXProject "HydroHomie" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AA0000000000000000000080 /* Debug */,
@@ -560,7 +560,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AA0000000000000000000085 /* Build configuration list for PBXNativeTarget "WaterTracker" */ = {
+		AA0000000000000000000085 /* Build configuration list for PBXNativeTarget "HydroHomie" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AA0000000000000000000083 /* Debug */,
@@ -569,7 +569,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AA0000000000000000000088 /* Build configuration list for PBXNativeTarget "WaterTrackerWidget" */ = {
+		AA0000000000000000000088 /* Build configuration list for PBXNativeTarget "HydroHomieWidget" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AA0000000000000000000086 /* Debug */,
@@ -578,7 +578,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AA000000000000000000008B /* Build configuration list for PBXNativeTarget "WaterTrackerTests" */ = {
+		AA000000000000000000008B /* Build configuration list for PBXNativeTarget "HydroHomieTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AA0000000000000000000089 /* Debug */,

@@ -1,4 +1,4 @@
-# Water Tracker
+# HydroHomie
 
 A SwiftUI hydration tracker for iOS 17+, with Apple Health sync and an interactive
 home screen widget.
@@ -11,21 +11,21 @@ home screen widget.
 ## Getting started
 
 ```bash
-open WaterTracker.xcodeproj
+open HydroHomie.xcodeproj
 ```
 
-Select the `WaterTracker` scheme and run. Building for the simulator needs no signing;
+Select the `HydroHomie` scheme and run. Building for the simulator needs no signing;
 running on a device requires setting `DEVELOPMENT_TEAM` and registering the
-`group.com.watertracker.app` App Group and HealthKit capability on your Apple
+`group.com.hydrohomie.app` App Group and HealthKit capability on your Apple
 Developer account.
 
 ## Targets
 
 | Target | Purpose |
 |---|---|
-| `WaterTracker` | The app — Today, History and Settings tabs |
-| `WaterTrackerWidget` | Home screen widget (small + medium) with one-tap logging |
-| `WaterTrackerTests` | Unit tests for unit conversion and daily aggregation |
+| `HydroHomie` | The app — Today, History and Settings tabs |
+| `HydroHomieWidget` | Home screen widget (small + medium) with one-tap logging |
+| `HydroHomieTests` | Unit tests for unit conversion and daily aggregation |
 
 ## Layout
 
@@ -35,10 +35,10 @@ Shared/              compiled into both the app and the widget
   Persistence/       SharedModelContainer, HydrationStore
   Intents/           AddDrinkIntent — backs the widget's quick-add buttons
   Assets.xcassets
-WaterTracker/
+HydroHomie/
   Views/             RootView, TodayView, HistoryView, SettingsView, ProgressRing, …
   Services/          HydrationLogger, HealthKitService, NotificationScheduler
-WaterTrackerWidget/  widget bundle, timeline provider and widget views
+HydroHomieWidget/  widget bundle, timeline provider and widget views
 Config/              Info.plists and entitlements for both bundles
 ```
 
@@ -49,7 +49,7 @@ layer, so switching between ml and fl oz never mutates stored data or accumulate
 rounding drift.
 
 **One SwiftData store, shared through an App Group.** `SharedModelContainer` points
-the store at the `group.com.watertracker.app` container so the widget reads the same
+the store at the `group.com.hydrohomie.app` container so the widget reads the same
 data the app writes. It falls back to the target's own Application Support directory
 when the entitlement isn't granted, so an unsigned build still runs.
 
@@ -64,7 +64,7 @@ never launches the app.
 ## Tests
 
 ```bash
-xcodebuild -project WaterTracker.xcodeproj -scheme WaterTracker \
+xcodebuild -project HydroHomie.xcodeproj -scheme HydroHomie \
   -destination 'platform=iOS Simulator,name=iPhone 17' test
 ```
 

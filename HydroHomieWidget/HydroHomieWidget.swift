@@ -51,10 +51,10 @@ struct HydrationProvider: TimelineProvider {
     }
 }
 
-struct WaterTrackerWidget: Widget {
+struct HydroHomieWidget: Widget {
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: "WaterTrackerWidget", provider: HydrationProvider()) { entry in
-            WaterTrackerWidgetView(entry: entry)
+        StaticConfiguration(kind: "HydroHomieWidget", provider: HydrationProvider()) { entry in
+            HydroHomieWidgetView(entry: entry)
                 .containerBackground(.fill.tertiary, for: .widget)
         }
         .configurationDisplayName("Hydration")
@@ -63,7 +63,7 @@ struct WaterTrackerWidget: Widget {
     }
 }
 
-struct WaterTrackerWidgetView: View {
+struct HydroHomieWidgetView: View {
     @Environment(\.widgetFamily) private var family
     var entry: HydrationEntry
 
@@ -129,7 +129,7 @@ struct WaterTrackerWidgetView: View {
 }
 
 #Preview(as: .systemMedium) {
-    WaterTrackerWidget()
+    HydroHomieWidget()
 } timeline: {
     HydrationEntry.placeholder
 }

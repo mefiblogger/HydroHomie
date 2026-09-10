@@ -2,7 +2,7 @@ import SwiftData
 import SwiftUI
 
 @main
-struct WaterTrackerApp: App {
+struct HydroHomieApp: App {
     var body: some Scene {
         WindowGroup {
             RootView()

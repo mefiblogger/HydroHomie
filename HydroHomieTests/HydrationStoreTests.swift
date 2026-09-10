@@ -1,5 +1,5 @@
 import XCTest
-@testable import WaterTracker
+@testable import HydroHomie
 
 final class HydrationStoreTests: XCTestCase {
 
