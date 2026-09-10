@@ -1,0 +1,593 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AA0000000000000000000110 /* VolumeUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000100 /* VolumeUnit.swift */; };
+		AA0000000000000000000111 /* DrinkEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000101 /* DrinkEntry.swift */; };
+		AA0000000000000000000112 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000102 /* UserSettings.swift */; };
+		AA0000000000000000000113 /* SharedModelContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000103 /* SharedModelContainer.swift */; };
+		AA0000000000000000000114 /* HydrationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000104 /* HydrationStore.swift */; };
+		AA0000000000000000000115 /* AddDrinkIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000105 /* AddDrinkIntent.swift */; };
+		AA0000000000000000000116 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000106 /* Assets.xcassets */; };
+		AA0000000000000000000120 /* VolumeUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000100 /* VolumeUnit.swift */; };
+		AA0000000000000000000121 /* DrinkEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000101 /* DrinkEntry.swift */; };
+		AA0000000000000000000122 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000102 /* UserSettings.swift */; };
+		AA0000000000000000000123 /* SharedModelContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000103 /* SharedModelContainer.swift */; };
+		AA0000000000000000000124 /* HydrationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000104 /* HydrationStore.swift */; };
+		AA0000000000000000000125 /* AddDrinkIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000105 /* AddDrinkIntent.swift */; };
+		AA0000000000000000000126 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000106 /* Assets.xcassets */; };
+		AA0000000000000000000060 /* WaterTrackerWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000021 /* WaterTrackerWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AA0000000000000000000071 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA0000000000000000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA0000000000000000000041;
+			remoteInfo = WaterTrackerWidget;
+		};
+		AA0000000000000000000073 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA0000000000000000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA0000000000000000000040;
+			remoteInfo = WaterTracker;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		AA0000000000000000000053 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				AA0000000000000000000060 /* WaterTrackerWidget.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		AA0000000000000000000020 /* WaterTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WaterTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA0000000000000000000021 /* WaterTrackerWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WaterTrackerWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA0000000000000000000022 /* WaterTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WaterTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA0000000000000000000030 /* WaterTracker-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WaterTracker-Info.plist"; sourceTree = "<group>"; };
+		AA0000000000000000000031 /* WaterTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WaterTracker.entitlements; sourceTree = "<group>"; };
+		AA0000000000000000000032 /* WaterTrackerWidget-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WaterTrackerWidget-Info.plist"; sourceTree = "<group>"; };
+		AA0000000000000000000033 /* WaterTrackerWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WaterTrackerWidget.entitlements; sourceTree = "<group>"; };
+		AA0000000000000000000100 /* VolumeUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeUnit.swift; sourceTree = "<group>"; };
+		AA0000000000000000000101 /* DrinkEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkEntry.swift; sourceTree = "<group>"; };
+		AA0000000000000000000102 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
+		AA0000000000000000000103 /* SharedModelContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedModelContainer.swift; sourceTree = "<group>"; };
+		AA0000000000000000000104 /* HydrationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HydrationStore.swift; sourceTree = "<group>"; };
+		AA0000000000000000000105 /* AddDrinkIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDrinkIntent.swift; sourceTree = "<group>"; };
+		AA0000000000000000000106 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		AA0000000000000000000011 /* WaterTracker */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = WaterTracker;
+			sourceTree = "<group>";
+		};
+		AA0000000000000000000012 /* WaterTrackerWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = WaterTrackerWidget;
+			sourceTree = "<group>";
+		};
+		AA0000000000000000000013 /* WaterTrackerTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = WaterTrackerTests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AA0000000000000000000051 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA0000000000000000000055 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA0000000000000000000058 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AA0000000000000000000002 = {
+			isa = PBXGroup;
+			children = (
+				AA0000000000000000000090 /* Shared */,
+				AA0000000000000000000011 /* WaterTracker */,
+				AA0000000000000000000012 /* WaterTrackerWidget */,
+				AA0000000000000000000013 /* WaterTrackerTests */,
+				AA0000000000000000000004 /* Config */,
+				AA0000000000000000000003 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AA0000000000000000000003 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AA0000000000000000000020 /* WaterTracker.app */,
+				AA0000000000000000000021 /* WaterTrackerWidget.appex */,
+				AA0000000000000000000022 /* WaterTrackerTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AA0000000000000000000004 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				AA0000000000000000000030 /* WaterTracker-Info.plist */,
+				AA0000000000000000000031 /* WaterTracker.entitlements */,
+				AA0000000000000000000032 /* WaterTrackerWidget-Info.plist */,
+				AA0000000000000000000033 /* WaterTrackerWidget.entitlements */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		AA0000000000000000000090 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				AA0000000000000000000091 /* Models */,
+				AA0000000000000000000092 /* Persistence */,
+				AA0000000000000000000093 /* Intents */,
+				AA0000000000000000000106 /* Assets.xcassets */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		AA0000000000000000000091 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AA0000000000000000000100 /* VolumeUnit.swift */,
+				AA0000000000000000000101 /* DrinkEntry.swift */,
+				AA0000000000000000000102 /* UserSettings.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		AA0000000000000000000092 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				AA0000000000000000000103 /* SharedModelContainer.swift */,
+				AA0000000000000000000104 /* HydrationStore.swift */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		AA0000000000000000000093 /* Intents */ = {
+			isa = PBXGroup;
+			children = (
+				AA0000000000000000000105 /* AddDrinkIntent.swift */,
+			);
+			path = Intents;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AA0000000000000000000040 /* WaterTracker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA0000000000000000000085 /* Build configuration list for PBXNativeTarget "WaterTracker" */;
+			buildPhases = (
+				AA0000000000000000000050 /* Sources */,
+				AA0000000000000000000051 /* Frameworks */,
+				AA0000000000000000000052 /* Resources */,
+				AA0000000000000000000053 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AA0000000000000000000070 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				AA0000000000000000000011 /* WaterTracker */,
+			);
+			name = WaterTracker;
+			productName = WaterTracker;
+			productReference = AA0000000000000000000020 /* WaterTracker.app */;
+			productType = "com.apple.product-type.application";
+		};
+		AA0000000000000000000041 /* WaterTrackerWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA0000000000000000000088 /* Build configuration list for PBXNativeTarget "WaterTrackerWidget" */;
+			buildPhases = (
+				AA0000000000000000000054 /* Sources */,
+				AA0000000000000000000055 /* Frameworks */,
+				AA0000000000000000000056 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				AA0000000000000000000012 /* WaterTrackerWidget */,
+			);
+			name = WaterTrackerWidget;
+			productName = WaterTrackerWidget;
+			productReference = AA0000000000000000000021 /* WaterTrackerWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		AA0000000000000000000042 /* WaterTrackerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA000000000000000000008B /* Build configuration list for PBXNativeTarget "WaterTrackerTests" */;
+			buildPhases = (
+				AA0000000000000000000057 /* Sources */,
+				AA0000000000000000000058 /* Frameworks */,
+				AA0000000000000000000059 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AA0000000000000000000072 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				AA0000000000000000000013 /* WaterTrackerTests */,
+			);
+			name = WaterTrackerTests;
+			productName = WaterTrackerTests;
+			productReference = AA0000000000000000000022 /* WaterTrackerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AA0000000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2600;
+				LastUpgradeCheck = 2600;
+				TargetAttributes = {
+					AA0000000000000000000040 = {
+						CreatedOnToolsVersion = 26.0;
+					};
+					AA0000000000000000000041 = {
+						CreatedOnToolsVersion = 26.0;
+					};
+					AA0000000000000000000042 = {
+						CreatedOnToolsVersion = 26.0;
+						TestTargetID = AA0000000000000000000040;
+					};
+				};
+			};
+			buildConfigurationList = AA0000000000000000000082 /* Build configuration list for PBXProject "WaterTracker" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AA0000000000000000000002;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = AA0000000000000000000003 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AA0000000000000000000040 /* WaterTracker */,
+				AA0000000000000000000041 /* WaterTrackerWidget */,
+				AA0000000000000000000042 /* WaterTrackerTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AA0000000000000000000052 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA0000000000000000000116 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA0000000000000000000056 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA0000000000000000000126 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA0000000000000000000059 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AA0000000000000000000050 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA0000000000000000000110 /* VolumeUnit.swift in Sources */,
+				AA0000000000000000000111 /* DrinkEntry.swift in Sources */,
+				AA0000000000000000000112 /* UserSettings.swift in Sources */,
+				AA0000000000000000000113 /* SharedModelContainer.swift in Sources */,
+				AA0000000000000000000114 /* HydrationStore.swift in Sources */,
+				AA0000000000000000000115 /* AddDrinkIntent.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA0000000000000000000054 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA0000000000000000000120 /* VolumeUnit.swift in Sources */,
+				AA0000000000000000000121 /* DrinkEntry.swift in Sources */,
+				AA0000000000000000000122 /* UserSettings.swift in Sources */,
+				AA0000000000000000000123 /* SharedModelContainer.swift in Sources */,
+				AA0000000000000000000124 /* HydrationStore.swift in Sources */,
+				AA0000000000000000000125 /* AddDrinkIntent.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA0000000000000000000057 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AA0000000000000000000070 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AA0000000000000000000041 /* WaterTrackerWidget */;
+			targetProxy = AA0000000000000000000071 /* PBXContainerItemProxy */;
+		};
+		AA0000000000000000000072 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AA0000000000000000000040 /* WaterTracker */;
+			targetProxy = AA0000000000000000000073 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		AA0000000000000000000080 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		AA0000000000000000000081 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_VERSION = 5.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AA0000000000000000000083 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Config/WaterTracker.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Config/WaterTracker-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.watertracker.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AA0000000000000000000084 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Config/WaterTracker.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Config/WaterTracker-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.watertracker.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		AA0000000000000000000086 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = "";
+				CODE_SIGN_ENTITLEMENTS = Config/WaterTrackerWidget.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Config/WaterTrackerWidget-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.watertracker.app.widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AA0000000000000000000087 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = "";
+				CODE_SIGN_ENTITLEMENTS = Config/WaterTrackerWidget.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Config/WaterTrackerWidget-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.watertracker.app.widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		AA0000000000000000000089 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.watertracker.app.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WaterTracker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WaterTracker";
+			};
+			name = Debug;
+		};
+		AA000000000000000000008A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.watertracker.app.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WaterTracker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WaterTracker";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AA0000000000000000000082 /* Build configuration list for PBXProject "WaterTracker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA0000000000000000000080 /* Debug */,
+				AA0000000000000000000081 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AA0000000000000000000085 /* Build configuration list for PBXNativeTarget "WaterTracker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA0000000000000000000083 /* Debug */,
+				AA0000000000000000000084 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AA0000000000000000000088 /* Build configuration list for PBXNativeTarget "WaterTrackerWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA0000000000000000000086 /* Debug */,
+				AA0000000000000000000087 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AA000000000000000000008B /* Build configuration list for PBXNativeTarget "WaterTrackerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA0000000000000000000089 /* Debug */,
+				AA000000000000000000008A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AA0000000000000000000001 /* Project object */;
+}

@@ -1,0 +1,25 @@
+import Foundation
+import SwiftData
+
+/// A single logged drink. Amounts are always millilitres.
+@Model
+final class DrinkEntry {
+    var id: UUID = UUID()
+    var amountML: Double = 0
+    var timestamp: Date = Date()
+    /// Where the entry came from — `app`, `widget`, or `health`.
+    var source: String = DrinkSource.app.rawValue
+
+    init(amountML: Double, timestamp: Date = Date(), source: DrinkSource = .app) {
+        self.id = UUID()
+        self.amountML = amountML
+        self.timestamp = timestamp
+        self.source = source.rawValue
+    }
+}
+
+enum DrinkSource: String, Codable, Sendable {
+    case app
+    case widget
+    case health
+}
