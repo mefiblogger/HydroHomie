@@ -20,6 +20,7 @@ home screen widget.
 - A compact macro panel tracking carbs, protein and fat against daily targets
 - A food library you build up, logged by portion, with carbs, sugar, fibre,
   protein, fat and energy held per 100 g
+- Named portions per food — define a grape's "piece" as 2 g and log 10 pieces
 - History with a 7- or 30-day chart, daily average and goal-met count
 - Millilitres or US fluid ounces, switchable at any time without touching stored data
 - Configurable reminders through the day
@@ -112,6 +113,11 @@ Food Facts report it, so a future lookup against either can populate a `FoodItem
 with no conversion. Portions scale from there.
 
 **Sugar and fibre are subsets of carbohydrate**, not siblings — never sum the three.
+
+**Named portions are per food, not global.** A "piece" means 2 g for grapes and 30 g
+for biscuits, so the weight lives on the `FoodItem` rather than on the `PortionKind`.
+Logging records both the count and the kind alongside the resolved weight, so the log
+can say "10 pieces" while the nutrition still comes from grams.
 
 **A logged `FoodEntry` is a snapshot, not a reference.** It copies the scaled figures
 rather than pointing at its `FoodItem`, so correcting a food's nutrition later cannot

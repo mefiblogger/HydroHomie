@@ -26,8 +26,8 @@ struct FoodEntrySheet: View {
             List {
                 Section {
                     NavigationLink {
-                        NewFoodView(initialName: search) { item, grams in
-                            log(item, grams: grams)
+                        NewFoodView(initialName: search) { item, grams, count, kind in
+                            log(item, grams: grams, count: count, kind: kind)
                         }
                     } label: {
                         Label("New food", systemImage: "plus.circle.fill")
@@ -45,8 +45,8 @@ struct FoodEntrySheet: View {
                     Section("Library") {
                         ForEach(matches) { item in
                             NavigationLink {
-                                LogPortionView(item: item) { grams in
-                                    log(item, grams: grams)
+                                LogPortionView(item: item) { grams, count, kind in
+                                    log(item, grams: grams, count: count, kind: kind)
                                 }
                             } label: {
                                 row(item)
@@ -70,14 +70,23 @@ struct FoodEntrySheet: View {
     private func row(_ item: FoodItem) -> some View {
         VStack(alignment: .leading, spacing: 2) {
             Text(item.name)
-            Text("\(Int(item.energyKcal.rounded())) kcal per 100 g")
+            Text(subtitle(item))
                 .font(.caption)
                 .foregroundStyle(.secondary)
         }
     }
 
-    private func log(_ item: FoodItem, grams: Double) {
-        FoodLogger.log(item, grams: grams, context: context)
+    private func subtitle(_ item: FoodItem) -> String {
+        let energy = "\(Int(item.energyKcal.rounded())) kcal per 100 g"
+        guard !item.portions.isEmpty else { return energy }
+        let measures = item.portions
+            .map { "\($0.kind.singular) \(Int($0.grams.rounded())) g" }
+            .joined(separator: ", ")
+        return "\(energy) · \(measures)"
+    }
+
+    private func log(_ item: FoodItem, grams: Double, count: Double, kind: PortionKind?) {
+        FoodLogger.log(item, grams: grams, count: count, kind: kind, context: context)
         dismiss()
     }
 
@@ -89,28 +98,66 @@ struct FoodEntrySheet: View {
     }
 }
 
-/// Choose how much of an existing food to log.
+/// Choose how much of an existing food to log, in grams or in one of the food's
+/// own named measures.
 private struct LogPortionView: View {
     var item: FoodItem
-    var onLog: (Double) -> Void
+    /// grams, count, kind — kind is nil when logged straight in grams.
+    var onLog: (Double, Double, PortionKind?) -> Void
 
-    @State private var portionText: String = ""
+    @State private var measure: Measure = .grams
+    @State private var quantityText = ""
 
-    private var grams: Double? {
-        guard let value = Double(portionText.replacingOccurrences(of: ",", with: ".")),
+    private enum Measure: Hashable {
+        case grams
+        case named(PortionKind)
+
+        var kind: PortionKind? {
+            if case .named(let kind) = self { return kind }
+            return nil
+        }
+    }
+
+    private var quantity: Double? {
+        guard let value = Double(quantityText.replacingOccurrences(of: ",", with: ".")),
               value > 0 else { return nil }
         return value
+    }
+
+    private var grams: Double? {
+        guard let quantity else { return nil }
+        switch measure {
+        case .grams: return quantity
+        case .named(let kind): return item.grams(count: quantity, of: kind)
+        }
     }
 
     var body: some View {
         Form {
             Section("Portion") {
+                if !item.portions.isEmpty {
+                    Picker("Measured in", selection: $measure) {
+                        Text("Grams").tag(Measure.grams)
+                        ForEach(item.portions) { portion in
+                            Text(portion.kind.singular.capitalized)
+                                .tag(Measure.named(portion.kind))
+                        }
+                    }
+                }
+
                 HStack {
-                    TextField("Amount", text: $portionText)
+                    Text(measure.kind == nil ? "Amount" : "How many")
+                    Spacer(minLength: 12)
+                    TextField("0", text: $quantityText)
                         .keyboardType(.decimalPad)
                         .multilineTextAlignment(.trailing)
-                    Text("g")
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                    Text(unitSuffix)
                         .foregroundStyle(.secondary)
+                }
+
+                if measure.kind != nil, let grams {
+                    LabeledContent("Weight", value: "\(Int(grams.rounded())) g")
                 }
             }
 
@@ -122,12 +169,37 @@ private struct LogPortionView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .confirmationAction) {
-                Button("Add") { onLog(grams ?? 0) }
-                    .disabled(grams == nil)
+                Button("Add") {
+                    if let grams, let quantity {
+                        onLog(grams, quantity, measure.kind)
+                    }
+                }
+                .disabled(grams == nil)
             }
         }
         .onAppear {
-            portionText = String(Int(item.defaultPortionGrams.rounded()))
+            // A food only has named measures because they are how you think about
+            // it, so lead with the first one rather than with grams.
+            if let first = item.portions.first {
+                measure = .named(first.kind)
+            }
+            resetQuantity()
+        }
+        .onChange(of: measure) { _, _ in resetQuantity() }
+    }
+
+    /// Singular at a count of one, so the field does not read "1 pieces".
+    private var unitSuffix: String {
+        guard let kind = measure.kind else { return "g" }
+        return abs((quantity ?? 0) - 1) < 0.0001 ? kind.singular : kind.plural
+    }
+
+    private func resetQuantity() {
+        switch measure {
+        case .grams:
+            quantityText = String(Int(item.defaultPortionGrams.rounded()))
+        case .named:
+            quantityText = "1"
         }
     }
 }
@@ -135,7 +207,8 @@ private struct LogPortionView: View {
 /// Define a new food and log a portion of it in one pass.
 private struct NewFoodView: View {
     var initialName: String
-    var onCreate: (FoodItem, Double) -> Void
+    /// item, grams, count, kind
+    var onCreate: (FoodItem, Double, Double, PortionKind?) -> Void
 
     @Environment(\.modelContext) private var context
 
@@ -147,6 +220,7 @@ private struct NewFoodView: View {
     @State private var fiber = ""
     @State private var protein = ""
     @State private var fat = ""
+    @State private var portionTexts: [PortionKind: String] = [:]
 
     private var grams: Double? { positive(portion) }
 
@@ -173,7 +247,17 @@ private struct NewFoodView: View {
                 Text("Sugar and fibre are part of the carbohydrate figure, not extra to it. Leave anything you don't know blank.")
             }
 
-            Section("Portion to log") {
+            Section {
+                ForEach(PortionKind.allCases) { kind in
+                    field(kind.singular.capitalized, text: binding(for: kind), suffix: "g")
+                }
+            } header: {
+                Text("Portions")
+            } footer: {
+                Text("The weight of one. Set “piece” to 2 g for grapes and you can log 10 pieces later. Leave blank for any you don't use.")
+            }
+
+            Section("Portion to log now") {
                 HStack {
                     TextField("Amount", text: $portion)
                         .keyboardType(.decimalPad)
@@ -194,6 +278,13 @@ private struct NewFoodView: View {
         .onAppear {
             if name.isEmpty { name = initialName }
         }
+    }
+
+    private func binding(for kind: PortionKind) -> Binding<String> {
+        Binding(
+            get: { portionTexts[kind] ?? "" },
+            set: { portionTexts[kind] = $0 }
+        )
     }
 
     private func field(_ title: String, text: Binding<String>, suffix: String) -> some View {
@@ -225,6 +316,10 @@ private struct NewFoodView: View {
 
     private func save() {
         guard let grams else { return }
+        let portions = PortionKind.allCases.compactMap { kind -> NamedPortion? in
+            guard let weight = positive(portionTexts[kind] ?? "") else { return nil }
+            return NamedPortion(kind: kind, grams: weight)
+        }
         let item = FoodItem(
             name: name.trimmingCharacters(in: .whitespaces),
             per100g: Nutrients(
@@ -235,11 +330,12 @@ private struct NewFoodView: View {
                 protein: amount(protein),
                 fat: amount(fat)
             ),
-            defaultPortionGrams: grams
+            defaultPortionGrams: grams,
+            portions: portions
         )
         context.insert(item)
         try? context.save()
-        onCreate(item, grams)
+        onCreate(item, grams, grams, nil)
     }
 }
 

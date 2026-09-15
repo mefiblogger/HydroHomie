@@ -202,11 +202,11 @@ struct TodayView: View {
         .background(Color(.secondarySystemBackground), in: .rect(cornerRadius: 12))
     }
 
-    /// "540 kcal" on its own, or "120 g · 540 kcal" when a portion was recorded.
+    /// "540 kcal" on its own, or "10 pieces · 540 kcal" when a portion was recorded.
     private func foodDetail(_ entry: FoodEntry) -> String {
         let energy = "\(Int(entry.calories.rounded())) kcal"
         guard entry.portionGrams > 0 else { return energy }
-        return "\(Int(entry.portionGrams.rounded())) g · \(energy)"
+        return "\(entry.portionLabel) · \(energy)"
     }
 
     // MARK: - Actions

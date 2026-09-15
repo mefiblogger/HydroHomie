@@ -10,11 +10,19 @@ import SwiftUI
 @MainActor
 enum FoodLogger {
 
-    static func log(_ item: FoodItem, grams: Double, context: ModelContext) {
+    static func log(
+        _ item: FoodItem,
+        grams: Double,
+        count: Double = 0,
+        kind: PortionKind? = nil,
+        context: ModelContext
+    ) {
         let entry = FoodEntry(
             name: item.name,
             nutrients: item.nutrients(forGrams: grams),
             portionGrams: grams,
+            portionCount: count,
+            portionKind: kind,
             itemID: item.id
         )
         context.insert(entry)

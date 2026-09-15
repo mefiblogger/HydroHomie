@@ -61,3 +61,68 @@ final class FoodItemTests: XCTestCase {
         XCTAssertEqual(entry.itemID, item.id)
     }
 }
+
+final class NamedPortionTests: XCTestCase {
+
+    private let grapes = FoodItem(
+        name: "Grapes",
+        per100g: Nutrients(energyKcal: 69, carbs: 18, sugar: 16, fiber: 0.9, protein: 0.7, fat: 0.2),
+        portions: [NamedPortion(kind: .piece, grams: 2)]
+    )
+
+    func testGramsForADefinedMeasure() {
+        XCTAssertEqual(grapes.grams(for: .piece), 2)
+    }
+
+    func testGramsForAnUndefinedMeasureIsNil() {
+        XCTAssertNil(grapes.grams(for: .can))
+        XCTAssertNil(grapes.grams(count: 2, of: .bottle))
+    }
+
+    func testCountingPiecesMultipliesTheWeight() {
+        XCTAssertEqual(grapes.grams(count: 10, of: .piece), 20)
+    }
+
+    func testNutrientsForTenGrapes() {
+        let grams = grapes.grams(count: 10, of: .piece) ?? 0
+        let nutrients = grapes.nutrients(forGrams: grams)
+        XCTAssertEqual(nutrients.energyKcal, 13.8, accuracy: 0.0001)
+        XCTAssertEqual(nutrients.sugar, 3.2, accuracy: 0.0001)
+    }
+
+    func testLabelSingularAndPlural() {
+        XCTAssertEqual(PortionKind.piece.label(count: 1), "1 piece")
+        XCTAssertEqual(PortionKind.piece.label(count: 10), "10 pieces")
+        XCTAssertEqual(PortionKind.can.label(count: 2), "2 cans")
+    }
+
+    func testEachStaysEachWhenPlural() {
+        XCTAssertEqual(PortionKind.each.label(count: 3), "3 each")
+    }
+
+    func testFractionalCountsKeepOneDecimal() {
+        XCTAssertEqual(PortionKind.serving.label(count: 1.5), "1.5 servings")
+    }
+
+    func testEntryLabelsANamedPortion() {
+        let entry = FoodEntry(
+            name: "Grapes",
+            nutrients: Nutrients(energyKcal: 13.8),
+            portionGrams: 20,
+            portionCount: 10,
+            portionKind: .piece
+        )
+        XCTAssertEqual(entry.portionLabel, "10 pieces")
+        XCTAssertEqual(entry.portionKind, .piece)
+    }
+
+    func testEntryFallsBackToGramsWithoutANamedPortion() {
+        let entry = FoodEntry(
+            name: "Oats",
+            nutrients: Nutrients(energyKcal: 150),
+            portionGrams: 40
+        )
+        XCTAssertEqual(entry.portionLabel, "40 g")
+        XCTAssertNil(entry.portionKind)
+    }
+}

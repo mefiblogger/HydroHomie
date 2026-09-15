@@ -25,11 +25,17 @@ final class FoodEntry {
     /// The library item this came from, for "log it again" later. Deliberately a
     /// plain id rather than a relationship, so the entry outlives the item.
     var itemID: UUID?
+    /// How many of `portionKind` were logged. Meaningless when the entry was
+    /// logged straight in grams.
+    var portionCount: Double = 0
+    var portionKindRaw: String?
 
     init(
         name: String,
         nutrients: Nutrients,
         portionGrams: Double = 0,
+        portionCount: Double = 0,
+        portionKind: PortionKind? = nil,
         timestamp: Date = Date(),
         itemID: UUID? = nil
     ) {
@@ -44,6 +50,8 @@ final class FoodEntry {
         self.fatGrams = nutrients.fat
         self.timestamp = timestamp
         self.itemID = itemID
+        self.portionCount = portionCount
+        self.portionKindRaw = portionKind?.rawValue
     }
 
     /// Convenience for tests and simple entries with only an energy figure.
@@ -53,6 +61,18 @@ final class FoodEntry {
             nutrients: Nutrients(energyKcal: calories),
             timestamp: timestamp
         )
+    }
+
+    var portionKind: PortionKind? {
+        portionKindRaw.flatMap(PortionKind.init(rawValue:))
+    }
+
+    /// "10 pieces" when a named measure was used, otherwise "150 g".
+    var portionLabel: String {
+        if let portionKind {
+            return portionKind.label(count: portionCount)
+        }
+        return "\(Int(portionGrams.rounded())) g"
     }
 
     var nutrients: Nutrients {
