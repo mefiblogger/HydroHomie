@@ -130,6 +130,10 @@ extension HydrationStore {
 
 struct MacroTotals: Equatable, Sendable {
     var carbs: Double = 0
+    /// A subset of `carbs`, not an addition to it.
+    var sugar: Double = 0
+    /// Likewise a subset of `carbs`.
+    var fiber: Double = 0
     var protein: Double = 0
     var fat: Double = 0
 }
@@ -138,6 +142,8 @@ extension HydrationStore {
     static func macros(of entries: [FoodEntry]) -> MacroTotals {
         entries.reduce(into: MacroTotals()) { totals, entry in
             totals.carbs += entry.carbsGrams
+            totals.sugar += entry.sugarGrams
+            totals.fiber += entry.fiberGrams
             totals.protein += entry.proteinGrams
             totals.fat += entry.fatGrams
         }

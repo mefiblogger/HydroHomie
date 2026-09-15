@@ -54,11 +54,19 @@ final class ConsumptionTests: XCTestCase {
 
     func testMacrosSumEachNutrientIndependently() {
         let food = [
-            FoodEntry(name: "Porridge", calories: 320, carbsGrams: 54, proteinGrams: 11, fatGrams: 6),
-            FoodEntry(name: "Eggs", calories: 180, carbsGrams: 1, proteinGrams: 13, fatGrams: 13)
+            FoodEntry(
+                name: "Porridge",
+                nutrients: Nutrients(energyKcal: 320, carbs: 54, sugar: 2, fiber: 7, protein: 11, fat: 6)
+            ),
+            FoodEntry(
+                name: "Eggs",
+                nutrients: Nutrients(energyKcal: 180, carbs: 1, sugar: 1, fiber: 0, protein: 13, fat: 13)
+            )
         ]
         let totals = HydrationStore.macros(of: food)
         XCTAssertEqual(totals.carbs, 55, accuracy: 0.0001)
+        XCTAssertEqual(totals.sugar, 3, accuracy: 0.0001)
+        XCTAssertEqual(totals.fiber, 7, accuracy: 0.0001)
         XCTAssertEqual(totals.protein, 24, accuracy: 0.0001)
         XCTAssertEqual(totals.fat, 19, accuracy: 0.0001)
     }

@@ -18,6 +18,8 @@
 		AA0000000000000000000127 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000107 /* Theme.swift */; };
 		AA0000000000000000000118 /* FoodEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000108 /* FoodEntry.swift */; };
 		AA0000000000000000000128 /* FoodEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000108 /* FoodEntry.swift */; };
+		AA0000000000000000000119 /* FoodItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000109 /* FoodItem.swift */; };
+		AA0000000000000000000129 /* FoodItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000109 /* FoodItem.swift */; };
 		AA0000000000000000000120 /* VolumeUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000100 /* VolumeUnit.swift */; };
 		AA0000000000000000000121 /* DrinkEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000101 /* DrinkEntry.swift */; };
 		AA0000000000000000000122 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000102 /* UserSettings.swift */; };
@@ -76,6 +78,7 @@
 		AA0000000000000000000106 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA0000000000000000000107 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		AA0000000000000000000108 /* FoodEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodEntry.swift; sourceTree = "<group>"; };
+		AA0000000000000000000109 /* FoodItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -173,6 +176,7 @@
 				AA0000000000000000000101 /* DrinkEntry.swift */,
 				AA0000000000000000000102 /* UserSettings.swift */,
 				AA0000000000000000000108 /* FoodEntry.swift */,
+				AA0000000000000000000109 /* FoodItem.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -342,6 +346,7 @@
 				AA0000000000000000000115 /* AddDrinkIntent.swift in Sources */,
 				AA0000000000000000000117 /* Theme.swift in Sources */,
 				AA0000000000000000000118 /* FoodEntry.swift in Sources */,
+				AA0000000000000000000119 /* FoodItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,6 +362,7 @@
 				AA0000000000000000000125 /* AddDrinkIntent.swift in Sources */,
 				AA0000000000000000000127 /* Theme.swift in Sources */,
 				AA0000000000000000000128 /* FoodEntry.swift in Sources */,
+				AA0000000000000000000129 /* FoodItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

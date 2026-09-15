@@ -143,5 +143,5 @@ enum HistoryRange: String, CaseIterable, Identifiable {
 
 #Preview {
     HistoryView()
-        .modelContainer(for: [DrinkEntry.self, FoodEntry.self, UserSettings.self], inMemory: true)
+        .modelContainer(for: [DrinkEntry.self, FoodEntry.self, FoodItem.self, UserSettings.self], inMemory: true)
 }

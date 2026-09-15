@@ -12,6 +12,7 @@ struct TodayView: View {
     @Query private var settingsRows: [UserSettings]
 
     @State private var showingCustomAmount = false
+    @State private var showingFoodEntry = false
 
     private var settings: UserSettings { settingsRows.first ?? UserSettings() }
     private var unit: VolumeUnit { settings.unit }
@@ -61,7 +62,7 @@ struct TodayView: View {
                 incrementML: settings.waterIncrementML,
                 canRemove: !todaysDrinks.isEmpty,
                 onRemove: removeLastWater,
-                onTrackFood: {},          // Food entry is not designed yet.
+                onTrackFood: { showingFoodEntry = true },
                 onAdd: { add(settings.waterIncrementML) },
                 onCustomAmount: { showingCustomAmount = true }
             )
@@ -76,6 +77,9 @@ struct TodayView: View {
             CustomAmountSheet(unit: unit) { amount in
                 add(amount)
             }
+        }
+        .sheet(isPresented: $showingFoodEntry) {
+            FoodEntrySheet()
         }
     }
 
@@ -151,7 +155,7 @@ struct TodayView: View {
                                 icon: "fork.knife",
                                 tint: .accentColor,
                                 title: entry.name,
-                                detail: "\(Int(entry.calories.rounded())) kcal",
+                                detail: foodDetail(entry),
                                 timestamp: entry.timestamp
                             ) {
                                 HydrationLogger.delete(entry, context: context)
@@ -198,6 +202,13 @@ struct TodayView: View {
         .background(Color(.secondarySystemBackground), in: .rect(cornerRadius: 12))
     }
 
+    /// "540 kcal" on its own, or "120 g · 540 kcal" when a portion was recorded.
+    private func foodDetail(_ entry: FoodEntry) -> String {
+        let energy = "\(Int(entry.calories.rounded())) kcal"
+        guard entry.portionGrams > 0 else { return energy }
+        return "\(Int(entry.portionGrams.rounded())) g · \(energy)"
+    }
+
     // MARK: - Actions
 
     private func add(_ amountML: Double) {
@@ -211,5 +222,5 @@ struct TodayView: View {
 
 #Preview {
     TodayView()
-        .modelContainer(for: [DrinkEntry.self, FoodEntry.self, UserSettings.self], inMemory: true)
+        .modelContainer(for: [DrinkEntry.self, FoodEntry.self, FoodItem.self, UserSettings.self], inMemory: true)
 }

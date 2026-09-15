@@ -18,6 +18,8 @@ home screen widget.
 - A configurable quick-add amount, so the buttons match the glass you actually use
 - One log for the day, water and food together
 - A compact macro panel tracking carbs, protein and fat against daily targets
+- A food library you build up, logged by portion, with carbs, sugar, fibre,
+  protein, fat and energy held per 100 g
 - History with a 7- or 30-day chart, daily average and goal-met count
 - Millilitres or US fluid ounces, switchable at any time without touching stored data
 - Configurable reminders through the day
@@ -105,6 +107,17 @@ display value, so committing an untouched one re-derives the stored amount from 
 1-decimal string — 2000 ml becomes 1999 after a single trip through fl oz. The guard in
 `commitGoal()` and friends exists for that reason; do not remove it.
 
+**Nutrition is held per 100 g.** That is how both USDA FoodData Central and Open
+Food Facts report it, so a future lookup against either can populate a `FoodItem`
+with no conversion. Portions scale from there.
+
+**Sugar and fibre are subsets of carbohydrate**, not siblings — never sum the three.
+
+**A logged `FoodEntry` is a snapshot, not a reference.** It copies the scaled figures
+rather than pointing at its `FoodItem`, so correcting a food's nutrition later cannot
+silently rewrite what you ate last week, and deleting it cannot void the log. The
+`itemID` is kept only so "log it again" can find the source.
+
 **The widget writes directly to the store.** `AddDrinkIntent` runs in the widget's own
 process, inserts the entry and reloads the timeline, so logging from the home screen
 never launches the app.
@@ -118,8 +131,11 @@ xcodebuild -project HydroHomie.xcodeproj -scheme HydroHomie \
 
 ## Not yet implemented
 
-- Food logging — the 🍔 button is deliberately inert until the entry design is settled,
-  so the calorie ring stays empty and calories-remaining stays at your full goal
+- No food database yet — every food is entered by hand. The per-100 g model is
+  shaped so a USDA FoodData Central or Open Food Facts lookup can populate it
+  without conversion
+- Sugar and fibre are tracked but have no home on the Today screen; only carbs,
+  protein and fat appear in the macro panel
 - History charts water only, and the widget is water-only too
 - Macro goals have sensible defaults but no Settings UI to change them yet
 - The Settings appearance picker does not affect the widget (see above)
