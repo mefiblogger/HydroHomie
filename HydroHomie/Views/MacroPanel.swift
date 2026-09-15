@@ -4,8 +4,8 @@
 
 import SwiftUI
 
-/// Compact macro readout above the rings: one row per macro, each a label, a
-/// horizontal bar and a consumed/goal figure. Shares the buttons' corner radius so
+/// Compact macro readout above the rings: three columns side by side, each a name,
+/// a horizontal bar and a consumed/goal figure. Shares the buttons' corner radius so
 /// the two blocks read as a set.
 struct MacroPanel: View {
     var totals: MacroTotals
@@ -14,10 +14,10 @@ struct MacroPanel: View {
     var fatGoal: Double
 
     var body: some View {
-        VStack(spacing: 7) {
-            row("Carbs", value: totals.carbs, goal: carbsGoal)
-            row("Protein", value: totals.protein, goal: proteinGoal)
-            row("Fat", value: totals.fat, goal: fatGoal)
+        HStack(alignment: .top, spacing: 14) {
+            column("Carbs", value: totals.carbs, goal: carbsGoal)
+            column("Protein", value: totals.protein, goal: proteinGoal)
+            column("Fat", value: totals.fat, goal: fatGoal)
         }
         .padding(.vertical, 12)
         .padding(.horizontal, 14)
@@ -25,12 +25,11 @@ struct MacroPanel: View {
         .background(Color(.secondarySystemBackground), in: .rect(cornerRadius: 14))
     }
 
-    private func row(_ name: String, value: Double, goal: Double) -> some View {
-        HStack(spacing: 10) {
+    private func column(_ name: String, value: Double, goal: Double) -> some View {
+        VStack(spacing: 5) {
             Text(name)
                 .font(.caption)
                 .foregroundStyle(.secondary)
-                .frame(width: 52, alignment: .leading)
 
             bar(progress: HydrationStore.progress(consumed: value, goal: goal))
 
@@ -38,8 +37,11 @@ struct MacroPanel: View {
                 .font(.caption2)
                 .monospacedDigit()
                 .foregroundStyle(.secondary)
-                .frame(width: 66, alignment: .trailing)
         }
+        // Equal widths regardless of how long the name or the figures are.
+        .frame(maxWidth: .infinity)
+        .lineLimit(1)
+        .minimumScaleFactor(0.7)
     }
 
     private func bar(progress: Double) -> some View {
@@ -63,7 +65,7 @@ struct MacroPanel: View {
             carbsGoal: 250, proteinGoal: 100, fatGoal: 65
         )
         MacroPanel(
-            totals: MacroTotals(carbs: 180, protein: 74, fat: 52),
+            totals: MacroTotals(carbs: 180, protein: 74, fat: 65),
             carbsGoal: 250, proteinGoal: 100, fatGoal: 65
         )
     }
