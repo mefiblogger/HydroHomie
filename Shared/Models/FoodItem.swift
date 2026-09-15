@@ -70,6 +70,58 @@ struct NamedPortion: Codable, Hashable, Sendable, Identifiable {
     var id: String { kind.rawValue }
 }
 
+/// The icon shown against a food in the log and the library.
+///
+/// Emoji rather than SF Symbols: the symbol library carries only fourteen food and
+/// drink glyphs, mostly vessels, and exactly one of the categories worth offering
+/// here has an honest match (carrot). Emoji cannot be tinted — they render from a
+/// bitmap colour font — which is the trade for the coverage.
+enum FoodIcon: String, CaseIterable, Identifiable, Sendable {
+    case meal = "\u{1F37D}\u{FE0F}"
+    case burger = "\u{1F354}"
+    case takeaway = "\u{1F961}"
+    case pasta = "\u{1F35D}"
+    case noodles = "\u{1F35C}"
+    case candy = "\u{1F36C}"
+    case chocolate = "\u{1F36B}"
+    case vegetable = "\u{1F955}"
+    case fruit = "\u{1F34E}"
+    case chips = "\u{1F35F}"
+    case softDrink = "\u{1F964}"
+    case milk = "\u{1F95B}"
+    case coffee = "\u{2615}"
+    case tea = "\u{1F375}"
+
+    var id: String { rawValue }
+
+    static let `default` = FoodIcon.meal
+
+    /// Spoken by VoiceOver in the picker, where a bare glyph is a poor target.
+    var name: String {
+        switch self {
+        case .meal: "Meal"
+        case .burger: "Burger"
+        case .takeaway: "Takeaway"
+        case .pasta: "Pasta"
+        case .noodles: "Noodles"
+        case .candy: "Candy"
+        case .chocolate: "Chocolate"
+        case .vegetable: "Vegetable"
+        case .fruit: "Fruit"
+        case .chips: "Chips"
+        case .softDrink: "Soft drink"
+        case .milk: "Milk"
+        case .coffee: "Coffee"
+        case .tea: "Tea"
+        }
+    }
+}
+
+/// Icons for log entries that are not user-chosen.
+enum LogIcon {
+    static let water = "\u{1F4A7}"
+}
+
 /// A reusable food definition in the user's own library.
 ///
 /// Everything is held per 100 g, which is how both USDA FoodData Central and Open
@@ -96,12 +148,14 @@ final class FoodItem {
     var barcode: String?
     /// Named measures for this food, each giving the weight of one of them.
     var portions: [NamedPortion] = []
+    var icon: String = FoodIcon.default.rawValue
 
     init(
         name: String,
         per100g: Nutrients,
         defaultPortionGrams: Double = 100,
         portions: [NamedPortion] = [],
+        icon: FoodIcon = .default,
         barcode: String? = nil
     ) {
         self.id = UUID()
@@ -114,6 +168,7 @@ final class FoodItem {
         self.fatGrams = per100g.fat
         self.defaultPortionGrams = defaultPortionGrams
         self.portions = portions
+        self.icon = icon.rawValue
         self.createdAt = Date()
         self.lastUsedAt = Date()
         self.barcode = barcode

@@ -23,6 +23,7 @@ enum FoodLogger {
             portionGrams: grams,
             portionCount: count,
             portionKind: kind,
+            icon: item.icon,
             itemID: item.id
         )
         context.insert(entry)

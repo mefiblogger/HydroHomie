@@ -68,11 +68,15 @@ struct FoodEntrySheet: View {
     }
 
     private func row(_ item: FoodItem) -> some View {
-        VStack(alignment: .leading, spacing: 2) {
-            Text(item.name)
-            Text(subtitle(item))
-                .font(.caption)
-                .foregroundStyle(.secondary)
+        HStack(spacing: 10) {
+            Text(item.icon)
+                .font(.title3)
+            VStack(alignment: .leading, spacing: 2) {
+                Text(item.name)
+                Text(subtitle(item))
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
         }
     }
 
@@ -221,6 +225,7 @@ private struct NewFoodView: View {
     @State private var protein = ""
     @State private var fat = ""
     @State private var portionTexts: [PortionKind: String] = [:]
+    @State private var icon: FoodIcon = .default
 
     private var grams: Double? { positive(portion) }
 
@@ -232,6 +237,7 @@ private struct NewFoodView: View {
         Form {
             Section("Food") {
                 TextField("Name", text: $name)
+                iconPicker
             }
 
             Section {
@@ -278,6 +284,32 @@ private struct NewFoodView: View {
         .onAppear {
             if name.isEmpty { name = initialName }
         }
+    }
+
+    private var iconPicker: some View {
+        LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 6), count: 7),
+                  spacing: 6) {
+            ForEach(FoodIcon.allCases) { option in
+                Button {
+                    icon = option
+                } label: {
+                    Text(option.rawValue)
+                        .font(.title3)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 6)
+                        .background {
+                            if option == icon {
+                                RoundedRectangle(cornerRadius: 8)
+                                    .fill(Color.brand.opacity(0.22))
+                            }
+                        }
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel(option.name)
+                .accessibilityAddTraits(option == icon ? [.isButton, .isSelected] : .isButton)
+            }
+        }
+        .padding(.vertical, 4)
     }
 
     private func binding(for kind: PortionKind) -> Binding<String> {
@@ -331,7 +363,8 @@ private struct NewFoodView: View {
                 fat: amount(fat)
             ),
             defaultPortionGrams: grams,
-            portions: portions
+            portions: portions,
+            icon: icon
         )
         context.insert(item)
         try? context.save()

@@ -180,8 +180,7 @@ struct TodayView: View {
                         switch item {
                         case .water(let entry):
                             row(
-                                icon: "drop.fill",
-                                tint: .water,
+                                icon: LogIcon.water,
                                 title: "\(unit.format(millilitres: entry.amountML)) water",
                                 detail: nil,
                                 timestamp: entry.timestamp
@@ -190,8 +189,7 @@ struct TodayView: View {
                             }
                         case .food(let entry):
                             row(
-                                icon: "fork.knife",
-                                tint: .brand,
+                                icon: entry.icon,
                                 title: entry.name,
                                 detail: foodDetail(entry),
                                 timestamp: entry.timestamp
@@ -209,15 +207,13 @@ struct TodayView: View {
 
     private func row(
         icon: String,
-        tint: Color,
         title: String,
         detail: String?,
         timestamp: Date,
         onDelete: @escaping () -> Void
     ) -> some View {
         HStack {
-            Image(systemName: icon)
-                .foregroundStyle(tint)
+            Text(icon)
             Text(title)
                 .lineLimit(1)
             if let detail {

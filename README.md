@@ -21,6 +21,7 @@ home screen widget.
 - A food library you build up, logged by portion, with carbs, sugar, fibre,
   protein, fat and energy held per 100 g
 - Named portions per food — define a grape's "piece" as 2 g and log 10 pieces
+- An icon per food, chosen from a set of emoji
 - History with a 7- or 30-day chart, daily average and goal-met count
 - Millilitres or US fluid ounces, switchable at any time without touching stored data
 - Configurable reminders through the day
@@ -114,6 +115,13 @@ Food Facts report it, so a future lookup against either can populate a `FoodItem
 with no conversion. Portions scale from there.
 
 **Sugar and fibre are subsets of carbohydrate**, not siblings — never sum the three.
+
+**Food icons are emoji, not SF Symbols.** The symbol library carries only fourteen
+food and drink glyphs, and they are mostly vessels — of the categories worth offering
+a food tracker, exactly one (`carrot.fill`) has an honest match. There is no burger,
+pasta, candy, chocolate, chips or fruit, and `apple.*` is the company logo. Emoji
+cover the lot at the cost of not being tintable: they render from a bitmap colour
+font, so `foregroundStyle` is ignored.
 
 **Named portions are per food, not global.** A "piece" means 2 g for grapes and 30 g
 for biscuits, so the weight lives on the `FoodItem` rather than on the `PortionKind`.

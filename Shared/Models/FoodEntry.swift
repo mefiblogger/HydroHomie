@@ -29,6 +29,8 @@ final class FoodEntry {
     /// logged straight in grams.
     var portionCount: Double = 0
     var portionKindRaw: String?
+    /// Snapshot like the figures: an entry outlives the food it came from.
+    var icon: String = FoodIcon.default.rawValue
 
     init(
         name: String,
@@ -36,6 +38,7 @@ final class FoodEntry {
         portionGrams: Double = 0,
         portionCount: Double = 0,
         portionKind: PortionKind? = nil,
+        icon: String = FoodIcon.default.rawValue,
         timestamp: Date = Date(),
         itemID: UUID? = nil
     ) {
@@ -52,6 +55,7 @@ final class FoodEntry {
         self.itemID = itemID
         self.portionCount = portionCount
         self.portionKindRaw = portionKind?.rawValue
+        self.icon = icon
     }
 
     /// Convenience for tests and simple entries with only an energy figure.

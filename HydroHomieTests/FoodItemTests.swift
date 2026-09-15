@@ -126,3 +126,40 @@ final class NamedPortionTests: XCTestCase {
         XCTAssertNil(entry.portionKind)
     }
 }
+
+final class FoodIconTests: XCTestCase {
+
+    func testDefaultIsTheGenericMeal() {
+        XCTAssertEqual(FoodIcon.default, .meal)
+        XCTAssertEqual(FoodItem(name: "Anything", per100g: Nutrients()).icon,
+                       FoodIcon.meal.rawValue)
+    }
+
+    func testEveryIconIsDistinct() {
+        let all = FoodIcon.allCases.map(\.rawValue)
+        XCTAssertEqual(Set(all).count, all.count)
+    }
+
+    func testEveryIconHasASpokenName() {
+        for icon in FoodIcon.allCases {
+            XCTAssertFalse(icon.name.isEmpty, "\(icon) has no name")
+        }
+    }
+
+    func testChosenIconIsStoredOnTheItem() {
+        let item = FoodItem(name: "Cola", per100g: Nutrients(), icon: .softDrink)
+        XCTAssertEqual(item.icon, FoodIcon.softDrink.rawValue)
+    }
+
+    func testEntrySnapshotsTheIconSoItOutlivesItsFood() {
+        let item = FoodItem(name: "Cola", per100g: Nutrients(), icon: .softDrink)
+        let entry = FoodEntry(
+            name: item.name,
+            nutrients: Nutrients(),
+            icon: item.icon,
+            itemID: item.id
+        )
+        item.icon = FoodIcon.candy.rawValue
+        XCTAssertEqual(entry.icon, FoodIcon.softDrink.rawValue)
+    }
+}
