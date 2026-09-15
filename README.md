@@ -278,6 +278,7 @@ xcodebuild -project HydroHomie.xcodeproj -scheme HydroHomie \
 
 ## Not yet implemented
 
+- No dark or tinted app icon variants; iOS reuses the standard icon for both
 - Barcode scanning is written but unverified: the Simulator has no camera, so it
   has only been exercised through its unavailable state. It needs a run on a device
 - Sugar and fibre are tracked but have no home on the Today screen; only carbs,
@@ -286,7 +287,6 @@ xcodebuild -project HydroHomie.xcodeproj -scheme HydroHomie \
 - Macro goals have sensible defaults but no Settings UI to change them yet
 - The Settings appearance picker does not affect the widget (see above)
 - Reminder scheduling is wired up but the permission flow hasn't been exercised end to end
-- No app icon artwork — `AppIcon.appiconset` is an empty 1024×1024 slot
 - HealthKit is write-only; nothing reads back water logged by other apps
 
 ## Contributing
