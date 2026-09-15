@@ -26,6 +26,7 @@ home screen widget.
   anything already logged
 - ~1,900 generic foods bundled with the app: searchable offline, no account,
   no API key, no network
+- Barcode scanning and branded-product search via Open Food Facts
 - History with a 7- or 30-day chart, daily average and goal-met count
 - Millilitres or US fluid ounces, switchable at any time without touching stored data
 - Configurable reminders through the day
@@ -134,6 +135,24 @@ save 40 KB out of 190. The median base food has exactly one variant, so the nois
 curation was meant to fix barely existed. `FoodCatalogTests` now pins the staples it
 lost.
 
+**Open Food Facts is queried live, never bundled.** Results are cached only as the
+user's own `FoodItem`s, so the database's ODbL share-alike never attaches to this
+project — which it would the moment a derived copy shipped inside the app.
+
+**Search there happens on submit, not per keystroke.** Open Food Facts rate limits
+search far harder than barcode lookup, around ten a minute; typing would burn that in
+seconds and earn a 503. Barcode lookups are not throttled the same way and run
+immediately on scan.
+
+**Check the HTTP status before parsing.** A throttled request returns a 503 whose body
+is not JSON; without the status check that parsed as an empty result and looked
+identical to "no such product", which is how the first version silently showed nothing.
+
+**Scanned products land in the editor, not the log.** Open Food Facts is
+crowd-sourced and often partial — of five Hungarian products sampled while building
+this, two had no sugar or fibre and one reported 541 kcal against 0 carbs and 0
+protein. The editor names what is missing so it can be corrected against the packaging.
+
 **Why CoFID and not USDA.** USDA FoodData Central is public domain and would carry no
 attribution obligation at all, which suits a dual-licensed project better. CoFID was
 chosen anyway because its dairy fat classes, breads and cereals describe European
@@ -183,8 +202,8 @@ xcodebuild -project HydroHomie.xcodeproj -scheme HydroHomie \
 
 ## Not yet implemented
 
-- No barcode scanning, and no lookup of branded or local products — the bundled
-  catalogue is generic foods only
+- Barcode scanning is written but unverified: the Simulator has no camera, so it
+  has only been exercised through its unavailable state. It needs a run on a device
 - Sugar and fibre are tracked but have no home on the Today screen; only carbs,
   protein and fat appear in the macro panel
 - History charts water only

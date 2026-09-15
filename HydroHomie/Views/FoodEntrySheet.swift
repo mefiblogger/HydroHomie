@@ -19,11 +19,14 @@ struct FoodEntrySheet: View {
     /// library if they go through with logging it.
     @State private var picked: FoodItem?
 
-    private var catalogueMatches: [CatalogFood] {
-        // Anything already in the library is offered above; no point listing it twice.
-        let mine = Set(items.map { $0.name.lowercased() })
-        return FoodCatalog.search(search).filter { !mine.contains($0.name.lowercased()) }
-    }
+    @State private var scanning = false
+    @State private var lookingUp = false
+    @State private var lookupError: String?
+    /// A product from Open Food Facts, on its way to the editor for checking.
+    @State private var scanned: RemoteFood?
+    @State private var online: [RemoteFood] = []
+    @State private var searchingOnline = false
+    @State private var onlineError: String?
 
     private var matches: [FoodItem] {
         let query = search.trimmingCharacters(in: .whitespaces)
@@ -31,10 +34,22 @@ struct FoodEntrySheet: View {
         return items.filter { $0.name.localizedCaseInsensitiveContains(query) }
     }
 
+    private var catalogueMatches: [CatalogFood] {
+        // Anything already in the library is offered above; no point listing it twice.
+        let mine = Set(items.map { $0.name.lowercased() })
+        return FoodCatalog.search(search).filter { !mine.contains($0.name.lowercased()) }
+    }
+
     var body: some View {
         NavigationStack {
             List {
                 Section {
+                    Button {
+                        scanning = true
+                    } label: {
+                        Label("Scan barcode", systemImage: "barcode.viewfinder")
+                    }
+
                     NavigationLink {
                         FoodEditorView(creatingNamed: search) { item, grams in
                             log(item, grams: grams ?? item.defaultPortionGrams,
@@ -45,14 +60,16 @@ struct FoodEntrySheet: View {
                     }
                 }
 
-                if matches.isEmpty {
+                if matches.isEmpty && catalogueMatches.isEmpty && online.isEmpty {
                     Section {
-                        Text(items.isEmpty
-                             ? "Your food library is empty. Add a food to get started."
+                        Text(items.isEmpty && search.isEmpty
+                             ? "Your food library is empty. Scan a barcode, search, or add a food."
                              : "No food matches “\(search)”.")
                             .foregroundStyle(.secondary)
                     }
-                } else {
+                }
+
+                if !matches.isEmpty {
                     Section("Library") {
                         ForEach(matches) { item in
                             NavigationLink {
@@ -95,6 +112,39 @@ struct FoodEntrySheet: View {
                         Text("Generic foods bundled with the app. Logging one adds it to your library, where you can rename or correct it.")
                     }
                 }
+
+                if search.trimmingCharacters(in: .whitespaces).count >= 3 {
+                    Section {
+                        if searchingOnline {
+                            HStack(spacing: 10) {
+                                ProgressView()
+                                Text("Searching…").foregroundStyle(.secondary)
+                            }
+                        } else if let onlineError {
+                            Label(onlineError, systemImage: "exclamationmark.triangle")
+                                .font(.footnote)
+                                .foregroundStyle(.secondary)
+                        } else if online.isEmpty {
+                            Button {
+                                Task { await searchOnline() }
+                            } label: {
+                                Label("Search branded products", systemImage: "magnifyingglass")
+                            }
+                        }
+                        ForEach(online) { food in
+                            Button {
+                                scanned = food
+                            } label: {
+                                RemoteRow(food: food)
+                            }
+                            .buttonStyle(.plain)
+                        }
+                    } header: {
+                        Text("Open Food Facts")
+                    } footer: {
+                        Text("Branded products, contributed by the public. Check the figures against the packaging before logging.")
+                    }
+                }
             }
             .searchable(text: $search, prompt: "Search foods")
             .navigationTitle("Track food")
@@ -102,6 +152,13 @@ struct FoodEntrySheet: View {
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") { dismiss() }
+                }
+            }
+            .overlay {
+                if lookingUp {
+                    ProgressView("Looking up…")
+                        .padding(24)
+                        .background(.regularMaterial, in: .rect(cornerRadius: 14))
                 }
             }
             .navigationDestination(item: $editing) { item in
@@ -114,6 +171,66 @@ struct FoodEntrySheet: View {
                     log(item, grams: grams, count: count, kind: kind)
                 }
             }
+            .navigationDestination(item: $scanned) { food in
+                FoodEditorView(
+                    creatingNamed: food.displayName,
+                    nutrients: food.nutrients,
+                    barcode: food.barcode,
+                    missing: food.missing
+                ) { item, grams in
+                    log(item, grams: grams ?? item.defaultPortionGrams, count: 0, kind: nil)
+                }
+            }
+            .sheet(isPresented: $scanning) {
+                BarcodeScannerView { code in
+                    Task { await lookUp(code) }
+                }
+            }
+            .alert("Barcode", isPresented: .constant(lookupError != nil)) {
+                Button("OK") { lookupError = nil }
+            } message: {
+                Text(lookupError ?? "")
+            }
+            .onChange(of: search) { _, _ in
+                online = []
+                onlineError = nil
+            }
+            // On submit rather than per keystroke: Open Food Facts rate limits search
+            // to roughly ten a minute, and typing would burn that in seconds.
+            .onSubmit(of: .search) {
+                Task { await searchOnline() }
+            }
+        }
+    }
+
+    private func searchOnline() async {
+        let query = search.trimmingCharacters(in: .whitespaces)
+        guard query.count >= 3, !searchingOnline else { return }
+
+        searchingOnline = true
+        onlineError = nil
+        defer { searchingOnline = false }
+        do {
+            let results = try await OpenFoodFacts.search(query)
+            let mine = Set(items.map { $0.name.lowercased() })
+            online = results.filter { !mine.contains($0.displayName.lowercased()) }
+            if online.isEmpty {
+                onlineError = "Nothing found for “\(query)”."
+            }
+        } catch {
+            onlineError = (error as? OpenFoodFacts.LookupError)?.errorDescription
+                ?? error.localizedDescription
+        }
+    }
+
+    private func lookUp(_ barcode: String) async {
+        lookingUp = true
+        defer { lookingUp = false }
+        do {
+            scanned = try await OpenFoodFacts.lookup(barcode: barcode)
+        } catch {
+            lookupError = (error as? OpenFoodFacts.LookupError)?.errorDescription
+                ?? error.localizedDescription
         }
     }
 
@@ -127,6 +244,36 @@ struct FoodEntrySheet: View {
             context.delete(matches[index])
         }
         try? context.save()
+    }
+}
+
+/// A product from Open Food Facts, with whatever the contributors filled in.
+private struct RemoteRow: View {
+    var food: RemoteFood
+
+    var body: some View {
+        HStack(spacing: 10) {
+            Text(FoodIcon.default.rawValue)
+                .font(.title3)
+            VStack(alignment: .leading, spacing: 2) {
+                Text(food.displayName)
+                    .foregroundStyle(.primary)
+                    .lineLimit(2)
+                HStack(spacing: 6) {
+                    Text("\(Int(food.nutrients.energyKcal.rounded())) kcal per 100 g")
+                    if !food.missing.isEmpty {
+                        Text("· incomplete")
+                            .foregroundStyle(Color.over)
+                    }
+                }
+                .font(.caption)
+                .foregroundStyle(.secondary)
+            }
+            Spacer(minLength: 0)
+            Image(systemName: "chevron.right")
+                .font(.caption.weight(.semibold))
+                .foregroundStyle(.tertiary)
+        }
     }
 }
 

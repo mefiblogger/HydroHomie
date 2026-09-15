@@ -15,6 +15,8 @@ struct FoodEditorView: View {
     @Environment(\.dismiss) private var dismiss
 
     private let existing: FoodItem?
+    private let barcode: String?
+    private let missing: [String]
     private let onSaved: (FoodItem, Double?) -> Void
 
     @State private var name: String
@@ -30,17 +32,25 @@ struct FoodEditorView: View {
 
     /// Creating: the form also logs a first portion, so a new food lands in the day
     /// in one pass.
-    init(creatingNamed name: String = "", onSaved: @escaping (FoodItem, Double?) -> Void) {
+    init(
+        creatingNamed name: String = "",
+        nutrients: Nutrients = Nutrients(),
+        barcode: String? = nil,
+        missing: [String] = [],
+        onSaved: @escaping (FoodItem, Double?) -> Void
+    ) {
         self.existing = nil
+        self.barcode = barcode
+        self.missing = missing
         self.onSaved = onSaved
         _name = State(initialValue: name)
         _icon = State(initialValue: .default)
-        _energy = State(initialValue: "")
-        _carbs = State(initialValue: "")
-        _sugar = State(initialValue: "")
-        _fiber = State(initialValue: "")
-        _protein = State(initialValue: "")
-        _fat = State(initialValue: "")
+        _energy = State(initialValue: Self.text(nutrients.energyKcal))
+        _carbs = State(initialValue: Self.text(nutrients.carbs))
+        _sugar = State(initialValue: Self.text(nutrients.sugar))
+        _fiber = State(initialValue: Self.text(nutrients.fiber))
+        _protein = State(initialValue: Self.text(nutrients.protein))
+        _fat = State(initialValue: Self.text(nutrients.fat))
         _portion = State(initialValue: "100")
         _portionTexts = State(initialValue: [:])
     }
@@ -48,6 +58,8 @@ struct FoodEditorView: View {
     /// Correcting an existing food. Nothing is logged.
     init(editing item: FoodItem, onSaved: @escaping (FoodItem, Double?) -> Void = { _, _ in }) {
         self.existing = item
+        self.barcode = item.barcode
+        self.missing = []
         self.onSaved = onSaved
         _name = State(initialValue: item.name)
         _icon = State(initialValue: FoodIcon(rawValue: item.icon) ?? .default)
@@ -77,6 +89,17 @@ struct FoodEditorView: View {
             Section("Food") {
                 TextField("Name", text: $name)
                 iconPicker
+            }
+
+            if !missing.isEmpty {
+                Section {
+                    Label(
+                        "Open Food Facts has no \(missing.joined(separator: ", ")) for this product. Check the packaging and fill it in.",
+                        systemImage: "exclamationmark.triangle.fill"
+                    )
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+                }
             }
 
             Section {
@@ -243,7 +266,8 @@ struct FoodEditorView: View {
                 per100g: nutrients,
                 defaultPortionGrams: grams,
                 portions: enteredPortions,
-                icon: icon
+                icon: icon,
+                barcode: barcode
             )
             context.insert(item)
             try? context.save()
