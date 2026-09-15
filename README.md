@@ -38,6 +38,8 @@ home screen widget.
 - Home screen widget, small and medium, carrying the same gauge and buttons —
   medium adds the macro panel
 - Light, dark or system appearance
+- A weight goal, and a calculator that estimates calorie and water targets
+  from your measurements
 
 ## Requirements
 
@@ -104,6 +106,16 @@ black ground.
 with `.preferredColorScheme`. Note this governs the app only: widgets always follow
 the system appearance, so a phone in light mode shows a light widget even when the
 app is pinned to dark.
+
+**The goal calculator is an estimate, and says so.** Mifflin–St Jeor for basal rate,
+Harris–Benedict multipliers for activity, and a conventional 500 kcal adjustment for
+losing or gaining. It needs age and sex because the equation does, not for any other
+reason, and the deficit is floored at 1,200/1,500 kcal so a small sedentary person is
+never shown a starvation target. Nothing is applied until it is accepted.
+
+**Measurements are bounded** — 20–400 kg, 50–250 cm, 10–120 years. A height typed into
+a field that already held an age reads as 18,030 cm, and an unbounded calculator will
+present a confident-looking nonsense target rather than refuse.
 
 **The gauges fill up but the numbers count down.** Both arcs grow as you consume, which
 keeps them legible as a pair, while the labels read "550 kcal left" / "500 ml left".

@@ -14,22 +14,35 @@ struct SettingsView: View {
     @State private var calorieText: String = ""
     @State private var incrementText: String = ""
     @State private var healthKitUnavailable = false
+    @State private var calculating = false
 
     private var settings: UserSettings { settingsRows.first ?? UserSettings() }
 
     var body: some View {
         NavigationStack {
             Form {
-                Section("Daily goals") {
+                Section {
+                    Picker("Goal", selection: weightGoalBinding) {
+                        ForEach(WeightGoal.allCases) { option in
+                            Text(option.displayName).tag(option)
+                        }
+                    }
+                    .pickerStyle(.segmented)
+
                     field("Water", text: $goalText, suffix: settings.unit.shortName,
                           onCommit: commitGoal)
                     field("Calories", text: $calorieText, suffix: "kcal",
                           onCommit: commitCalorieGoal)
-                    Picker("Units", selection: unitBinding) {
-                        ForEach(VolumeUnit.allCases) { unit in
-                            Text(unit.displayName).tag(unit)
-                        }
+
+                    Button {
+                        calculating = true
+                    } label: {
+                        Label("Work out my goals", systemImage: "questionmark.circle")
                     }
+                } header: {
+                    Text("Goal")
+                } footer: {
+                    Text("Not sure what to aim for? The calculator estimates both from your height, weight and activity.")
                 }
 
                 Section {
@@ -39,6 +52,14 @@ struct SettingsView: View {
                     Text("Quick add")
                 } footer: {
                     Text("How much the water buttons add or remove. Press and hold the add button for a one-off amount.")
+                }
+
+                Section("Units") {
+                    Picker("Water", selection: unitBinding) {
+                        ForEach(VolumeUnit.allCases) { unit in
+                            Text(unit.displayName).tag(unit)
+                        }
+                    }
                 }
 
                 Section {
@@ -97,6 +118,15 @@ struct SettingsView: View {
                 }
             }
             .navigationTitle("Settings")
+            .sheet(isPresented: $calculating) {
+                EnergyCalculatorView(
+                    settings: settings,
+                    goal: settings.weightGoal,
+                    unit: settings.unit
+                ) { result in
+                    apply(result)
+                }
+            }
             .onAppear(perform: loadFields)
             .onChange(of: settings.unitRawValue) { _, _ in loadFields() }
             .onDisappear(perform: commitFields)
@@ -171,6 +201,13 @@ struct SettingsView: View {
         )
     }
 
+    private var weightGoalBinding: Binding<WeightGoal> {
+        Binding(
+            get: { settings.weightGoal },
+            set: { settings.weightGoal = $0; save() }
+        )
+    }
+
     private var appearanceBinding: Binding<AppAppearance> {
         Binding(
             get: { settings.appearance },
@@ -227,6 +264,20 @@ struct SettingsView: View {
         guard let value = Double(text.replacingOccurrences(of: ",", with: ".")),
               value > 0 else { return nil }
         return value
+    }
+
+    /// Fills in both goals and remembers the measurements, so reopening the
+    /// calculator does not mean typing it all again.
+    private func apply(_ result: EnergyCalculatorView.Result) {
+        settings.dailyCalorieGoal = result.calories.rounded()
+        settings.dailyGoalML = result.waterML
+        settings.bodyWeightKg = result.weightKg
+        settings.bodyHeightCm = result.heightCm
+        settings.age = result.age
+        settings.sex = result.sex
+        settings.activity = result.activity
+        save()
+        loadFields()
     }
 
     private func commitGoal() {
