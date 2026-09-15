@@ -13,7 +13,7 @@ home screen widget.
 ## Features
 
 - Two dashboard-style gauges counting down to your daily goals — calories outside,
-  water inside
+  water inside; tap the readout to turn it over and see what you have had so far
 - Add or remove water in one tap; press and hold the add button for an exact amount
 - A configurable quick-add amount, so the buttons match the glass you actually use
 - One log for the day, water and food together

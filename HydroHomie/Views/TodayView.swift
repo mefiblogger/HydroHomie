@@ -13,6 +13,8 @@ struct TodayView: View {
 
     @State private var showingCustomAmount = false
     @State private var showingFoodEntry = false
+    /// Tapping the gauge's readout turns it over to show what has been had so far.
+    @State private var showingSoFar = false
 
     private var settings: UserSettings { settingsRows.first ?? UserSettings() }
     private var unit: VolumeUnit { settings.unit }
@@ -91,17 +93,44 @@ struct TodayView: View {
                 calorieProgress: HydrationStore.progress(consumed: calorieTotal, goal: calorieGoal),
                 waterProgress: HydrationStore.progress(consumed: waterTotal, goal: waterGoal)
             )
-            RingCenterLabel(
-                calorieRemaining: calorieRemaining,
-                waterRemaining: waterRemaining,
-                waterUnit: unit
-            )
-            .padding(.horizontal, 54)
+            readout
+                .padding(.horizontal, 54)
         }
         .frame(width: 260, height: 260)
         // The gauge's bottom gap leaves the lower ~46pt of that square empty,
         // so the layout reports a shorter height and the buttons move up.
         .frame(height: 214, alignment: .top)
+    }
+
+    /// Two faces of the same readout, turned over by a tap. Both are rendered so the
+    /// flip has something on its back; only one is visible at a time.
+    private var readout: some View {
+        ZStack {
+            face(caption: "REMAINING", calories: calorieRemaining, water: max(waterRemaining, 0))
+                .opacity(showingSoFar ? 0 : 1)
+
+            face(caption: "SO FAR", calories: calorieTotal, water: waterTotal)
+                .rotation3DEffect(.degrees(180), axis: (x: 1, y: 0, z: 0))
+                .opacity(showingSoFar ? 1 : 0)
+        }
+        .rotation3DEffect(.degrees(showingSoFar ? 180 : 0), axis: (x: 1, y: 0, z: 0))
+        .animation(.spring(response: 0.45, dampingFraction: 0.85), value: showingSoFar)
+        // Covers the gaps between the text too, so the whole block is the target.
+        .contentShape(Rectangle())
+        .onTapGesture { showingSoFar.toggle() }
+        .accessibilityAddTraits(.isButton)
+        .accessibilityHint("Turns over to show what you have had so far")
+    }
+
+    private func face(caption: String, calories: Double, water: Double) -> some View {
+        RingCenterLabel(
+            caption: caption,
+            calorieValue: calories,
+            calorieTint: calorieRemaining < 0 ? Color.over : Color.accentColor,
+            waterMillilitres: water,
+            waterTint: waterRemaining > 0 ? Color.water : Color.goal,
+            waterUnit: unit
+        )
     }
 
     // MARK: - Log

@@ -4,26 +4,29 @@
 
 import SwiftUI
 
-/// The readout inside the rings: one "REMAINING" caption over two columns —
-/// calories on the left, water on the right — split by a dotted rule. Each column
-/// is tinted to match its ring, which is what tells you which number belongs to which.
+/// The readout inside the gauge: one caption over two columns — calories on the
+/// left, water on the right — split by a dotted rule. Each column is tinted to
+/// match its ring, which is what tells you which number belongs to which.
 struct RingCenterLabel: View {
-    var calorieRemaining: Double
-    var waterRemaining: Double
+    var caption: String
+    var calorieValue: Double
+    var calorieTint: Color
+    var waterMillilitres: Double
+    var waterTint: Color
     var waterUnit: VolumeUnit
 
     var body: some View {
         VStack(spacing: 8) {
-            Text("REMAINING")
+            Text(caption)
                 .font(.caption2.weight(.semibold))
                 .tracking(1.4)
                 .foregroundStyle(.secondary)
 
             HStack(spacing: 14) {
                 column(
-                    value: "\(Int(calorieRemaining.rounded()))",
+                    value: "\(Int(calorieValue.rounded()))",
                     unit: "kcal",
-                    tint: calorieRemaining < 0 ? .over : .accentColor
+                    tint: calorieTint
                 )
 
                 VerticalRule()
@@ -31,11 +34,9 @@ struct RingCenterLabel: View {
                     .frame(width: 1, height: 42)
 
                 column(
-                    // Past the goal there is nothing left to drink, so this floors at
-                    // zero rather than showing a negative.
-                    value: waterUnit.formatValue(millilitres: max(waterRemaining, 0)),
+                    value: waterUnit.formatValue(millilitres: waterMillilitres),
                     unit: waterUnit.shortName,
-                    tint: waterRemaining > 0 ? .water : .goal
+                    tint: waterTint
                 )
             }
         }
@@ -70,9 +71,18 @@ private struct VerticalRule: Shape {
 
 #Preview {
     VStack(spacing: 40) {
-        RingCenterLabel(calorieRemaining: 2000, waterRemaining: 250, waterUnit: .millilitres)
-        RingCenterLabel(calorieRemaining: -320, waterRemaining: 0, waterUnit: .millilitres)
-        RingCenterLabel(calorieRemaining: 1450, waterRemaining: 740, waterUnit: .fluidOunces)
+        RingCenterLabel(
+            caption: "REMAINING",
+            calorieValue: 1360, calorieTint: .accentColor,
+            waterMillilitres: 250, waterTint: .water,
+            waterUnit: .millilitres
+        )
+        RingCenterLabel(
+            caption: "SO FAR",
+            calorieValue: 640, calorieTint: .accentColor,
+            waterMillilitres: 1750, waterTint: .water,
+            waterUnit: .millilitres
+        )
     }
     .padding()
 }
