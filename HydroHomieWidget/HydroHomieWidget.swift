@@ -150,14 +150,16 @@ struct HydroHomieWidgetView: View {
         HStack(spacing: 8) {
             Button(intent: AddDrinkIntent(amountML: entry.incrementML)) {
                 Image(systemName: "plus")
-                    .font(.footnote.weight(.semibold))
+                    .font(.system(size: 12, weight: .semibold))
+                    .frame(height: 14)
                     .frame(maxWidth: .infinity)
             }
             .tint(Color.water)
 
             Button(intent: TrackFoodIntent()) {
                 Image(systemName: "fork.knife")
-                    .font(.footnote.weight(.semibold))
+                    .font(.system(size: 14, weight: .semibold))
+                    .frame(height: 14)
                     .frame(maxWidth: .infinity)
             }
             .tint(Color.brand)

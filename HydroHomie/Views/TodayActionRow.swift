@@ -78,6 +78,10 @@ struct TodayActionRow: View {
     private func icon(_ systemName: String, size: CGFloat = 20) -> some View {
         Image(systemName: systemName)
             .font(.system(size: size, weight: .semibold))
+            // A fixed box, because SwiftUI sizes a symbol to its own bounding box:
+            // a minus bar is a fraction of the height of a fork and knife, so
+            // without this the three buttons come out three different heights.
+            .frame(height: 22)
             .frame(maxWidth: .infinity)
             .padding(.vertical, 11)
     }
