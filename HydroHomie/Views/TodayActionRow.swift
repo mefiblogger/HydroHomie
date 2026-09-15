@@ -4,9 +4,10 @@
 
 import SwiftUI
 
-/// The three actions under the rings: remove water, track food, add water.
-/// Long-pressing the add button opens the custom amount sheet — the only way in,
-/// now that the standalone custom button is gone.
+/// The three actions under the gauge: remove water, track food, add water.
+/// Icon-only, so each button carries an accessibility label — there is no visible
+/// text to fall back on. Long-pressing the add button opens the custom amount
+/// sheet — the only way in, now that the standalone custom button is gone.
 struct TodayActionRow: View {
     var unit: VolumeUnit
     var incrementML: Double
@@ -25,7 +26,7 @@ struct TodayActionRow: View {
     var body: some View {
         HStack(spacing: 12) {
             Button(action: onRemove) {
-                label("💧", "−\(incrementLabel)")
+                icon("minus")
             }
             .buttonStyle(.borderedProminent)
             .buttonBorderShape(.roundedRectangle(radius: 14))
@@ -34,7 +35,7 @@ struct TodayActionRow: View {
             .accessibilityLabel("Remove \(incrementLabel) of water")
 
             Button(action: onTrackFood) {
-                label("🍔", "Track food")
+                icon("fork.knife")
             }
             .buttonStyle(.borderedProminent)
             .buttonBorderShape(.roundedRectangle(radius: 14))
@@ -50,7 +51,7 @@ struct TodayActionRow: View {
                     onAdd()
                 }
             } label: {
-                label("💦", "+\(incrementLabel)")
+                icon("plus", size: 17)
             }
             .buttonStyle(.borderedProminent)
             .buttonBorderShape(.roundedRectangle(radius: 14))
@@ -67,17 +68,18 @@ struct TodayActionRow: View {
         }
     }
 
-    private func label(_ emoji: String, _ text: String) -> some View {
-        VStack(spacing: 6) {
-            Text(emoji)
-                .font(.title3)
-            Text(text)
-                .font(.callout.weight(.semibold))
-                .lineLimit(1)
-                .minimumScaleFactor(0.6)
-        }
-        .frame(maxWidth: .infinity)
-        .padding(.vertical, 14)
+    /// Inherits the button style's foreground colour, so the glyph matches the
+    /// weight the text labels had.
+    ///
+    /// `size` exists because a plus and a minus do not read as equal at the same
+    /// point size: SF Symbols draws both on one grid, so the minus bar and the
+    /// plus's horizontal arm are the same length, but the plus's vertical arm gives
+    /// it extra mass. Taking a couple of points off the plus evens the pair up.
+    private func icon(_ systemName: String, size: CGFloat = 20) -> some View {
+        Image(systemName: systemName)
+            .font(.system(size: size, weight: .semibold))
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 11)
     }
 }
 
