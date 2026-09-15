@@ -22,6 +22,8 @@ home screen widget.
   protein, fat and energy held per 100 g
 - Named portions per food — define a grape's "piece" as 2 g and log 10 pieces
 - An icon per food, chosen from a set of emoji
+- Foods are editable, from Settings or while tracking — without disturbing
+  anything already logged
 - History with a 7- or 30-day chart, daily average and goal-met count
 - Millilitres or US fluid ounces, switchable at any time without touching stored data
 - Configurable reminders through the day
@@ -128,10 +130,12 @@ for biscuits, so the weight lives on the `FoodItem` rather than on the `PortionK
 Logging records both the count and the kind alongside the resolved weight, so the log
 can say "10 pieces" while the nutrition still comes from grams.
 
-**A logged `FoodEntry` is a snapshot, not a reference.** It copies the scaled figures
-rather than pointing at its `FoodItem`, so correcting a food's nutrition later cannot
-silently rewrite what you ate last week, and deleting it cannot void the log. The
-`itemID` is kept only so "log it again" can find the source.
+**A logged `FoodEntry` is a snapshot, not a reference.** It copies the scaled figures —
+and the name, portion and icon — rather than pointing at its `FoodItem`. Correcting a
+food's nutrition later cannot silently rewrite what you ate last week, and deleting it
+cannot void the log. The `itemID` is kept only so "log it again" can find the source.
+`EditingDoesNotRewriteHistoryTests` pins this for every field; it is the one property
+of the model worth breaking a build over.
 
 **The widget writes directly to the store.** `AddDrinkIntent` runs in the widget's own
 process, inserts the entry and reloads the timeline, so adding water from the home

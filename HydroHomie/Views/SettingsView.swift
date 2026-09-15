@@ -41,6 +41,18 @@ struct SettingsView: View {
                     Text("How much the water buttons add or remove. Press and hold the add button for a one-off amount.")
                 }
 
+                Section {
+                    NavigationLink {
+                        FoodLibraryView()
+                    } label: {
+                        Label("Food library", systemImage: "carrot")
+                    }
+                } header: {
+                    Text("Food")
+                } footer: {
+                    Text("Correcting a food changes it from now on. Anything already logged keeps the figures it was logged with.")
+                }
+
                 Section("Reminders") {
                     Toggle("Remind me to drink", isOn: remindersBinding)
                     if settings.remindersEnabled {

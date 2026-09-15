@@ -14,6 +14,7 @@ struct FoodEntrySheet: View {
     @Query(sort: \FoodItem.lastUsedAt, order: .reverse) private var items: [FoodItem]
 
     @State private var search = ""
+    @State private var editing: FoodItem?
 
     private var matches: [FoodItem] {
         let query = search.trimmingCharacters(in: .whitespaces)
@@ -26,8 +27,9 @@ struct FoodEntrySheet: View {
             List {
                 Section {
                     NavigationLink {
-                        NewFoodView(initialName: search) { item, grams, count, kind in
-                            log(item, grams: grams, count: count, kind: kind)
+                        FoodEditorView(creatingNamed: search) { item, grams in
+                            log(item, grams: grams ?? item.defaultPortionGrams,
+                                count: 0, kind: nil)
                         }
                     } label: {
                         Label("New food", systemImage: "plus.circle.fill")
@@ -49,7 +51,15 @@ struct FoodEntrySheet: View {
                                     log(item, grams: grams, count: count, kind: kind)
                                 }
                             } label: {
-                                row(item)
+                                FoodRow(item: item)
+                            }
+                            .swipeActions(edge: .leading) {
+                                Button {
+                                    editing = item
+                                } label: {
+                                    Label("Edit", systemImage: "pencil")
+                                }
+                                .tint(Color.brand)
                             }
                         }
                         .onDelete(perform: deleteItems)
@@ -64,29 +74,10 @@ struct FoodEntrySheet: View {
                     Button("Cancel") { dismiss() }
                 }
             }
-        }
-    }
-
-    private func row(_ item: FoodItem) -> some View {
-        HStack(spacing: 10) {
-            Text(item.icon)
-                .font(.title3)
-            VStack(alignment: .leading, spacing: 2) {
-                Text(item.name)
-                Text(subtitle(item))
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
+            .navigationDestination(item: $editing) { item in
+                FoodEditorView(editing: item)
             }
         }
-    }
-
-    private func subtitle(_ item: FoodItem) -> String {
-        let energy = "\(Int(item.energyKcal.rounded())) kcal per 100 g"
-        guard !item.portions.isEmpty else { return energy }
-        let measures = item.portions
-            .map { "\($0.kind.singular) \(Int($0.grams.rounded())) g" }
-            .joined(separator: ", ")
-        return "\(energy) · \(measures)"
     }
 
     private func log(_ item: FoodItem, grams: Double, count: Double, kind: PortionKind?) {
@@ -205,170 +196,6 @@ private struct LogPortionView: View {
         case .named:
             quantityText = "1"
         }
-    }
-}
-
-/// Define a new food and log a portion of it in one pass.
-private struct NewFoodView: View {
-    var initialName: String
-    /// item, grams, count, kind
-    var onCreate: (FoodItem, Double, Double, PortionKind?) -> Void
-
-    @Environment(\.modelContext) private var context
-
-    @State private var name = ""
-    @State private var portion = "100"
-    @State private var energy = ""
-    @State private var carbs = ""
-    @State private var sugar = ""
-    @State private var fiber = ""
-    @State private var protein = ""
-    @State private var fat = ""
-    @State private var portionTexts: [PortionKind: String] = [:]
-    @State private var icon: FoodIcon = .default
-
-    private var grams: Double? { positive(portion) }
-
-    private var canSave: Bool {
-        !name.trimmingCharacters(in: .whitespaces).isEmpty && grams != nil
-    }
-
-    var body: some View {
-        Form {
-            Section("Food") {
-                TextField("Name", text: $name)
-                iconPicker
-            }
-
-            Section {
-                field("Energy", text: $energy, suffix: "kcal")
-                field("Carbs", text: $carbs, suffix: "g")
-                field("of which sugar", text: $sugar, suffix: "g")
-                field("of which fibre", text: $fiber, suffix: "g")
-                field("Protein", text: $protein, suffix: "g")
-                field("Fat", text: $fat, suffix: "g")
-            } header: {
-                Text("Per 100 g")
-            } footer: {
-                Text("Sugar and fibre are part of the carbohydrate figure, not extra to it. Leave anything you don't know blank.")
-            }
-
-            Section {
-                ForEach(PortionKind.allCases) { kind in
-                    field(kind.singular.capitalized, text: binding(for: kind), suffix: "g")
-                }
-            } header: {
-                Text("Portions")
-            } footer: {
-                Text("The weight of one. Set “piece” to 2 g for grapes and you can log 10 pieces later. Leave blank for any you don't use.")
-            }
-
-            Section("Portion to log now") {
-                HStack {
-                    TextField("Amount", text: $portion)
-                        .keyboardType(.decimalPad)
-                        .multilineTextAlignment(.trailing)
-                    Text("g")
-                        .foregroundStyle(.secondary)
-                }
-            }
-        }
-        .navigationTitle("New food")
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            ToolbarItem(placement: .confirmationAction) {
-                Button("Add") { save() }
-                    .disabled(!canSave)
-            }
-        }
-        .onAppear {
-            if name.isEmpty { name = initialName }
-        }
-    }
-
-    private var iconPicker: some View {
-        LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 6), count: 7),
-                  spacing: 6) {
-            ForEach(FoodIcon.allCases) { option in
-                Button {
-                    icon = option
-                } label: {
-                    Text(option.rawValue)
-                        .font(.title3)
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 6)
-                        .background {
-                            if option == icon {
-                                RoundedRectangle(cornerRadius: 8)
-                                    .fill(Color.brand.opacity(0.22))
-                            }
-                        }
-                }
-                .buttonStyle(.plain)
-                .accessibilityLabel(option.name)
-                .accessibilityAddTraits(option == icon ? [.isButton, .isSelected] : .isButton)
-            }
-        }
-        .padding(.vertical, 4)
-    }
-
-    private func binding(for kind: PortionKind) -> Binding<String> {
-        Binding(
-            get: { portionTexts[kind] ?? "" },
-            set: { portionTexts[kind] = $0 }
-        )
-    }
-
-    private func field(_ title: String, text: Binding<String>, suffix: String) -> some View {
-        HStack {
-            Text(title)
-            Spacer(minLength: 12)
-            TextField("0", text: text)
-                .keyboardType(.decimalPad)
-                .multilineTextAlignment(.trailing)
-                // Fills the row rather than sitting in a narrow box: a 90pt target
-                // is easy to miss, and a miss silently types into whichever field
-                // still had focus.
-                .frame(maxWidth: .infinity, alignment: .trailing)
-            Text(suffix)
-                .foregroundStyle(.secondary)
-        }
-    }
-
-    private func positive(_ text: String) -> Double? {
-        guard let value = Double(text.replacingOccurrences(of: ",", with: ".")),
-              value > 0 else { return nil }
-        return value
-    }
-
-    /// Blank means "unknown", which is stored as zero.
-    private func amount(_ text: String) -> Double {
-        Double(text.replacingOccurrences(of: ",", with: ".")).map { max($0, 0) } ?? 0
-    }
-
-    private func save() {
-        guard let grams else { return }
-        let portions = PortionKind.allCases.compactMap { kind -> NamedPortion? in
-            guard let weight = positive(portionTexts[kind] ?? "") else { return nil }
-            return NamedPortion(kind: kind, grams: weight)
-        }
-        let item = FoodItem(
-            name: name.trimmingCharacters(in: .whitespaces),
-            per100g: Nutrients(
-                energyKcal: amount(energy),
-                carbs: amount(carbs),
-                sugar: amount(sugar),
-                fiber: amount(fiber),
-                protein: amount(protein),
-                fat: amount(fat)
-            ),
-            defaultPortionGrams: grams,
-            portions: portions,
-            icon: icon
-        )
-        context.insert(item)
-        try? context.save()
-        onCreate(item, grams, grams, nil)
     }
 }
 

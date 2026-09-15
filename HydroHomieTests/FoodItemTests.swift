@@ -163,3 +163,82 @@ final class FoodIconTests: XCTestCase {
         XCTAssertEqual(entry.icon, FoodIcon.softDrink.rawValue)
     }
 }
+
+/// The guarantee that editing the library never rewrites history.
+final class EditingDoesNotRewriteHistoryTests: XCTestCase {
+
+    private func loggedEntry(from item: FoodItem, grams: Double) -> FoodEntry {
+        FoodEntry(
+            name: item.name,
+            nutrients: item.nutrients(forGrams: grams),
+            portionGrams: grams,
+            portionCount: 1,
+            portionKind: item.portions.first?.kind,
+            icon: item.icon,
+            itemID: item.id
+        )
+    }
+
+    func testCorrectingNutritionLeavesTodaysEntryAlone() {
+        let item = FoodItem(
+            name: "Cereal",
+            per100g: Nutrients(energyKcal: 380, carbs: 70, sugar: 20, fiber: 6, protein: 8, fat: 5)
+        )
+        let entry = loggedEntry(from: item, grams: 50)
+
+        // Tomorrow the figures turn out to be wrong and get corrected.
+        item.energyKcal = 500
+        item.carbsGrams = 90
+        item.sugarGrams = 40
+        item.fiberGrams = 2
+        item.proteinGrams = 3
+        item.fatGrams = 12
+
+        XCTAssertEqual(entry.calories, 190, accuracy: 0.0001)
+        XCTAssertEqual(entry.carbsGrams, 35, accuracy: 0.0001)
+        XCTAssertEqual(entry.sugarGrams, 10, accuracy: 0.0001)
+        XCTAssertEqual(entry.fiberGrams, 3, accuracy: 0.0001)
+        XCTAssertEqual(entry.proteinGrams, 4, accuracy: 0.0001)
+        XCTAssertEqual(entry.fatGrams, 2.5, accuracy: 0.0001)
+    }
+
+    func testRenamingLeavesTodaysEntryAlone() {
+        let item = FoodItem(name: "Cereal", per100g: Nutrients(energyKcal: 380))
+        let entry = loggedEntry(from: item, grams: 50)
+        item.name = "Bran flakes"
+        XCTAssertEqual(entry.name, "Cereal")
+    }
+
+    func testChangingTheIconLeavesTodaysEntryAlone() {
+        let item = FoodItem(name: "Cereal", per100g: Nutrients(), icon: .meal)
+        let entry = loggedEntry(from: item, grams: 50)
+        item.icon = FoodIcon.candy.rawValue
+        XCTAssertEqual(entry.icon, FoodIcon.meal.rawValue)
+    }
+
+    func testChangingAPortionWeightLeavesTodaysEntryAlone() {
+        let item = FoodItem(
+            name: "Grapes",
+            per100g: Nutrients(energyKcal: 69),
+            portions: [NamedPortion(kind: .piece, grams: 2)]
+        )
+        let grams = item.grams(count: 10, of: .piece) ?? 0
+        let entry = loggedEntry(from: item, grams: grams)
+
+        item.portions = [NamedPortion(kind: .piece, grams: 5)]
+
+        XCTAssertEqual(entry.portionGrams, 20, accuracy: 0.0001)
+        XCTAssertEqual(entry.calories, 13.8, accuracy: 0.0001)
+    }
+
+    func testDeletingTheFoodLeavesTheEntryReadable() {
+        let item = FoodItem(name: "Cereal", per100g: Nutrients(energyKcal: 380), icon: .meal)
+        let entry = loggedEntry(from: item, grams: 50)
+
+        // Nothing about the entry depends on the item still existing.
+        XCTAssertEqual(entry.name, "Cereal")
+        XCTAssertEqual(entry.icon, FoodIcon.meal.rawValue)
+        XCTAssertEqual(entry.calories, 190, accuracy: 0.0001)
+        XCTAssertEqual(entry.itemID, item.id)
+    }
+}
