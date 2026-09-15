@@ -43,15 +43,21 @@ enum VolumeUnit: String, Codable, CaseIterable, Identifiable, Sendable {
         }
     }
 
-    /// Formats a millilitre amount in this unit, e.g. `750 ml` or `25.4 fl oz`.
-    func format(millilitres ml: Double) -> String {
+    /// Just the number in this unit, e.g. `750` or `25.4` — for layouts that place
+    /// the unit separately.
+    func formatValue(millilitres ml: Double) -> String {
         let value = fromMillilitres(ml)
         switch self {
         case .millilitres:
-            return "\(Int(value.rounded())) \(shortName)"
+            return "\(Int(value.rounded()))"
         case .fluidOunces:
-            return String(format: "%.1f %@", value, shortName)
+            return String(format: "%.1f", value)
         }
+    }
+
+    /// Formats a millilitre amount in this unit, e.g. `750 ml` or `25.4 fl oz`.
+    func format(millilitres ml: Double) -> String {
+        "\(formatValue(millilitres: ml)) \(shortName)"
     }
 
     /// The quick-add amounts offered on the Today screen, in millilitres.

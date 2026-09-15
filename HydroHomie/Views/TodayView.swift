@@ -78,34 +78,15 @@ struct TodayView: View {
                 calorieProgress: HydrationStore.progress(consumed: calorieTotal, goal: calorieGoal),
                 waterProgress: HydrationStore.progress(consumed: waterTotal, goal: waterGoal)
             )
-            VStack(spacing: 6) {
-                Text(calorieLabel)
-                    .font(.system(size: 30, weight: .bold, design: .rounded))
-                    .foregroundStyle(calorieRemaining < 0 ? Color.over : Color.accentColor)
-                    .contentTransition(.numericText())
-                Text(waterLabel)
-                    .font(.system(size: 17, weight: .semibold, design: .rounded))
-                    .foregroundStyle(waterRemaining > 0 ? Color.water : Color.goal)
-                    .contentTransition(.numericText())
-            }
-            .lineLimit(1)
-            .minimumScaleFactor(0.6)
-            .padding(.horizontal, 64)
+            RingCenterLabel(
+                calorieRemaining: calorieRemaining,
+                waterRemaining: waterRemaining,
+                waterUnit: unit
+            )
+            .padding(.horizontal, 54)
         }
         .frame(width: 260, height: 260)
         .padding(.top, 12)
-    }
-
-    private var calorieLabel: String {
-        calorieRemaining >= 0
-            ? "\(Int(calorieRemaining.rounded())) kcal left"
-            : "\(Int((-calorieRemaining).rounded())) kcal over"
-    }
-
-    private var waterLabel: String {
-        waterRemaining > 0
-            ? "\(unit.format(millilitres: waterRemaining)) left"
-            : "Goal reached"
     }
 
     // MARK: - Log
