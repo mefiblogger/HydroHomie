@@ -27,15 +27,19 @@ struct MacroPanel: View {
 
     private func column(_ name: String, value: Double, goal: Double) -> some View {
         VStack(spacing: 5) {
-            Text(name)
-                .font(.caption)
-                .foregroundStyle(.secondary)
+            Text(name.uppercased())
+                .font(.caption2.weight(.semibold))
+                // Tracking keeps the caps from looking cramped, matching the
+                // REMAINING caption inside the rings.
+                .tracking(0.8)
+                .foregroundStyle(.tertiary)
 
             bar(progress: HydrationStore.progress(consumed: value, goal: goal))
 
             Text("\(Int(value.rounded()))/\(Int(goal.rounded())) g")
-                .font(.caption2)
+                .font(.caption2.bold())
                 .monospacedDigit()
+                // The figure outranks its label, so it takes the stronger tone.
                 .foregroundStyle(.secondary)
         }
         // Equal widths regardless of how long the name or the figures are.
