@@ -20,6 +20,7 @@ struct FoodEntrySheet: View {
     @State private var picked: FoodItem?
 
     @State private var scanning = false
+    @FocusState private var searchFocused: Bool
     /// A product from Open Food Facts, on its way to the editor for checking.
     @State private var scanned: RemoteFood?
     @State private var online: [RemoteFood] = []
@@ -166,13 +167,20 @@ struct FoodEntrySheet: View {
                     }
                 }
             }
-            .searchable(text: $search, prompt: "Search foods")
+            .searchable(text: $search, prompt: "Search foods or scan a barcode")
+            .focusSearchField($searchFocused)
             .navigationTitle("Track food")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") { dismiss() }
                 }
+            }
+            .task {
+                // A beat, so the field exists to receive focus — setting it as the
+                // sheet is still presenting is dropped.
+                try? await Task.sleep(for: .milliseconds(120))
+                searchFocused = true
             }
             .navigationDestination(item: $editing) { item in
                 FoodEditorView(editing: item)
@@ -438,4 +446,17 @@ private struct NutrientBreakdown: View {
 #Preview {
     FoodEntrySheet()
         .modelContainer(for: [DrinkEntry.self, FoodEntry.self, FoodItem.self, UserSettings.self], inMemory: true)
+}
+
+private extension View {
+    /// `searchFocused` arrived in iOS 18 and the app targets 17, so on older systems
+    /// the field simply opens unfocused rather than the feature blocking the target.
+    @ViewBuilder
+    func focusSearchField(_ focus: FocusState<Bool>.Binding) -> some View {
+        if #available(iOS 18.0, *) {
+            searchFocused(focus)
+        } else {
+            self
+        }
+    }
 }
