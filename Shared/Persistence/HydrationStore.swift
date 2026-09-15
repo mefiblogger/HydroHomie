@@ -149,3 +149,81 @@ extension HydrationStore {
         }
     }
 }
+
+// MARK: - Months
+
+/// One day's intake and how it scored against the goal in force that day.
+struct DayProgress: Identifiable, Sendable {
+    var date: Date
+    var waterML: Double
+    var calories: Double
+    var food: GoalOutcome
+    var water: GoalOutcome
+    /// False for days after today: nothing can have been logged yet, so they are
+    /// blank rather than missed.
+    var isPast: Bool
+
+    var id: Date { date }
+}
+
+extension HydrationStore {
+
+    /// Fetch descriptor covering the calendar month containing `date`.
+    static func drinksDescriptor(
+        inMonthOf date: Date,
+        calendar: Calendar = .current
+    ) -> FetchDescriptor<DrinkEntry> {
+        let (start, end) = monthBounds(of: date, calendar: calendar)
+        return FetchDescriptor<DrinkEntry>(
+            predicate: #Predicate { $0.timestamp >= start && $0.timestamp < end },
+            sortBy: [SortDescriptor(\.timestamp, order: .reverse)]
+        )
+    }
+
+    static func monthBounds(
+        of date: Date,
+        calendar: Calendar = .current
+    ) -> (start: Date, end: Date) {
+        let start = calendar.date(from: calendar.dateComponents([.year, .month], from: date))
+            ?? calendar.startOfDay(for: date)
+        let end = calendar.date(byAdding: .month, value: 1, to: start) ?? start
+        return (start, end)
+    }
+
+    /// Every day of the month with its totals and outcomes. Days with no entries come
+    /// back as `untracked`, which is not the same as missed.
+    static func month(
+        of date: Date,
+        drinks: [DrinkEntry],
+        food: [FoodEntry],
+        periods: [GoalPeriod],
+        fallback: ResolvedGoal,
+        calendar: Calendar = .current,
+        today: Date = Date()
+    ) -> [DayProgress] {
+        let (start, end) = monthBounds(of: date, calendar: calendar)
+        let drinksByDay = Dictionary(grouping: drinks) { calendar.startOfDay(for: $0.timestamp) }
+        let foodByDay = Dictionary(grouping: food) { calendar.startOfDay(for: $0.timestamp) }
+        let endOfToday = calendar.startOfDay(for: today)
+
+        var days: [DayProgress] = []
+        var cursor = start
+        while cursor < end {
+            let goal = GoalHistory.goal(on: cursor, periods: periods,
+                                        fallback: fallback, calendar: calendar)
+            let water = total(of: drinksByDay[cursor] ?? [])
+            let energy = calories(of: foodByDay[cursor] ?? [])
+
+            days.append(DayProgress(
+                date: cursor,
+                waterML: water,
+                calories: energy,
+                food: goal.weightGoal.calorieOutcome(consumed: energy, target: goal.calorieGoal),
+                water: waterOutcome(consumed: water, target: goal.waterGoalML),
+                isPast: cursor <= endOfToday
+            ))
+            cursor = calendar.date(byAdding: .day, value: 1, to: cursor) ?? end
+        }
+        return days
+    }
+}

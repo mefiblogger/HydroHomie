@@ -147,6 +147,118 @@ enum EnergyEstimate {
     }
 }
 
+
+/// Whether a day hit its target. `untracked` is distinct from `missed` on purpose:
+/// with a weight-loss goal, "eat no more than 105% of target" is trivially satisfied
+/// by eating nothing, so a day with no entries must not read as a win.
+enum GoalOutcome: String, Sendable {
+    case met
+    case missed
+    case untracked
+}
+
+extension WeightGoal {
+    /// Tolerance either side of target, as the goal defines it.
+    ///
+    /// Losing weight cares about the ceiling and not the floor — a light day is fine.
+    /// Gaining cares about the floor and not the ceiling. Maintaining cares about both.
+    func calorieOutcome(consumed: Double, target: Double) -> GoalOutcome {
+        guard target > 0, consumed > 0 else { return .untracked }
+        let ratio = consumed / target
+        let met: Bool
+        switch self {
+        case .lose: met = ratio <= 1.05
+        case .gain: met = ratio >= 0.95
+        case .maintain: met = ratio >= 0.95 && ratio <= 1.05
+        }
+        return met ? .met : .missed
+    }
+}
+
+/// Water is judged the same way whatever the weight goal: drink at least 95% of it.
+func waterOutcome(consumed: Double, target: Double) -> GoalOutcome {
+    guard target > 0, consumed > 0 else { return .untracked }
+    return consumed / target >= 0.95 ? .met : .missed
+}
+
+/// The goal and targets in force on a particular day.
+struct ResolvedGoal: Equatable, Sendable {
+    var weightGoal: WeightGoal
+    var calorieGoal: Double
+    var waterGoalML: Double
+}
+
+/// A record of what the goal was from a given day onwards.
+///
+/// Changing your goal must not rewrite how last month scored, so changes are recorded
+/// rather than applied retroactively, and take effect the following day.
+@Model
+final class GoalPeriod {
+    var startDate: Date = Date()
+    var weightGoalRawValue: String = WeightGoal.maintain.rawValue
+    var calorieGoal: Double = 2000
+    var waterGoalML: Double = 2000
+
+    init(startDate: Date, goal: ResolvedGoal) {
+        self.startDate = startDate
+        self.weightGoalRawValue = goal.weightGoal.rawValue
+        self.calorieGoal = goal.calorieGoal
+        self.waterGoalML = goal.waterGoalML
+    }
+
+    var resolved: ResolvedGoal {
+        ResolvedGoal(
+            weightGoal: WeightGoal(rawValue: weightGoalRawValue) ?? .maintain,
+            calorieGoal: calorieGoal,
+            waterGoalML: waterGoalML
+        )
+    }
+}
+
+enum GoalHistory {
+    /// The goal in force on `date`: the most recent period that had started by then.
+    /// Days before any record fall back to the earliest one rather than to today's
+    /// settings, which would be the retroactive rewrite this exists to prevent.
+    static func goal(
+        on date: Date,
+        periods: [GoalPeriod],
+        fallback: ResolvedGoal,
+        calendar: Calendar = .current
+    ) -> ResolvedGoal {
+        let day = calendar.startOfDay(for: date)
+        let started = periods.filter { calendar.startOfDay(for: $0.startDate) <= day }
+        if let latest = started.max(by: { $0.startDate < $1.startDate }) {
+            return latest.resolved
+        }
+        return periods.min(by: { $0.startDate < $1.startDate })?.resolved ?? fallback
+    }
+
+    /// Records a change, effective tomorrow. Repeated changes on the same day replace
+    /// each other rather than piling up.
+    @MainActor
+    static func record(
+        _ goal: ResolvedGoal,
+        in context: ModelContext,
+        calendar: Calendar = .current,
+        now: Date = Date()
+    ) {
+        let effective = calendar.startOfDay(
+            for: calendar.date(byAdding: .day, value: 1, to: now) ?? now)
+        let existing = (try? context.fetch(FetchDescriptor<GoalPeriod>())) ?? []
+
+        if let pending = existing.first(where: {
+            calendar.isDate($0.startDate, inSameDayAs: effective)
+        }) {
+            pending.weightGoalRawValue = goal.weightGoal.rawValue
+            pending.calorieGoal = goal.calorieGoal
+            pending.waterGoalML = goal.waterGoalML
+        } else {
+            context.insert(GoalPeriod(startDate: effective, goal: goal))
+        }
+        try? context.save()
+    }
+}
+
 /// Single-row settings record, shared between the app and the widget through the
 /// App Group container. Fetched (or created) via `UserSettings.current(in:)`.
 @Model
@@ -206,6 +318,14 @@ final class UserSettings {
         set { activityRawValue = newValue.rawValue }
     }
 
+    var resolvedGoal: ResolvedGoal {
+        ResolvedGoal(
+            weightGoal: weightGoal,
+            calorieGoal: dailyCalorieGoal,
+            waterGoalML: dailyGoalML
+        )
+    }
+
     /// Returns the settings row, creating it on first launch.
     @MainActor
     static func current(in context: ModelContext) -> UserSettings {
@@ -215,6 +335,11 @@ final class UserSettings {
         }
         let created = UserSettings()
         context.insert(created)
+        // A starting period, so the first goal change has something to come after.
+        context.insert(GoalPeriod(
+            startDate: Calendar.current.startOfDay(for: Date()),
+            goal: created.resolvedGoal
+        ))
         try? context.save()
         return created
     }

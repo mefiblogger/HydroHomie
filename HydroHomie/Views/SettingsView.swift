@@ -204,7 +204,7 @@ struct SettingsView: View {
     private var weightGoalBinding: Binding<WeightGoal> {
         Binding(
             get: { settings.weightGoal },
-            set: { settings.weightGoal = $0; save() }
+            set: { settings.weightGoal = $0; save(); recordGoalChange() }
         )
     }
 
@@ -277,6 +277,7 @@ struct SettingsView: View {
         settings.sex = result.sex
         settings.activity = result.activity
         save()
+        recordGoalChange()
         loadFields()
     }
 
@@ -291,6 +292,7 @@ struct SettingsView: View {
         }
         settings.dailyGoalML = settings.unit.toMillilitres(value)
         save()
+        recordGoalChange()
     }
 
     private func commitCalorieGoal() {
@@ -301,6 +303,7 @@ struct SettingsView: View {
         }
         settings.dailyCalorieGoal = value
         save()
+        recordGoalChange()
     }
 
     private func commitIncrement() {
@@ -311,6 +314,11 @@ struct SettingsView: View {
         }
         settings.waterIncrementML = settings.unit.toMillilitres(value)
         save()
+    }
+
+    /// Goal changes take effect tomorrow, so that how last month scored stays put.
+    private func recordGoalChange() {
+        GoalHistory.record(settings.resolvedGoal, in: context)
     }
 
     private func save() {

@@ -31,7 +31,9 @@ home screen widget.
   no API key, no network
 - Barcode scanning, or type an EAN straight into the search field
 - Branded-product search via Open Food Facts
-- History with a 7- or 30-day chart, daily average and goal-met count
+- A month-at-a-glance goal calendar: two rings a day, food and water, filled
+  when that day's goal was met
+- History by month, pageable, with a chart and summary for the month shown
 - Millilitres or US fluid ounces, switchable at any time without touching stored data
 - Configurable reminders through the day
 - Optional Apple Health sync, written as dietary water — and retracted when you undo
@@ -106,6 +108,25 @@ black ground.
 with `.preferredColorScheme`. Note this governs the app only: widgets always follow
 the system appearance, so a phone in light mode shows a light widget even when the
 app is pinned to dark.
+
+**A day with nothing logged is `untracked`, not `missed`.** Losing weight means
+"no more than 5% over target", which eating nothing satisfies perfectly — so without a
+third state every untracked day in a weight-loss month would score as a win. Untracked
+and missed both render inactive, but only one is a real result.
+
+**Goal changes are recorded, not applied retroactively.** `GoalPeriod` stores what the
+goal and targets were from a given day, and a change takes effect *tomorrow*, so how
+last month scored stays put. Days before any record resolve to the earliest period
+rather than to current settings — resolving to current settings would be the
+retroactive rewrite the whole mechanism exists to prevent. Targets are snapshotted
+alongside the goal, since judging September against October's calorie target is wrong
+in exactly the same way.
+
+**Outcomes are derived, never frozen.** Nothing is written at midnight; a day is scored
+from whatever entries exist whenever you look. Logging a forgotten meal later
+re-scores that day for free. The one limit is that an entry belongs to the day of its
+timestamp, so something logged at 00:30 counts toward the new day — there is no "log
+this for yesterday" yet.
 
 **The goal calculator is an estimate, and says so.** Mifflin–St Jeor for basal rate,
 Harris–Benedict multipliers for activity, and a conventional 500 kcal adjustment for
