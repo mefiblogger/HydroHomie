@@ -1,3 +1,7 @@
+// HydroHomie — a hydration tracker for iOS
+// Copyright (C) 2026 mefiblogger
+// SPDX-License-Identifier: GPL-3.0-or-later
+
 import Foundation
 
 /// Display unit for volumes. Everything is stored in millilitres internally and

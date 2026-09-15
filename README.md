@@ -3,6 +3,24 @@
 A SwiftUI hydration tracker for iOS 17+, with Apple Health sync and an interactive
 home screen widget.
 
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
+
+<p>
+  <img src="docs/today-light.png" width="300" alt="Today screen, light appearance">
+  <img src="docs/today-dark.png" width="300" alt="Today screen, dark appearance">
+</p>
+
+## Features
+
+- Log water in one tap from three presets, or enter a custom amount
+- A progress ring against your daily goal, which keeps filling past 100%
+- History with a 7- or 30-day chart, daily average and goal-met count
+- Millilitres or US fluid ounces, switchable at any time without touching stored data
+- Configurable reminders through the day
+- Optional Apple Health sync, written as dietary water
+- Home screen widget with one-tap logging that never launches the app
+- Light, dark or system appearance
+
 ## Requirements
 
 - Xcode 26+ (iOS 26.5 SDK), iOS 17.0 deployment target
@@ -86,3 +104,24 @@ xcodebuild -project HydroHomie.xcodeproj -scheme HydroHomie \
 - Reminder scheduling is wired up but the permission flow hasn't been exercised end to end
 - No app icon artwork — `AppIcon.appiconset` is an empty 1024×1024 slot
 - HealthKit is write-only; nothing reads back water logged by other apps
+
+## Contributing
+
+Issues and pull requests are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md). Note
+that contributions carry a licence grant, for the reason explained there.
+
+## Licence
+
+HydroHomie is free software, licensed under the
+[GNU General Public License v3.0 or later](LICENSE).
+
+You may use, study, share and modify it. If you distribute it or a derivative, you
+must pass on the same freedoms and publish your complete corresponding source under
+the GPL.
+
+A **commercial licence** is available for anyone who wants to build on HydroHomie
+without those obligations — including shipping a proprietary derivative on the App
+Store, whose terms conflict with the GPL. See
+[COMMERCIAL-LICENSING.md](COMMERCIAL-LICENSING.md).
+
+Copyright (C) 2026 mefiblogger.
