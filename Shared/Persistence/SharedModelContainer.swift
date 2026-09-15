@@ -24,14 +24,14 @@ enum SharedModelContainer {
         let configuration = ModelConfiguration(url: storeURL)
         do {
             return try ModelContainer(
-                for: DrinkEntry.self, UserSettings.self,
+                for: DrinkEntry.self, FoodEntry.self, UserSettings.self,
                 configurations: configuration
             )
         } catch {
             // A corrupt or unreadable store shouldn't brick the app; start clean in memory.
             let fallback = ModelConfiguration(isStoredInMemoryOnly: true)
             return try! ModelContainer(
-                for: DrinkEntry.self, UserSettings.self,
+                for: DrinkEntry.self, FoodEntry.self, UserSettings.self,
                 configurations: fallback
             )
         }

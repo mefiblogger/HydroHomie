@@ -17,6 +17,9 @@ final class UserSettings {
     var reminderStartHour: Int = 8
     var reminderEndHour: Int = 22
     var healthKitEnabled: Bool = false
+    var dailyCalorieGoal: Double = 2000
+    /// Amount added or removed by the quick-add buttons, in millilitres.
+    var waterIncrementML: Double = 250
     var appearanceRawValue: String = AppAppearance.system.rawValue
 
     init() {}

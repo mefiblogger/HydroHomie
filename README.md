@@ -12,12 +12,14 @@ home screen widget.
 
 ## Features
 
-- Log water in one tap from three presets, or enter a custom amount
-- A progress ring against your daily goal, which keeps filling past 100%
+- Two rings counting down to your daily goals — calories outside, water inside
+- Add or remove water in one tap; press and hold the add button for an exact amount
+- A configurable quick-add amount, so the buttons match the glass you actually use
+- One log for the day, water and food together
 - History with a 7- or 30-day chart, daily average and goal-met count
 - Millilitres or US fluid ounces, switchable at any time without touching stored data
 - Configurable reminders through the day
-- Optional Apple Health sync, written as dietary water
+- Optional Apple Health sync, written as dietary water — and retracted when you undo
 - Home screen widget with one-tap logging that never launches the app
 - Light, dark or system appearance
 
@@ -87,6 +89,20 @@ with `.preferredColorScheme`. Note this governs the app only: widgets always fol
 the system appearance, so a phone in light mode shows a light widget even when the
 app is pinned to dark.
 
+**The rings fill up but the numbers count down.** Both arcs grow as you consume, which
+keeps them legible as a pair, while the labels read "550 kcal left" / "500 ml left".
+A literally draining calorie ring would have been full at breakfast — visually identical
+to the water ring's goal-reached state, meaning the opposite thing.
+
+**Exceeding the two goals means opposite things**, so the overflow arcs are tinted
+separately: water past its goal is a win (`GoalColor`), calories past theirs is not
+(`OverColor`).
+
+**Settings fields only write back when actually edited.** A field holds its own rounded
+display value, so committing an untouched one re-derives the stored amount from a
+1-decimal string — 2000 ml becomes 1999 after a single trip through fl oz. The guard in
+`commitGoal()` and friends exists for that reason; do not remove it.
+
 **The widget writes directly to the store.** `AddDrinkIntent` runs in the widget's own
 process, inserts the entry and reloads the timeline, so logging from the home screen
 never launches the app.
@@ -100,6 +116,9 @@ xcodebuild -project HydroHomie.xcodeproj -scheme HydroHomie \
 
 ## Not yet implemented
 
+- Food logging — the 🍔 button is deliberately inert until the entry design is settled,
+  so the calorie ring stays empty and calories-remaining stays at your full goal
+- History charts water only, and the widget is water-only too
 - The Settings appearance picker does not affect the widget (see above)
 - Reminder scheduling is wired up but the permission flow hasn't been exercised end to end
 - No app icon artwork — `AppIcon.appiconset` is an empty 1024×1024 slot

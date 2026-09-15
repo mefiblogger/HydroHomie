@@ -13,6 +13,9 @@ final class DrinkEntry {
     var timestamp: Date = Date()
     /// Where the entry came from — `app`, `widget`, or `health`.
     var source: String = DrinkSource.app.rawValue
+    /// Identifier of the matching Apple Health sample, when one was written, so
+    /// deleting this entry can retract it from Health too.
+    var healthKitSampleID: UUID?
 
     init(amountML: Double, timestamp: Date = Date(), source: DrinkSource = .app) {
         self.id = UUID()

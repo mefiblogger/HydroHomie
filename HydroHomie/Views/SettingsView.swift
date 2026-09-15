@@ -11,6 +11,8 @@ struct SettingsView: View {
     @Query private var settingsRows: [UserSettings]
 
     @State private var goalText: String = ""
+    @State private var calorieText: String = ""
+    @State private var incrementText: String = ""
     @State private var healthKitUnavailable = false
 
     private var settings: UserSettings { settingsRows.first ?? UserSettings() }
@@ -18,19 +20,25 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack {
             Form {
-                Section("Daily goal") {
-                    HStack {
-                        TextField("Goal", text: $goalText)
-                            .keyboardType(.decimalPad)
-                            .onSubmit(commitGoal)
-                        Text(settings.unit.shortName)
-                            .foregroundStyle(.secondary)
-                    }
+                Section("Daily goals") {
+                    field("Water", text: $goalText, suffix: settings.unit.shortName,
+                          onCommit: commitGoal)
+                    field("Calories", text: $calorieText, suffix: "kcal",
+                          onCommit: commitCalorieGoal)
                     Picker("Units", selection: unitBinding) {
                         ForEach(VolumeUnit.allCases) { unit in
                             Text(unit.displayName).tag(unit)
                         }
                     }
+                }
+
+                Section {
+                    field("Amount", text: $incrementText, suffix: settings.unit.shortName,
+                          onCommit: commitIncrement)
+                } header: {
+                    Text("Quick add")
+                } footer: {
+                    Text("How much the water buttons add or remove. Press and hold the add button for a one-off amount.")
                 }
 
                 Section("Reminders") {
@@ -74,13 +82,9 @@ struct SettingsView: View {
                 }
             }
             .navigationTitle("Settings")
-            .onAppear {
-                goalText = formattedGoal
-            }
-            .onChange(of: settings.unitRawValue) { _, _ in
-                goalText = formattedGoal
-            }
-            .onDisappear(perform: commitGoal)
+            .onAppear(perform: loadFields)
+            .onChange(of: settings.unitRawValue) { _, _ in loadFields() }
+            .onDisappear(perform: commitFields)
         }
     }
 
@@ -90,7 +94,7 @@ struct SettingsView: View {
         Binding(
             get: { settings.unit },
             set: { newValue in
-                commitGoal()
+                commitFields()
                 settings.unit = newValue
                 save()
             }
@@ -159,22 +163,87 @@ struct SettingsView: View {
         )
     }
 
+    // MARK: - Field plumbing
+
+    /// A label with a trailing numeric field and a unit suffix.
+    private func field(
+        _ title: String,
+        text: Binding<String>,
+        suffix: String,
+        onCommit: @escaping () -> Void
+    ) -> some View {
+        HStack {
+            Text(title)
+            Spacer(minLength: 12)
+            TextField(title, text: text)
+                .keyboardType(.decimalPad)
+                .multilineTextAlignment(.trailing)
+                .frame(maxWidth: 110)
+                .onSubmit(onCommit)
+            Text(suffix)
+                .foregroundStyle(.secondary)
+        }
+    }
+
+    private func loadFields() {
+        goalText = formattedVolume(settings.dailyGoalML)
+        calorieText = String(Int(settings.dailyCalorieGoal.rounded()))
+        incrementText = formattedVolume(settings.waterIncrementML)
+    }
+
+    /// Fields commit on submit, but also when the screen goes away with the keyboard
+    /// still up — otherwise an edit in progress would be silently dropped.
+    private func commitFields() {
+        commitGoal()
+        commitCalorieGoal()
+        commitIncrement()
+    }
+
     // MARK: - Helpers
 
-    private var formattedGoal: String {
-        let value = settings.unit.fromMillilitres(settings.dailyGoalML)
+    private func formattedVolume(_ millilitres: Double) -> String {
+        let value = settings.unit.fromMillilitres(millilitres)
         return settings.unit == .millilitres
             ? String(Int(value.rounded()))
             : String(format: "%.1f", value)
     }
 
+    private func parsed(_ text: String) -> Double? {
+        guard let value = Double(text.replacingOccurrences(of: ",", with: ".")),
+              value > 0 else { return nil }
+        return value
+    }
+
     private func commitGoal() {
-        guard let value = Double(goalText.replacingOccurrences(of: ",", with: ".")),
-              value > 0 else {
-            goalText = formattedGoal
+        // An untouched field holds its own rounded display value. Writing that back
+        // would re-derive the stored amount from a 1-decimal string, so 2000 ml
+        // becomes 1999 after one trip through fl oz. Only commit real edits.
+        guard goalText != formattedVolume(settings.dailyGoalML) else { return }
+        guard let value = parsed(goalText) else {
+            goalText = formattedVolume(settings.dailyGoalML)
             return
         }
         settings.dailyGoalML = settings.unit.toMillilitres(value)
+        save()
+    }
+
+    private func commitCalorieGoal() {
+        guard calorieText != String(Int(settings.dailyCalorieGoal.rounded())) else { return }
+        guard let value = parsed(calorieText) else {
+            calorieText = String(Int(settings.dailyCalorieGoal.rounded()))
+            return
+        }
+        settings.dailyCalorieGoal = value
+        save()
+    }
+
+    private func commitIncrement() {
+        guard incrementText != formattedVolume(settings.waterIncrementML) else { return }
+        guard let value = parsed(incrementText) else {
+            incrementText = formattedVolume(settings.waterIncrementML)
+            return
+        }
+        settings.waterIncrementML = settings.unit.toMillilitres(value)
         save()
     }
 
@@ -204,5 +273,5 @@ struct SettingsView: View {
 
 #Preview {
     SettingsView()
-        .modelContainer(for: [DrinkEntry.self, UserSettings.self], inMemory: true)
+        .modelContainer(for: [DrinkEntry.self, FoodEntry.self, UserSettings.self], inMemory: true)
 }

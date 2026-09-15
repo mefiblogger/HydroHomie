@@ -28,9 +28,11 @@ actor HealthKitService {
         }
     }
 
-    func save(amountML: Double, date: Date) async {
-        guard HKHealthStore.isHealthDataAvailable() else { return }
-        guard store.authorizationStatus(for: waterType) == .sharingAuthorized else { return }
+    /// Writes a water sample and returns its identifier, so the caller can retract
+    /// exactly this sample later. Returns nil when nothing was written.
+    func save(amountML: Double, date: Date) async -> UUID? {
+        guard HKHealthStore.isHealthDataAvailable() else { return nil }
+        guard store.authorizationStatus(for: waterType) == .sharingAuthorized else { return nil }
 
         let quantity = HKQuantity(unit: .literUnit(with: .milli), doubleValue: amountML)
         let sample = HKQuantitySample(
@@ -39,6 +41,20 @@ actor HealthKitService {
             start: date,
             end: date
         )
-        try? await store.save(sample)
+        do {
+            try await store.save(sample)
+            return sample.uuid
+        } catch {
+            return nil
+        }
+    }
+
+    /// Retracts a previously written sample. Without this, deleting an entry in the
+    /// app would leave Health permanently out of step.
+    func delete(sampleID: UUID) async {
+        guard HKHealthStore.isHealthDataAvailable() else { return }
+        guard store.authorizationStatus(for: waterType) == .sharingAuthorized else { return }
+        let predicate = HKQuery.predicateForObject(with: sampleID)
+        _ = try? await store.deleteObjects(of: waterType, predicate: predicate)
     }
 }

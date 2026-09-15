@@ -37,5 +37,5 @@ struct RootView: View {
 
 #Preview {
     RootView()
-        .modelContainer(for: [DrinkEntry.self, UserSettings.self], inMemory: true)
+        .modelContainer(for: [DrinkEntry.self, FoodEntry.self, UserSettings.self], inMemory: true)
 }
