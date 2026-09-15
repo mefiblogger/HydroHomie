@@ -59,9 +59,9 @@ struct TodayView: View {
             rings
             MacroPanel(
                 totals: HydrationStore.macros(of: todaysFood),
-                carbsGoal: settings.dailyCarbsGoal,
-                proteinGoal: settings.dailyProteinGoal,
-                fatGoal: settings.dailyFatGoal
+                carbsGoal: settings.macroGrams(.carbs),
+                proteinGoal: settings.macroGrams(.protein),
+                fatGoal: settings.macroGrams(.fat)
             )
             TodayActionRow(
                 unit: unit,

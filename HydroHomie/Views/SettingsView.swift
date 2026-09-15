@@ -15,6 +15,9 @@ struct SettingsView: View {
     @State private var incrementText: String = ""
     @State private var healthKitUnavailable = false
     @State private var calculating = false
+    /// Most recently edited first. The macro nobody has touched lately absorbs the
+    /// difference, which is what makes an exact split reachable.
+    @State private var macroRecency: [Macro] = Macro.allCases
 
     private var settings: UserSettings { settingsRows.first ?? UserSettings() }
 
@@ -34,6 +37,10 @@ struct SettingsView: View {
                     field("Calories", text: $calorieText, suffix: "kcal",
                           onCommit: commitCalorieGoal)
 
+                    ForEach(Macro.allCases) { macro in
+                        macroRow(macro)
+                    }
+
                     Button {
                         calculating = true
                     } label: {
@@ -42,7 +49,7 @@ struct SettingsView: View {
                 } header: {
                     Text("Goal")
                 } footer: {
-                    Text("Not sure what to aim for? The calculator estimates both from your height, weight and activity.")
+                    Text("Macros split the calorie target and always total 100% — adjusting one moves the macro you changed least recently. They show on Today; only calories and water count toward goal tracking.")
                 }
 
                 Section {
@@ -199,6 +206,32 @@ struct SettingsView: View {
                 }
             }
         )
+    }
+
+    private func macroRow(_ macro: Macro) -> some View {
+        let percent = settings.macroSplit[macro]
+        return Stepper(value: Binding(
+            get: { percent },
+            set: { setMacro(macro, to: $0) }
+        ), in: 0...100, step: 5) {
+            HStack {
+                Text(macro.displayName)
+                Spacer(minLength: 8)
+                Text("\(Int(percent))%")
+                    .monospacedDigit()
+                Text("· \(Int(settings.macroGrams(macro).rounded())) g")
+                    .foregroundStyle(.secondary)
+            }
+            .font(.callout)
+        }
+    }
+
+    private func setMacro(_ macro: Macro, to percent: Double) {
+        // Whichever of the other two was edited longest ago takes the difference.
+        let absorber = macroRecency.last { $0 != macro } ?? Macro.allCases.first { $0 != macro }!
+        settings.macroSplit = settings.macroSplit.setting(macro, to: percent, absorbedBy: absorber)
+        macroRecency = [macro] + macroRecency.filter { $0 != macro }
+        save()
     }
 
     private var weightGoalBinding: Binding<WeightGoal> {

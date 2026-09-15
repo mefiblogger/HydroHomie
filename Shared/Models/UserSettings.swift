@@ -259,6 +259,96 @@ enum GoalHistory {
     }
 }
 
+
+/// The three macronutrients a calorie target is divided into.
+enum Macro: String, CaseIterable, Identifiable, Sendable {
+    case carbs
+    case protein
+    case fat
+
+    var id: String { rawValue }
+
+    var displayName: String {
+        switch self {
+        case .carbs: "Carbohydrates"
+        case .protein: "Protein"
+        case .fat: "Fat"
+        }
+    }
+
+    /// Atwater factors: carbohydrate and protein yield 4 kcal a gram, fat 9.
+    var kcalPerGram: Double {
+        switch self {
+        case .carbs, .protein: 4
+        case .fat: 9
+        }
+    }
+}
+
+/// How the calorie target is divided, as whole percentages that always total 100.
+struct MacroSplit: Equatable, Sendable {
+    var carbs: Double
+    var protein: Double
+    var fat: Double
+
+    /// A conventional starting point — roughly the mid-range of most dietary guidance.
+    static let suggested = MacroSplit(carbs: 50, protein: 20, fat: 30)
+
+    subscript(macro: Macro) -> Double {
+        get {
+            switch macro {
+            case .carbs: carbs
+            case .protein: protein
+            case .fat: fat
+            }
+        }
+        set {
+            switch macro {
+            case .carbs: carbs = newValue
+            case .protein: protein = newValue
+            case .fat: fat = newValue
+            }
+        }
+    }
+
+    var total: Double { carbs + protein + fat }
+
+    /// Grams of `macro` implied by a calorie target.
+    func grams(of macro: Macro, calories: Double) -> Double {
+        calories * (self[macro] / 100) / macro.kcalPerGram
+    }
+
+    /// Sets one macro and pushes the difference onto `absorber`, so the split still
+    /// totals 100.
+    ///
+    /// The difference goes entirely to one macro rather than being spread across both,
+    /// which is what lets an exact split be dialled in: set carbs, then protein, and
+    /// the first value is still where you put it.
+    func setting(_ macro: Macro, to percent: Double, absorbedBy absorber: Macro) -> MacroSplit {
+        guard absorber != macro else { return self }
+        let value = (min(max(percent, 0), 100)).rounded()
+
+        var result = self
+        result[macro] = value
+        result[absorber] = (self[absorber] + (self[macro] - value)).rounded()
+
+        // If the absorber cannot take it all, the remaining macro covers the rest.
+        if result[absorber] < 0 {
+            let third = Macro.allCases.first { $0 != macro && $0 != absorber }!
+            result[third] += result[absorber]
+            result[absorber] = 0
+            result[third] = max(result[third], 0)
+        }
+
+        // Rounding can leave the total a point out; put it back on the absorber.
+        let drift = 100 - result.total
+        if drift != 0 {
+            result[absorber] = max(result[absorber] + drift, 0)
+        }
+        return result
+    }
+}
+
 /// Single-row settings record, shared between the app and the widget through the
 /// App Group container. Fetched (or created) via `UserSettings.current(in:)`.
 @Model
@@ -272,7 +362,13 @@ final class UserSettings {
     var reminderEndHour: Int = 22
     var healthKitEnabled: Bool = false
     var dailyCalorieGoal: Double = 2000
-    // A conventional split of a 2000 kcal day: 50% carbs, 20% protein, 30% fat.
+    /// How the calorie target divides, as percentages totalling 100.
+    var carbsPercent: Double = MacroSplit.suggested.carbs
+    var proteinPercent: Double = MacroSplit.suggested.protein
+    var fatPercent: Double = MacroSplit.suggested.fat
+    // Superseded by the percentages above, which derive grams from the calorie goal.
+    // Left in place rather than removed: this row also anchors the goal history, and
+    // dropping stored properties is not worth the migration risk.
     var dailyCarbsGoal: Double = 250
     var dailyProteinGoal: Double = 100
     var dailyFatGoal: Double = 65
@@ -316,6 +412,20 @@ final class UserSettings {
     var activity: ActivityLevel {
         get { ActivityLevel(rawValue: activityRawValue) ?? .moderate }
         set { activityRawValue = newValue.rawValue }
+    }
+
+    var macroSplit: MacroSplit {
+        get { MacroSplit(carbs: carbsPercent, protein: proteinPercent, fat: fatPercent) }
+        set {
+            carbsPercent = newValue.carbs
+            proteinPercent = newValue.protein
+            fatPercent = newValue.fat
+        }
+    }
+
+    /// Grams of each macro implied by the current calorie target.
+    func macroGrams(_ macro: Macro) -> Double {
+        macroSplit.grams(of: macro, calories: dailyCalorieGoal)
     }
 
     var resolvedGoal: ResolvedGoal {

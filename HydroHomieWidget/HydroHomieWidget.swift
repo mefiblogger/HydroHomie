@@ -64,9 +64,9 @@ struct HydrationProvider: TimelineProvider {
             calories: HydrationStore.calories(of: food),
             calorieGoal: settings?.dailyCalorieGoal ?? 2000,
             macros: HydrationStore.macros(of: food),
-            carbsGoal: settings?.dailyCarbsGoal ?? 250,
-            proteinGoal: settings?.dailyProteinGoal ?? 100,
-            fatGoal: settings?.dailyFatGoal ?? 65,
+            carbsGoal: settings?.macroGrams(.carbs) ?? 250,
+            proteinGoal: settings?.macroGrams(.protein) ?? 100,
+            fatGoal: settings?.macroGrams(.fat) ?? 65,
             unit: settings?.unit ?? .millilitres,
             incrementML: settings?.waterIncrementML ?? 250
         )

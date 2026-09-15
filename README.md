@@ -17,7 +17,8 @@ home screen widget.
 - Add or remove water in one tap; press and hold the add button for an exact amount
 - A configurable quick-add amount, so the buttons match the glass you actually use
 - One log for the day, water and food together
-- A compact macro panel tracking carbs, protein and fat against daily targets
+- A macro split you set as percentages of the calorie target — carbs, protein
+  and fat, always totalling 100%
 - A food library you build up, logged by portion, with carbs, sugar, fibre,
   protein, fat and energy held per 100 g
 - Foods are weighed or measured by volume: grams for solids, millilitres for
@@ -108,6 +109,16 @@ black ground.
 with `.preferredColorScheme`. Note this governs the app only: widgets always follow
 the system appearance, so a phone in light mode shows a light widget even when the
 app is pinned to dark.
+
+**Macros are percentages of the calorie target, not fixed grams.** Change the calorie
+goal and the gram targets follow, using the Atwater factors — 4 kcal a gram for carbs
+and protein, 9 for fat. They drive the Today panel only: goal tracking scores calories
+and water, so a macro change never rewrites a day's outcome.
+
+**Adjusting one macro moves the one you touched least recently**, rather than spreading
+the difference across both. Spreading keeps the total at 100 but makes an exact split
+unreachable — setting carbs drags protein off the number you just put there. With a
+single absorber, 30/45/25 is two adjustments and the first value stays put.
 
 **A day with nothing logged is `untracked`, not `missed`.** Losing weight means
 "no more than 5% over target", which eating nothing satisfies perfectly — so without a
