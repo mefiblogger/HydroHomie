@@ -12,7 +12,8 @@ home screen widget.
 
 ## Features
 
-- Two rings counting down to your daily goals — calories outside, water inside
+- Two dashboard-style gauges counting down to your daily goals — calories outside,
+  water inside
 - Add or remove water in one tap; press and hold the add button for an exact amount
 - A configurable quick-add amount, so the buttons match the glass you actually use
 - One log for the day, water and food together
@@ -90,7 +91,7 @@ with `.preferredColorScheme`. Note this governs the app only: widgets always fol
 the system appearance, so a phone in light mode shows a light widget even when the
 app is pinned to dark.
 
-**The rings fill up but the numbers count down.** Both arcs grow as you consume, which
+**The gauges fill up but the numbers count down.** Both arcs grow as you consume, which
 keeps them legible as a pair, while the labels read "550 kcal left" / "500 ml left".
 A literally draining calorie ring would have been full at breakfast — visually identical
 to the water ring's goal-reached state, meaning the opposite thing.

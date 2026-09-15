@@ -91,6 +91,9 @@ struct TodayView: View {
             .padding(.horizontal, 54)
         }
         .frame(width: 260, height: 260)
+        // The gauge's bottom gap leaves the lower ~46pt of that square empty,
+        // so the layout reports a shorter height and the buttons move up.
+        .frame(height: 214, alignment: .top)
     }
 
     // MARK: - Log
