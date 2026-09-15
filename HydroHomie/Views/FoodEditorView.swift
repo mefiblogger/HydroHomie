@@ -21,6 +21,7 @@ struct FoodEditorView: View {
 
     @State private var name: String
     @State private var icon: FoodIcon
+    @State private var measure: FoodMeasure
     @State private var energy: String
     @State private var carbs: String
     @State private var sugar: String
@@ -45,6 +46,7 @@ struct FoodEditorView: View {
         self.onSaved = onSaved
         _name = State(initialValue: name)
         _icon = State(initialValue: .default)
+        _measure = State(initialValue: .grams)
         _energy = State(initialValue: Self.text(nutrients.energyKcal))
         _carbs = State(initialValue: Self.text(nutrients.carbs))
         _sugar = State(initialValue: Self.text(nutrients.sugar))
@@ -63,15 +65,16 @@ struct FoodEditorView: View {
         self.onSaved = onSaved
         _name = State(initialValue: item.name)
         _icon = State(initialValue: FoodIcon(rawValue: item.icon) ?? .default)
+        _measure = State(initialValue: item.measure)
         _energy = State(initialValue: Self.text(item.energyKcal))
         _carbs = State(initialValue: Self.text(item.carbsGrams))
         _sugar = State(initialValue: Self.text(item.sugarGrams))
         _fiber = State(initialValue: Self.text(item.fiberGrams))
         _protein = State(initialValue: Self.text(item.proteinGrams))
         _fat = State(initialValue: Self.text(item.fatGrams))
-        _portion = State(initialValue: Self.text(item.defaultPortionGrams))
+        _portion = State(initialValue: Self.text(item.defaultPortionAmount))
         _portionTexts = State(initialValue: Dictionary(
-            uniqueKeysWithValues: item.portions.map { ($0.kind, Self.text($0.grams)) }
+            uniqueKeysWithValues: item.portions.map { ($0.kind, Self.text($0.amount)) }
         ))
     }
 
@@ -86,9 +89,20 @@ struct FoodEditorView: View {
 
     var body: some View {
         Form {
-            Section("Food") {
+            Section {
                 TextField("Name", text: $name)
+                Picker("Measured in", selection: $measure) {
+                    ForEach(FoodMeasure.allCases) { option in
+                        Text(option.displayName).tag(option)
+                    }
+                }
                 iconPicker
+            } header: {
+                Text("Food")
+            } footer: {
+                Text(measure == .grams
+                     ? "Solids are weighed. Labels give nutrition per 100 g."
+                     : "Drinks are measured by volume. Labels give nutrition per 100 ml.")
             }
 
             if !missing.isEmpty {
@@ -110,19 +124,22 @@ struct FoodEditorView: View {
                 field("Protein", text: $protein, suffix: "g")
                 field("Fat", text: $fat, suffix: "g")
             } header: {
-                Text("Per 100 g")
+                Text("Per 100 \(measure.shortName)")
             } footer: {
                 Text("Sugar and fibre are part of the carbohydrate figure, not extra to it. Leave anything you don't know blank.")
             }
 
             Section {
-                ForEach(PortionKind.allCases) { kind in
-                    field(kind.singular.capitalized, text: binding(for: kind), suffix: "g")
+                ForEach(measure.portionKinds) { kind in
+                    field(kind.singular.capitalized, text: binding(for: kind),
+                          suffix: measure.shortName)
                 }
             } header: {
                 Text("Portions")
             } footer: {
-                Text("The weight of one. Set “piece” to 2 g for grapes and you can log 10 pieces later. Leave blank for any you don't use.")
+                Text(measure == .grams
+                     ? "The size of one. Set “piece” to 2 g for grapes and you can log 10 pieces later. Leave blank for any you don't use."
+                     : "The size of one. Set “glass” to 250 ml for juice and you can log 2 glasses later. Leave blank for any you don't use.")
             }
 
             if isEditing {
@@ -137,7 +154,7 @@ struct FoodEditorView: View {
                         TextField("Amount", text: $portion)
                             .keyboardType(.decimalPad)
                             .multilineTextAlignment(.trailing)
-                        Text("g")
+                        Text(measure.shortName)
                             .foregroundStyle(.secondary)
                     }
                 }
@@ -235,9 +252,11 @@ struct FoodEditorView: View {
         )
     }
 
+    /// Only the measures that make sense for the chosen unit are kept, so switching
+    /// a food from grams to millilitres does not leave a stale "piece" behind.
     private var enteredPortions: [NamedPortion] {
-        PortionKind.allCases.compactMap { kind in
-            Self.positive(portionTexts[kind] ?? "").map { NamedPortion(kind: kind, grams: $0) }
+        measure.portionKinds.compactMap { kind in
+            Self.positive(portionTexts[kind] ?? "").map { NamedPortion(kind: kind, amount: $0) }
         }
     }
 
@@ -248,6 +267,7 @@ struct FoodEditorView: View {
         if let existing {
             existing.name = trimmed
             existing.icon = icon.rawValue
+            existing.measure = measure
             existing.energyKcal = nutrients.energyKcal
             existing.carbsGrams = nutrients.carbs
             existing.sugarGrams = nutrients.sugar
@@ -255,7 +275,7 @@ struct FoodEditorView: View {
             existing.proteinGrams = nutrients.protein
             existing.fatGrams = nutrients.fat
             existing.portions = enteredPortions
-            if let grams { existing.defaultPortionGrams = grams }
+            if let grams { existing.defaultPortionAmount = grams }
             try? context.save()
             onSaved(existing, nil)
             dismiss()
@@ -264,7 +284,8 @@ struct FoodEditorView: View {
             let item = FoodItem(
                 name: trimmed,
                 per100g: nutrients,
-                defaultPortionGrams: grams,
+                measure: measure,
+                defaultPortionAmount: grams,
                 portions: enteredPortions,
                 icon: icon,
                 barcode: barcode

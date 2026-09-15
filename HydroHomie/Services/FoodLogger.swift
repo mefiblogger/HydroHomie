@@ -19,8 +19,9 @@ enum FoodLogger {
     ) {
         let entry = FoodEntry(
             name: item.name,
-            nutrients: item.nutrients(forGrams: grams),
-            portionGrams: grams,
+            nutrients: item.nutrients(forAmount: grams),
+            portionAmount: grams,
+            measure: item.measure,
             portionCount: count,
             portionKind: kind,
             icon: item.icon,
@@ -30,7 +31,7 @@ enum FoodLogger {
 
         // Keeps the library sorted by what you actually eat.
         item.lastUsedAt = Date()
-        item.defaultPortionGrams = grams
+        item.defaultPortionAmount = grams
 
         try? context.save()
         UIImpactFeedbackGenerator(style: .medium).impactOccurred()

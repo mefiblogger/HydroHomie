@@ -20,7 +20,10 @@ home screen widget.
 - A compact macro panel tracking carbs, protein and fat against daily targets
 - A food library you build up, logged by portion, with carbs, sugar, fibre,
   protein, fat and energy held per 100 g
-- Named portions per food — define a grape's "piece" as 2 g and log 10 pieces
+- Foods are weighed or measured by volume: grams for solids, millilitres for
+  drinks, with portions to match
+- Named portions per food — define a grape's "piece" as 2 g, or a juice's
+  "glass" as 250 ml, and log 10 pieces or 2 glasses
 - An icon per food, chosen from a set of emoji
 - Foods are editable, from Settings or while tracking — without disturbing
   anything already logged
@@ -173,6 +176,21 @@ a food tracker, exactly one (`carrot.fill`) has an honest match. There is no bur
 pasta, candy, chocolate, chips or fruit, and `apple.*` is the company logo. Emoji
 cover the lot at the cost of not being tintable: they render from a bitmap colour
 font, so `foregroundStyle` is ignored.
+
+**A food knows whether it is weighed or poured.** Nutrition is per 100 g for solids
+and per 100 ml for drinks — the arithmetic is identical, so `FoodMeasure` only decides
+what the figures are called and which portions are offered: no piece of juice, no bowl
+of rice. The entry snapshots the measure too, so a juice logged in millilitres stays in
+millilitres even if the library entry is later switched.
+
+**Stored property names still say "grams" and are left that way on purpose.**
+`portionGrams` and `defaultPortionGrams` hold grams *or* millilitres depending on the
+food; `portionAmount` and `defaultPortionAmount` are computed aliases that read
+honestly at the call site. Renaming the stored properties — even with
+`@Attribute(originalName:)` — coincided with every `FoodEntry` row disappearing during
+development, while `FoodItem` survived the identical change. The cause was never
+pinned down, so schema changes to the log are additive only. A food library can be
+rebuilt; a log cannot.
 
 **Named portions are per food, not global.** A "piece" means 2 g for grapes and 30 g
 for biscuits, so the weight lives on the `FoodItem` rather than on the `PortionKind`.

@@ -16,9 +16,10 @@ struct Nutrients: Hashable, Sendable {
     var protein: Double = 0
     var fat: Double = 0
 
-    /// These values describe 100 g; return the same nutrients for `grams` instead.
-    func scaled(toGrams grams: Double) -> Nutrients {
-        let factor = grams / 100
+    /// These values describe 100 g or 100 ml of a food; return them for `amount` of
+    /// it instead. Which unit it is lives on the food, not here.
+    func scaled(to amount: Double) -> Nutrients {
+        let factor = amount / 100
         return Nutrients(
             energyKcal: energyKcal * factor,
             carbs: carbs * factor,
@@ -30,14 +31,48 @@ struct Nutrients: Hashable, Sendable {
     }
 }
 
+/// Whether a food is measured by weight or by volume. Labels give nutrition per
+/// 100 g for solids and per 100 ml for liquids; the arithmetic is identical, so this
+/// only decides what the figures are called and which portions make sense.
+enum FoodMeasure: String, Codable, CaseIterable, Identifiable, Sendable {
+    case grams
+    case millilitres
+
+    var id: String { rawValue }
+
+    var shortName: String {
+        switch self {
+        case .grams: "g"
+        case .millilitres: "ml"
+        }
+    }
+
+    var displayName: String {
+        switch self {
+        case .grams: "Grams"
+        case .millilitres: "Millilitres"
+        }
+    }
+
+    /// You do not eat a piece of juice, and you do not drink a bowl of rice.
+    var portionKinds: [PortionKind] {
+        switch self {
+        case .grams: [.serving, .piece, .each, .can, .bottle]
+        case .millilitres: [.serving, .can, .bottle, .glass, .bowl]
+        }
+    }
+}
+
 /// A named way to measure a food, defined per food: a grape's "piece" is 2 g, a
-/// cola's "can" is 330 g. Logging then happens in whichever unit is natural.
+/// cola's "can" is 330 ml. Logging then happens in whichever unit is natural.
 enum PortionKind: String, Codable, CaseIterable, Identifiable, Sendable {
     case serving
     case piece
     case each
     case can
     case bottle
+    case glass
+    case bowl
 
     var id: String { rawValue }
 
@@ -50,6 +85,8 @@ enum PortionKind: String, Codable, CaseIterable, Identifiable, Sendable {
         case .each: "each"
         case .can: "cans"
         case .bottle: "bottles"
+        case .glass: "glasses"
+        case .bowl: "bowls"
         }
     }
 
@@ -65,9 +102,16 @@ enum PortionKind: String, Codable, CaseIterable, Identifiable, Sendable {
 
 struct NamedPortion: Codable, Hashable, Sendable, Identifiable {
     var kind: PortionKind
-    var grams: Double
+    /// The size of one, in the food's own measure — grams or millilitres.
+    var amount: Double
 
     var id: String { kind.rawValue }
+
+    /// Stored as "grams" historically; the key is kept so existing rows still decode.
+    private enum CodingKeys: String, CodingKey {
+        case kind
+        case amount = "grams"
+    }
 }
 
 /// The icon shown against a food in the log and the library.
@@ -139,7 +183,9 @@ final class FoodItem {
     var proteinGrams: Double = 0
     var fatGrams: Double = 0
 
-    /// Offered as the portion when logging this food again.
+    var measureRawValue: String = FoodMeasure.grams.rawValue
+    /// Offered as the portion when logging this food again, in the food's measure.
+    /// Named for grams historically; the column is left alone deliberately.
     var defaultPortionGrams: Double = 100
     var createdAt: Date = Date()
     /// Drives the ordering of the library, so what you eat often stays at the top.
@@ -153,7 +199,8 @@ final class FoodItem {
     init(
         name: String,
         per100g: Nutrients,
-        defaultPortionGrams: Double = 100,
+        measure: FoodMeasure = .grams,
+        defaultPortionAmount: Double = 100,
         portions: [NamedPortion] = [],
         icon: FoodIcon = .default,
         barcode: String? = nil
@@ -166,12 +213,31 @@ final class FoodItem {
         self.fiberGrams = per100g.fiber
         self.proteinGrams = per100g.protein
         self.fatGrams = per100g.fat
-        self.defaultPortionGrams = defaultPortionGrams
+        self.measureRawValue = measure.rawValue
+        self.defaultPortionGrams = defaultPortionAmount
         self.portions = portions
         self.icon = icon.rawValue
         self.createdAt = Date()
         self.lastUsedAt = Date()
         self.barcode = barcode
+    }
+
+    var measure: FoodMeasure {
+        get { FoodMeasure(rawValue: measureRawValue) ?? .grams }
+        set { measureRawValue = newValue.rawValue }
+    }
+
+    /// Reads honestly at the call site: grams or millilitres, per `measure`.
+    var defaultPortionAmount: Double {
+        get { defaultPortionGrams }
+        set { defaultPortionGrams = newValue }
+    }
+
+    /// Named measures this food defines, in the order the picker offers them.
+    var availablePortions: [NamedPortion] {
+        measure.portionKinds.compactMap { kind in
+            portions.first { $0.kind == kind }
+        }
     }
 
     var per100g: Nutrients {
@@ -185,17 +251,17 @@ final class FoodItem {
         )
     }
 
-    func nutrients(forGrams grams: Double) -> Nutrients {
-        per100g.scaled(toGrams: grams)
+    func nutrients(forAmount amount: Double) -> Nutrients {
+        per100g.scaled(to: amount)
     }
 
-    /// Weight of one of `kind`, or nil when this food does not define that measure.
-    func grams(for kind: PortionKind) -> Double? {
-        portions.first { $0.kind == kind }?.grams
+    /// Size of one of `kind`, or nil when this food does not define that measure.
+    func amount(for kind: PortionKind) -> Double? {
+        portions.first { $0.kind == kind }?.amount
     }
 
-    /// Total weight of `count` of `kind`, e.g. 10 grapes at 2 g each.
-    func grams(count: Double, of kind: PortionKind) -> Double? {
-        grams(for: kind).map { $0 * count }
+    /// Total size of `count` of `kind`, e.g. 10 grapes at 2 g each.
+    func amount(count: Double, of kind: PortionKind) -> Double? {
+        amount(for: kind).map { $0 * count }
     }
 }

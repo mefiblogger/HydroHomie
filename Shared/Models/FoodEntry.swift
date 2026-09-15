@@ -14,7 +14,12 @@ import SwiftData
 final class FoodEntry {
     var id: UUID = UUID()
     var name: String = ""
+    /// The portion logged, in the measure below. Named for grams historically;
+    /// renaming a stored property risks the rows, and a log cannot be rebuilt.
     var portionGrams: Double = 0
+    /// Snapshotted like everything else: a juice logged in ml stays in ml even if
+    /// the library entry is later switched to grams.
+    var measureRawValue: String = FoodMeasure.grams.rawValue
     var calories: Double = 0
     var carbsGrams: Double = 0
     var sugarGrams: Double = 0
@@ -35,7 +40,8 @@ final class FoodEntry {
     init(
         name: String,
         nutrients: Nutrients,
-        portionGrams: Double = 0,
+        portionAmount: Double = 0,
+        measure: FoodMeasure = .grams,
         portionCount: Double = 0,
         portionKind: PortionKind? = nil,
         icon: String = FoodIcon.default.rawValue,
@@ -44,7 +50,8 @@ final class FoodEntry {
     ) {
         self.id = UUID()
         self.name = name
-        self.portionGrams = portionGrams
+        self.portionGrams = portionAmount
+        self.measureRawValue = measure.rawValue
         self.calories = nutrients.energyKcal
         self.carbsGrams = nutrients.carbs
         self.sugarGrams = nutrients.sugar
@@ -67,16 +74,24 @@ final class FoodEntry {
         )
     }
 
+    var measure: FoodMeasure {
+        FoodMeasure(rawValue: measureRawValue) ?? .grams
+    }
+
+    /// Reads honestly at the call site: the figure is grams or millilitres
+    /// depending on `measure`.
+    var portionAmount: Double { portionGrams }
+
     var portionKind: PortionKind? {
         portionKindRaw.flatMap(PortionKind.init(rawValue:))
     }
 
-    /// "10 pieces" when a named measure was used, otherwise "150 g".
+    /// "10 pieces" when a named measure was used, otherwise "150 g" or "250 ml".
     var portionLabel: String {
         if let portionKind {
             return portionKind.label(count: portionCount)
         }
-        return "\(Int(portionGrams.rounded())) g"
+        return "\(Int(portionGrams.rounded())) \(measure.shortName)"
     }
 
     var nutrients: Nutrients {

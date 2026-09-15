@@ -239,7 +239,7 @@ struct TodayView: View {
     /// "540 kcal" on its own, or "10 pieces · 540 kcal" when a portion was recorded.
     private func foodDetail(_ entry: FoodEntry) -> String {
         let energy = "\(Int(entry.calories.rounded())) kcal"
-        guard entry.portionGrams > 0 else { return energy }
+        guard entry.portionAmount > 0 else { return energy }
         return "\(entry.portionLabel) · \(energy)"
     }
 

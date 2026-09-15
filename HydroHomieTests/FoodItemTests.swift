@@ -12,12 +12,12 @@ final class FoodItemTests: XCTestCase {
     )
 
     func testOneHundredGramsIsTheStoredValue() {
-        let scaled = oats.scaled(toGrams: 100)
+        let scaled = oats.scaled(to: 100)
         XCTAssertEqual(scaled, oats)
     }
 
     func testScalingHalvesEveryNutrient() {
-        let scaled = oats.scaled(toGrams: 50)
+        let scaled = oats.scaled(to: 50)
         XCTAssertEqual(scaled.energyKcal, 189.5, accuracy: 0.0001)
         XCTAssertEqual(scaled.carbs, 33.85, accuracy: 0.0001)
         XCTAssertEqual(scaled.sugar, 0.495, accuracy: 0.0001)
@@ -27,11 +27,11 @@ final class FoodItemTests: XCTestCase {
     }
 
     func testScalingAboveOneHundredGrams() {
-        XCTAssertEqual(oats.scaled(toGrams: 250).energyKcal, 947.5, accuracy: 0.0001)
+        XCTAssertEqual(oats.scaled(to: 250).energyKcal, 947.5, accuracy: 0.0001)
     }
 
     func testZeroPortionYieldsNothing() {
-        XCTAssertEqual(oats.scaled(toGrams: 0), Nutrients())
+        XCTAssertEqual(oats.scaled(to: 0), Nutrients())
     }
 
     func testItemExposesItsOwnPer100gUnchanged() {
@@ -41,15 +41,15 @@ final class FoodItemTests: XCTestCase {
 
     func testItemScalesToAPortion() {
         let item = FoodItem(name: "Oats", per100g: oats)
-        XCTAssertEqual(item.nutrients(forGrams: 40).energyKcal, 151.6, accuracy: 0.0001)
+        XCTAssertEqual(item.nutrients(forAmount: 40).energyKcal, 151.6, accuracy: 0.0001)
     }
 
     func testEntrySnapshotsTheScaledValuesRatherThanTheItem() {
         let item = FoodItem(name: "Oats", per100g: oats)
         let entry = FoodEntry(
             name: item.name,
-            nutrients: item.nutrients(forGrams: 50),
-            portionGrams: 50,
+            nutrients: item.nutrients(forAmount: 50),
+            portionAmount: 50,
             itemID: item.id
         )
 
@@ -57,7 +57,7 @@ final class FoodItemTests: XCTestCase {
         item.energyKcal = 1000
 
         XCTAssertEqual(entry.calories, 189.5, accuracy: 0.0001)
-        XCTAssertEqual(entry.portionGrams, 50, accuracy: 0.0001)
+        XCTAssertEqual(entry.portionAmount, 50, accuracy: 0.0001)
         XCTAssertEqual(entry.itemID, item.id)
     }
 }
@@ -67,25 +67,25 @@ final class NamedPortionTests: XCTestCase {
     private let grapes = FoodItem(
         name: "Grapes",
         per100g: Nutrients(energyKcal: 69, carbs: 18, sugar: 16, fiber: 0.9, protein: 0.7, fat: 0.2),
-        portions: [NamedPortion(kind: .piece, grams: 2)]
+        portions: [NamedPortion(kind: .piece, amount: 2)]
     )
 
     func testGramsForADefinedMeasure() {
-        XCTAssertEqual(grapes.grams(for: .piece), 2)
+        XCTAssertEqual(grapes.amount(for: .piece), 2)
     }
 
     func testGramsForAnUndefinedMeasureIsNil() {
-        XCTAssertNil(grapes.grams(for: .can))
-        XCTAssertNil(grapes.grams(count: 2, of: .bottle))
+        XCTAssertNil(grapes.amount(for: .can))
+        XCTAssertNil(grapes.amount(count: 2, of: .bottle))
     }
 
     func testCountingPiecesMultipliesTheWeight() {
-        XCTAssertEqual(grapes.grams(count: 10, of: .piece), 20)
+        XCTAssertEqual(grapes.amount(count: 10, of: .piece), 20)
     }
 
     func testNutrientsForTenGrapes() {
-        let grams = grapes.grams(count: 10, of: .piece) ?? 0
-        let nutrients = grapes.nutrients(forGrams: grams)
+        let grams = grapes.amount(count: 10, of: .piece) ?? 0
+        let nutrients = grapes.nutrients(forAmount: grams)
         XCTAssertEqual(nutrients.energyKcal, 13.8, accuracy: 0.0001)
         XCTAssertEqual(nutrients.sugar, 3.2, accuracy: 0.0001)
     }
@@ -108,7 +108,7 @@ final class NamedPortionTests: XCTestCase {
         let entry = FoodEntry(
             name: "Grapes",
             nutrients: Nutrients(energyKcal: 13.8),
-            portionGrams: 20,
+            portionAmount: 20,
             portionCount: 10,
             portionKind: .piece
         )
@@ -120,7 +120,7 @@ final class NamedPortionTests: XCTestCase {
         let entry = FoodEntry(
             name: "Oats",
             nutrients: Nutrients(energyKcal: 150),
-            portionGrams: 40
+            portionAmount: 40
         )
         XCTAssertEqual(entry.portionLabel, "40 g")
         XCTAssertNil(entry.portionKind)
@@ -170,8 +170,8 @@ final class EditingDoesNotRewriteHistoryTests: XCTestCase {
     private func loggedEntry(from item: FoodItem, grams: Double) -> FoodEntry {
         FoodEntry(
             name: item.name,
-            nutrients: item.nutrients(forGrams: grams),
-            portionGrams: grams,
+            nutrients: item.nutrients(forAmount: grams),
+            portionAmount: grams,
             portionCount: 1,
             portionKind: item.portions.first?.kind,
             icon: item.icon,
@@ -220,14 +220,14 @@ final class EditingDoesNotRewriteHistoryTests: XCTestCase {
         let item = FoodItem(
             name: "Grapes",
             per100g: Nutrients(energyKcal: 69),
-            portions: [NamedPortion(kind: .piece, grams: 2)]
+            portions: [NamedPortion(kind: .piece, amount: 2)]
         )
-        let grams = item.grams(count: 10, of: .piece) ?? 0
+        let grams = item.amount(count: 10, of: .piece) ?? 0
         let entry = loggedEntry(from: item, grams: grams)
 
-        item.portions = [NamedPortion(kind: .piece, grams: 5)]
+        item.portions = [NamedPortion(kind: .piece, amount: 5)]
 
-        XCTAssertEqual(entry.portionGrams, 20, accuracy: 0.0001)
+        XCTAssertEqual(entry.portionAmount, 20, accuracy: 0.0001)
         XCTAssertEqual(entry.calories, 13.8, accuracy: 0.0001)
     }
 
@@ -240,5 +240,85 @@ final class EditingDoesNotRewriteHistoryTests: XCTestCase {
         XCTAssertEqual(entry.icon, FoodIcon.meal.rawValue)
         XCTAssertEqual(entry.calories, 190, accuracy: 0.0001)
         XCTAssertEqual(entry.itemID, item.id)
+    }
+}
+
+/// Liquids are measured in millilitres, and offer different portions.
+final class FoodMeasureTests: XCTestCase {
+
+    func testGramsIsTheDefault() {
+        XCTAssertEqual(FoodItem(name: "Oats", per100g: Nutrients()).measure, .grams)
+    }
+
+    func testSolidsAndLiquidsOfferDifferentPortions() {
+        XCTAssertEqual(FoodMeasure.grams.portionKinds, [.serving, .piece, .each, .can, .bottle])
+        XCTAssertEqual(FoodMeasure.millilitres.portionKinds,
+                       [.serving, .can, .bottle, .glass, .bowl])
+    }
+
+    func testYouCannotEatAPieceOfJuice() {
+        XCTAssertFalse(FoodMeasure.millilitres.portionKinds.contains(.piece))
+        XCTAssertFalse(FoodMeasure.grams.portionKinds.contains(.glass))
+    }
+
+    func testShortNames() {
+        XCTAssertEqual(FoodMeasure.grams.shortName, "g")
+        XCTAssertEqual(FoodMeasure.millilitres.shortName, "ml")
+    }
+
+    func testTheNewPortionsPluralise() {
+        XCTAssertEqual(PortionKind.glass.label(count: 1), "1 glass")
+        XCTAssertEqual(PortionKind.glass.label(count: 2), "2 glasses")
+        XCTAssertEqual(PortionKind.bowl.label(count: 3), "3 bowls")
+    }
+
+    func testAGlassOfJuiceScalesByVolume() {
+        let juice = FoodItem(
+            name: "Orange juice",
+            per100g: Nutrients(energyKcal: 45, carbs: 10.4, sugar: 8.8, protein: 0.7),
+            measure: .millilitres,
+            portions: [NamedPortion(kind: .glass, amount: 250)]
+        )
+        XCTAssertEqual(juice.amount(count: 2, of: .glass), 500)
+        let two = juice.nutrients(forAmount: 500)
+        XCTAssertEqual(two.energyKcal, 225, accuracy: 0.0001)
+        XCTAssertEqual(two.sugar, 44, accuracy: 0.0001)
+    }
+
+    func testAvailablePortionsIgnoreMeasuresThatDoNotApply() {
+        // A stale "piece" left over from a food that used to be weighed.
+        let juice = FoodItem(
+            name: "Juice",
+            per100g: Nutrients(),
+            measure: .millilitres,
+            portions: [NamedPortion(kind: .piece, amount: 2),
+                       NamedPortion(kind: .glass, amount: 250)]
+        )
+        XCTAssertEqual(juice.availablePortions.map(\.kind), [.glass])
+    }
+
+    func testEntryLabelsVolumeInMillilitres() {
+        let entry = FoodEntry(
+            name: "Orange juice",
+            nutrients: Nutrients(energyKcal: 112),
+            portionAmount: 250,
+            measure: .millilitres
+        )
+        XCTAssertEqual(entry.portionLabel, "250 ml")
+    }
+
+    func testEntryKeepsItsMeasureWhenTheFoodIsLaterSwitched() {
+        let juice = FoodItem(name: "Juice", per100g: Nutrients(energyKcal: 45),
+                             measure: .millilitres)
+        let entry = FoodEntry(
+            name: juice.name,
+            nutrients: juice.nutrients(forAmount: 250),
+            portionAmount: 250,
+            measure: juice.measure,
+            itemID: juice.id
+        )
+        juice.measure = .grams
+        XCTAssertEqual(entry.measure, .millilitres)
+        XCTAssertEqual(entry.portionLabel, "250 ml")
     }
 }

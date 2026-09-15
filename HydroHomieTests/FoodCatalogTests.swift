@@ -68,7 +68,7 @@ final class FoodCatalogTests: XCTestCase {
         }
         let item = FoodItem(name: milk.name, per100g: milk.nutrients)
         XCTAssertEqual(item.per100g, milk.nutrients)
-        XCTAssertEqual(item.nutrients(forGrams: 200).energyKcal,
+        XCTAssertEqual(item.nutrients(forAmount: 200).energyKcal,
                        milk.nutrients.energyKcal * 2, accuracy: 0.0001)
     }
 }

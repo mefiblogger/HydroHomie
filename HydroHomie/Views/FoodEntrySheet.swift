@@ -71,7 +71,7 @@ struct FoodEntrySheet: View {
 
                     NavigationLink {
                         FoodEditorView(creatingNamed: search) { item, grams in
-                            log(item, grams: grams ?? item.defaultPortionGrams,
+                            log(item, grams: grams ?? item.defaultPortionAmount,
                                 count: 0, kind: nil)
                         }
                     } label: {
@@ -199,7 +199,7 @@ struct FoodEntrySheet: View {
                     barcode: food.barcode,
                     missing: food.missing
                 ) { item, grams in
-                    log(item, grams: grams ?? item.defaultPortionGrams, count: 0, kind: nil)
+                    log(item, grams: grams ?? item.defaultPortionAmount, count: 0, kind: nil)
                 }
             }
             .sheet(isPresented: $scanning) {
@@ -349,17 +349,17 @@ private struct LogPortionView: View {
         guard let quantity else { return nil }
         switch measure {
         case .grams: return quantity
-        case .named(let kind): return item.grams(count: quantity, of: kind)
+        case .named(let kind): return item.amount(count: quantity, of: kind)
         }
     }
 
     var body: some View {
         Form {
             Section("Portion") {
-                if !item.portions.isEmpty {
+                if !item.availablePortions.isEmpty {
                     Picker("Measured in", selection: $measure) {
-                        Text("Grams").tag(Measure.grams)
-                        ForEach(item.portions) { portion in
+                        Text(item.measure.displayName).tag(Measure.grams)
+                        ForEach(item.availablePortions) { portion in
                             Text(portion.kind.singular.capitalized)
                                 .tag(Measure.named(portion.kind))
                         }
@@ -378,12 +378,13 @@ private struct LogPortionView: View {
                 }
 
                 if measure.kind != nil, let grams {
-                    LabeledContent("Weight", value: "\(Int(grams.rounded())) g")
+                    LabeledContent(item.measure == .grams ? "Weight" : "Volume",
+                                   value: "\(Int(grams.rounded())) \(item.measure.shortName)")
                 }
             }
 
             Section("This portion") {
-                NutrientBreakdown(nutrients: item.nutrients(forGrams: grams ?? 0))
+                NutrientBreakdown(nutrients: item.nutrients(forAmount: grams ?? 0))
             }
         }
         .navigationTitle(item.name)
@@ -401,7 +402,7 @@ private struct LogPortionView: View {
         .onAppear {
             // A food only has named measures because they are how you think about
             // it, so lead with the first one rather than with grams.
-            if let first = item.portions.first {
+            if let first = item.availablePortions.first {
                 measure = .named(first.kind)
             }
             resetQuantity()
@@ -411,14 +412,14 @@ private struct LogPortionView: View {
 
     /// Singular at a count of one, so the field does not read "1 pieces".
     private var unitSuffix: String {
-        guard let kind = measure.kind else { return "g" }
+        guard let kind = measure.kind else { return item.measure.shortName }
         return abs((quantity ?? 0) - 1) < 0.0001 ? kind.singular : kind.plural
     }
 
     private func resetQuantity() {
         switch measure {
         case .grams:
-            quantityText = String(Int(item.defaultPortionGrams.rounded()))
+            quantityText = String(Int(item.defaultPortionAmount.rounded()))
         case .named:
             quantityText = "1"
         }
