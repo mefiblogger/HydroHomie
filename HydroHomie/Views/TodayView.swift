@@ -48,13 +48,13 @@ struct TodayView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 24) {
+                rings
                 MacroPanel(
                     totals: HydrationStore.macros(of: todaysFood),
                     carbsGoal: settings.dailyCarbsGoal,
                     proteinGoal: settings.dailyProteinGoal,
                     fatGoal: settings.dailyFatGoal
                 )
-                rings
                 TodayActionRow(
                     unit: unit,
                     incrementML: settings.waterIncrementML,

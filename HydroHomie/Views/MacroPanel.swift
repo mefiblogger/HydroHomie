@@ -4,7 +4,8 @@
 
 import SwiftUI
 
-/// Compact macro readout above the rings: three columns side by side, each a name,
+/// Compact macro readout between the gauge and the buttons: three columns side by
+/// side, each a name,
 /// a horizontal bar and a consumed/goal figure. Shares the buttons' corner radius so
 /// the two blocks read as a set.
 struct MacroPanel: View {
