@@ -26,7 +26,8 @@ home screen widget.
   anything already logged
 - ~1,900 generic foods bundled with the app: searchable offline, no account,
   no API key, no network
-- Barcode scanning and branded-product search via Open Food Facts
+- Barcode scanning, or type an EAN straight into the search field
+- Branded-product search via Open Food Facts
 - History with a 7- or 30-day chart, daily average and goal-met count
 - Millilitres or US fluid ounces, switchable at any time without touching stored data
 - Configurable reminders through the day
@@ -139,10 +140,17 @@ lost.
 user's own `FoodItem`s, so the database's ODbL share-alike never attaches to this
 project — which it would the moment a derived copy shipped inside the app.
 
+**The search field doubles as a barcode field.** A scan just fills it in; anything
+that is 8, 12, 13 or 14 digits and nothing else is treated as a barcode. That gives
+one input rather than two paths, lets a barcode be typed or pasted, and means a scan
+first matches *your own* foods — library items keep the barcode they were created
+from, so re-scanning something finds your copy, with your portions, before it reaches
+the internet.
+
 **Search there happens on submit, not per keystroke.** Open Food Facts rate limits
 search far harder than barcode lookup, around ten a minute; typing would burn that in
-seconds and earn a 503. Barcode lookups are not throttled the same way and run
-immediately on scan.
+seconds and earn a 503. Barcode lookups are not throttled the same way, so they resolve on their own
+without a submit.
 
 **Check the HTTP status before parsing.** A throttled request returns a 503 whose body
 is not JSON; without the status check that parsed as an empty result and looked

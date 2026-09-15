@@ -95,3 +95,49 @@ final class OpenFoodFactsTests: XCTestCase {
         XCTAssertTrue(results.isEmpty)
     }
 }
+
+/// The search field doubles as a barcode field, so the recogniser matters.
+final class BarcodeRecognitionTests: XCTestCase {
+
+    /// Mirrors FoodEntrySheet.barcode — the retail symbologies a scanner returns.
+    private func barcode(_ text: String) -> String? {
+        let query = text.trimmingCharacters(in: .whitespaces)
+        let digits = query.filter(\.isNumber)
+        guard digits.count == query.count, [8, 12, 13, 14].contains(digits.count) else {
+            return nil
+        }
+        return digits
+    }
+
+    func testAcceptsTheRetailLengths() {
+        XCTAssertEqual(barcode("5997010302239"), "5997010302239")   // EAN-13, Univer
+        XCTAssertEqual(barcode("80176800"), "80176800")             // EAN-8, Nutella
+        XCTAssertEqual(barcode("012345678905"), "012345678905")     // UPC-A
+        XCTAssertEqual(barcode("12345678901234"), "12345678901234") // ITF-14
+    }
+
+    func testTrimsSurroundingWhitespace() {
+        XCTAssertEqual(barcode("  5997010302239 "), "5997010302239")
+    }
+
+    func testRejectsOtherDigitLengths() {
+        XCTAssertNil(barcode("123"))
+        XCTAssertNil(barcode("1234567890"))
+        XCTAssertNil(barcode("123456789012345"))
+    }
+
+    func testRejectsAnythingWithLetters() {
+        XCTAssertNil(barcode("turo rudi"))
+        XCTAssertNil(barcode("5997010302239x"))
+    }
+
+    func testRejectsDigitsBrokenUpBySpaces() {
+        // A name that happens to contain numbers must not trigger a lookup.
+        XCTAssertNil(barcode("599 701 030 2239"))
+    }
+
+    func testRejectsEmpty() {
+        XCTAssertNil(barcode(""))
+        XCTAssertNil(barcode("   "))
+    }
+}

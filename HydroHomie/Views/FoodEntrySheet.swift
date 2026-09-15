@@ -20,21 +20,39 @@ struct FoodEntrySheet: View {
     @State private var picked: FoodItem?
 
     @State private var scanning = false
-    @State private var lookingUp = false
-    @State private var lookupError: String?
     /// A product from Open Food Facts, on its way to the editor for checking.
     @State private var scanned: RemoteFood?
     @State private var online: [RemoteFood] = []
     @State private var searchingOnline = false
     @State private var onlineError: String?
 
+    private var query: String {
+        search.trimmingCharacters(in: .whitespaces)
+    }
+
+    /// The search field doubles as a barcode field: a scan drops its digits straight
+    /// in. 8, 12, 13 and 14 are the retail lengths — EAN-8, UPC-A, EAN-13, ITF-14.
+    private var barcode: String? {
+        let digits = query.filter(\.isNumber)
+        guard digits.count == query.count, [8, 12, 13, 14].contains(digits.count) else {
+            return nil
+        }
+        return digits
+    }
+
     private var matches: [FoodItem] {
-        let query = search.trimmingCharacters(in: .whitespaces)
         guard !query.isEmpty else { return items }
+        // A scan of something already logged should find your own version of it,
+        // with the portions you set, rather than sending you back to the internet.
+        if let barcode {
+            return items.filter { $0.barcode == barcode }
+        }
         return items.filter { $0.name.localizedCaseInsensitiveContains(query) }
     }
 
     private var catalogueMatches: [CatalogFood] {
+        // The bundled catalogue is generic foods; none of them carry a barcode.
+        guard barcode == nil else { return [] }
         // Anything already in the library is offered above; no point listing it twice.
         let mine = Set(items.map { $0.name.lowercased() })
         return FoodCatalog.search(search).filter { !mine.contains($0.name.lowercased()) }
@@ -60,7 +78,8 @@ struct FoodEntrySheet: View {
                     }
                 }
 
-                if matches.isEmpty && catalogueMatches.isEmpty && online.isEmpty {
+                if matches.isEmpty && catalogueMatches.isEmpty && online.isEmpty
+                    && !searchingOnline && barcode == nil {
                     Section {
                         Text(items.isEmpty && search.isEmpty
                              ? "Your food library is empty. Scan a barcode, search, or add a food."
@@ -113,7 +132,7 @@ struct FoodEntrySheet: View {
                     }
                 }
 
-                if search.trimmingCharacters(in: .whitespaces).count >= 3 {
+                if query.count >= 3 {
                     Section {
                         if searchingOnline {
                             HStack(spacing: 10) {
@@ -128,7 +147,8 @@ struct FoodEntrySheet: View {
                             Button {
                                 Task { await searchOnline() }
                             } label: {
-                                Label("Search branded products", systemImage: "magnifyingglass")
+                                Label(barcode == nil ? "Search branded products" : "Look up barcode",
+                                      systemImage: barcode == nil ? "magnifyingglass" : "barcode")
                             }
                         }
                         ForEach(online) { food in
@@ -154,13 +174,6 @@ struct FoodEntrySheet: View {
                     Button("Cancel") { dismiss() }
                 }
             }
-            .overlay {
-                if lookingUp {
-                    ProgressView("Looking up…")
-                        .padding(24)
-                        .background(.regularMaterial, in: .rect(cornerRadius: 14))
-                }
-            }
             .navigationDestination(item: $editing) { item in
                 FoodEditorView(editing: item)
             }
@@ -182,14 +195,10 @@ struct FoodEntrySheet: View {
                 }
             }
             .sheet(isPresented: $scanning) {
+                // A scan just fills the search field; the lookup below picks it up.
                 BarcodeScannerView { code in
-                    Task { await lookUp(code) }
+                    search = code
                 }
-            }
-            .alert("Barcode", isPresented: .constant(lookupError != nil)) {
-                Button("OK") { lookupError = nil }
-            } message: {
-                Text(lookupError ?? "")
             }
             .onChange(of: search) { _, _ in
                 online = []
@@ -200,36 +209,38 @@ struct FoodEntrySheet: View {
             .onSubmit(of: .search) {
                 Task { await searchOnline() }
             }
+            // Barcodes resolve on their own: a scan should show the product without
+            // a second gesture, and lookups are not throttled the way search is.
+            .task(id: barcode) {
+                guard barcode != nil else { return }
+                try? await Task.sleep(for: .milliseconds(350))
+                guard !Task.isCancelled else { return }
+                await searchOnline()
+            }
         }
     }
 
     private func searchOnline() async {
-        let query = search.trimmingCharacters(in: .whitespaces)
         guard query.count >= 3, !searchingOnline else { return }
 
         searchingOnline = true
         onlineError = nil
         defer { searchingOnline = false }
+
         do {
-            let results = try await OpenFoodFacts.search(query)
-            let mine = Set(items.map { $0.name.lowercased() })
-            online = results.filter { !mine.contains($0.displayName.lowercased()) }
-            if online.isEmpty {
-                onlineError = "Nothing found for “\(query)”."
+            if let barcode {
+                online = [try await OpenFoodFacts.lookup(barcode: barcode)]
+            } else {
+                let results = try await OpenFoodFacts.search(query)
+                let mine = Set(items.map { $0.name.lowercased() })
+                online = results.filter { !mine.contains($0.displayName.lowercased()) }
+                if online.isEmpty {
+                    onlineError = "Nothing found for “\(query)”."
+                }
             }
         } catch {
+            online = []
             onlineError = (error as? OpenFoodFacts.LookupError)?.errorDescription
-                ?? error.localizedDescription
-        }
-    }
-
-    private func lookUp(_ barcode: String) async {
-        lookingUp = true
-        defer { lookingUp = false }
-        do {
-            scanned = try await OpenFoodFacts.lookup(barcode: barcode)
-        } catch {
-            lookupError = (error as? OpenFoodFacts.LookupError)?.errorDescription
                 ?? error.localizedDescription
         }
     }
