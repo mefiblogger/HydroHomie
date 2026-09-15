@@ -125,3 +125,21 @@ extension HydrationStore {
             .sorted { $0.timestamp > $1.timestamp }
     }
 }
+
+// MARK: - Macros
+
+struct MacroTotals: Equatable, Sendable {
+    var carbs: Double = 0
+    var protein: Double = 0
+    var fat: Double = 0
+}
+
+extension HydrationStore {
+    static func macros(of entries: [FoodEntry]) -> MacroTotals {
+        entries.reduce(into: MacroTotals()) { totals, entry in
+            totals.carbs += entry.carbsGrams
+            totals.protein += entry.proteinGrams
+            totals.fat += entry.fatGrams
+        }
+    }
+}

@@ -16,6 +16,7 @@ home screen widget.
 - Add or remove water in one tap; press and hold the add button for an exact amount
 - A configurable quick-add amount, so the buttons match the glass you actually use
 - One log for the day, water and food together
+- A compact macro panel tracking carbs, protein and fat against daily targets
 - History with a 7- or 30-day chart, daily average and goal-met count
 - Millilitres or US fluid ounces, switchable at any time without touching stored data
 - Configurable reminders through the day
@@ -119,6 +120,7 @@ xcodebuild -project HydroHomie.xcodeproj -scheme HydroHomie \
 - Food logging — the 🍔 button is deliberately inert until the entry design is settled,
   so the calorie ring stays empty and calories-remaining stays at your full goal
 - History charts water only, and the widget is water-only too
+- Macro goals have sensible defaults but no Settings UI to change them yet
 - The Settings appearance picker does not affect the widget (see above)
 - Reminder scheduling is wired up but the permission flow hasn't been exercised end to end
 - No app icon artwork — `AppIcon.appiconset` is an empty 1024×1024 slot

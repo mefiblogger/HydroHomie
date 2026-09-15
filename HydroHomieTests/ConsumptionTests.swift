@@ -50,6 +50,28 @@ final class ConsumptionTests: XCTestCase {
         XCTAssertEqual(HydrationStore.remaining(goal: 2000, consumed: 0), 2000, accuracy: 0.0001)
     }
 
+    // MARK: - Macros
+
+    func testMacrosSumEachNutrientIndependently() {
+        let food = [
+            FoodEntry(name: "Porridge", calories: 320, carbsGrams: 54, proteinGrams: 11, fatGrams: 6),
+            FoodEntry(name: "Eggs", calories: 180, carbsGrams: 1, proteinGrams: 13, fatGrams: 13)
+        ]
+        let totals = HydrationStore.macros(of: food)
+        XCTAssertEqual(totals.carbs, 55, accuracy: 0.0001)
+        XCTAssertEqual(totals.protein, 24, accuracy: 0.0001)
+        XCTAssertEqual(totals.fat, 19, accuracy: 0.0001)
+    }
+
+    func testMacrosOfEmptyAreAllZero() {
+        XCTAssertEqual(HydrationStore.macros(of: []), MacroTotals())
+    }
+
+    func testMacrosDefaultToZeroWhenOnlyCaloriesAreKnown() {
+        let food = [FoodEntry(name: "Mystery snack", calories: 250)]
+        XCTAssertEqual(HydrationStore.macros(of: food), MacroTotals())
+    }
+
     // MARK: - Merged log
 
     func testMergedLogIsNewestFirstAcrossBothStreams() {

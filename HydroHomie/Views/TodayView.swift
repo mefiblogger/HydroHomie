@@ -43,29 +43,34 @@ struct TodayView: View {
         HydrationStore.mergedLog(water: todaysDrinks, food: todaysFood)
     }
 
+    // No NavigationStack: the screen carries no title or bar buttons, so a nav bar
+    // would only cost vertical space.
     var body: some View {
-        NavigationStack {
-            ScrollView {
-                VStack(spacing: 32) {
-                    rings
-                    TodayActionRow(
-                        unit: unit,
-                        incrementML: settings.waterIncrementML,
-                        canRemove: !todaysDrinks.isEmpty,
-                        onRemove: removeLastWater,
-                        onTrackFood: {},          // Food entry is not designed yet.
-                        onAdd: { add(settings.waterIncrementML) },
-                        onCustomAmount: { showingCustomAmount = true }
-                    )
-                    todaysLog
-                }
-                .padding()
+        ScrollView {
+            VStack(spacing: 24) {
+                MacroPanel(
+                    totals: HydrationStore.macros(of: todaysFood),
+                    carbsGoal: settings.dailyCarbsGoal,
+                    proteinGoal: settings.dailyProteinGoal,
+                    fatGoal: settings.dailyFatGoal
+                )
+                rings
+                TodayActionRow(
+                    unit: unit,
+                    incrementML: settings.waterIncrementML,
+                    canRemove: !todaysDrinks.isEmpty,
+                    onRemove: removeLastWater,
+                    onTrackFood: {},          // Food entry is not designed yet.
+                    onAdd: { add(settings.waterIncrementML) },
+                    onCustomAmount: { showingCustomAmount = true }
+                )
+                todaysLog
             }
-            .navigationTitle("Today")
-            .sheet(isPresented: $showingCustomAmount) {
-                CustomAmountSheet(unit: unit) { amount in
-                    add(amount)
-                }
+            .padding()
+        }
+        .sheet(isPresented: $showingCustomAmount) {
+            CustomAmountSheet(unit: unit) { amount in
+                add(amount)
             }
         }
     }
@@ -86,7 +91,6 @@ struct TodayView: View {
             .padding(.horizontal, 54)
         }
         .frame(width: 260, height: 260)
-        .padding(.top, 12)
     }
 
     // MARK: - Log

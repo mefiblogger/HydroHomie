@@ -11,12 +11,25 @@ final class FoodEntry {
     var id: UUID = UUID()
     var name: String = ""
     var calories: Double = 0
+    var carbsGrams: Double = 0
+    var proteinGrams: Double = 0
+    var fatGrams: Double = 0
     var timestamp: Date = Date()
 
-    init(name: String, calories: Double, timestamp: Date = Date()) {
+    init(
+        name: String,
+        calories: Double,
+        carbsGrams: Double = 0,
+        proteinGrams: Double = 0,
+        fatGrams: Double = 0,
+        timestamp: Date = Date()
+    ) {
         self.id = UUID()
         self.name = name
         self.calories = calories
+        self.carbsGrams = carbsGrams
+        self.proteinGrams = proteinGrams
+        self.fatGrams = fatGrams
         self.timestamp = timestamp
     }
 }

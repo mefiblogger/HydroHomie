@@ -18,6 +18,10 @@ final class UserSettings {
     var reminderEndHour: Int = 22
     var healthKitEnabled: Bool = false
     var dailyCalorieGoal: Double = 2000
+    // A conventional split of a 2000 kcal day: 50% carbs, 20% protein, 30% fat.
+    var dailyCarbsGoal: Double = 250
+    var dailyProteinGoal: Double = 100
+    var dailyFatGoal: Double = 65
     /// Amount added or removed by the quick-add buttons, in millilitres.
     var waterIncrementML: Double = 250
     var appearanceRawValue: String = AppAppearance.system.rawValue
