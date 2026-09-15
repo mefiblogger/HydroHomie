@@ -8,7 +8,7 @@ import SwiftData
 /// The six nutrients tracked, as an absolute amount for some quantity of food.
 /// Sugar and fibre are subsets of carbohydrate, not siblings of it — do not add
 /// the three together.
-struct Nutrients: Equatable, Sendable {
+struct Nutrients: Hashable, Sendable {
     var energyKcal: Double = 0
     var carbs: Double = 0
     var sugar: Double = 0

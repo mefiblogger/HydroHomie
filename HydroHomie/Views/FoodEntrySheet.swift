@@ -15,6 +15,15 @@ struct FoodEntrySheet: View {
 
     @State private var search = ""
     @State private var editing: FoodItem?
+    /// A catalogue food the user picked. Built but not inserted — it only joins the
+    /// library if they go through with logging it.
+    @State private var picked: FoodItem?
+
+    private var catalogueMatches: [CatalogFood] {
+        // Anything already in the library is offered above; no point listing it twice.
+        let mine = Set(items.map { $0.name.lowercased() })
+        return FoodCatalog.search(search).filter { !mine.contains($0.name.lowercased()) }
+    }
 
     private var matches: [FoodItem] {
         let query = search.trimmingCharacters(in: .whitespaces)
@@ -65,8 +74,29 @@ struct FoodEntrySheet: View {
                         .onDelete(perform: deleteItems)
                     }
                 }
+
+                if !catalogueMatches.isEmpty {
+                    Section {
+                        ForEach(catalogueMatches) { food in
+                            Button {
+                                picked = FoodItem(
+                                    name: food.name,
+                                    per100g: food.nutrients,
+                                    icon: .default
+                                )
+                            } label: {
+                                CatalogRow(food: food)
+                            }
+                            .buttonStyle(.plain)
+                        }
+                    } header: {
+                        Text("Food database")
+                    } footer: {
+                        Text("Generic foods bundled with the app. Logging one adds it to your library, where you can rename or correct it.")
+                    }
+                }
             }
-            .searchable(text: $search, prompt: "Search your foods")
+            .searchable(text: $search, prompt: "Search foods")
             .navigationTitle("Track food")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -76,6 +106,13 @@ struct FoodEntrySheet: View {
             }
             .navigationDestination(item: $editing) { item in
                 FoodEditorView(editing: item)
+            }
+            .navigationDestination(item: $picked) { item in
+                LogPortionView(item: item) { grams, count, kind in
+                    // Only now does it become one of the user's own foods.
+                    context.insert(item)
+                    log(item, grams: grams, count: count, kind: kind)
+                }
             }
         }
     }
@@ -90,6 +127,29 @@ struct FoodEntrySheet: View {
             context.delete(matches[index])
         }
         try? context.save()
+    }
+}
+
+/// A catalogue result: nutrition only, no portions of its own yet.
+private struct CatalogRow: View {
+    var food: CatalogFood
+
+    var body: some View {
+        HStack(spacing: 10) {
+            Text(FoodIcon.default.rawValue)
+                .font(.title3)
+            VStack(alignment: .leading, spacing: 2) {
+                Text(food.name)
+                    .foregroundStyle(.primary)
+                Text("\(Int(food.nutrients.energyKcal.rounded())) kcal per 100 g")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+            Spacer(minLength: 0)
+            Image(systemName: "chevron.right")
+                .font(.caption.weight(.semibold))
+                .foregroundStyle(.tertiary)
+        }
     }
 }
 

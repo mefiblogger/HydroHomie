@@ -24,6 +24,8 @@ home screen widget.
 - An icon per food, chosen from a set of emoji
 - Foods are editable, from Settings or while tracking — without disturbing
   anything already logged
+- ~1,900 generic foods bundled with the app: searchable offline, no account,
+  no API key, no network
 - History with a 7- or 30-day chart, daily average and goal-met count
 - Millilitres or US fluid ounces, switchable at any time without touching stored data
 - Configurable reminders through the day
@@ -118,6 +120,26 @@ with no conversion. Portions scale from there.
 
 **Sugar and fibre are subsets of carbohydrate**, not siblings — never sum the three.
 
+**The bundled catalogue is read-only and separate from your library.** ~1,900 generic
+foods ship in `HydroHomie/Resources/GenericFoods.json` (202 KB), generated from CoFID
+by `Tools/build-food-catalogue.py`. Searching offers your own foods first and the
+catalogue below; logging a catalogue food copies it into your library, where it
+becomes editable like any other. Seeding all 1,900 into SwiftData instead would have
+drowned your own foods and made them deletable by accident.
+
+**The catalogue ships uncurated on purpose.** An earlier pass trimmed it to ~800 by
+ranking foods for "everydayness". It deleted Cheddar, boiled potatoes, cow's milk and
+hen's eggs — the heuristic rewarded short names, so sheep's milk beat whole milk — to
+save 40 KB out of 190. The median base food has exactly one variant, so the noise that
+curation was meant to fix barely existed. `FoodCatalogTests` now pins the staples it
+lost.
+
+**Why CoFID and not USDA.** USDA FoodData Central is public domain and would carry no
+attribution obligation at all, which suits a dual-licensed project better. CoFID was
+chosen anyway because its dairy fat classes, breads and cereals describe European
+products. Neither contains Hungarian staples; no open dataset does. That gap is for
+barcode lookup to close, not a composition table.
+
 **Food icons are emoji, not SF Symbols.** The symbol library carries only fourteen
 food and drink glyphs, and they are mostly vessels — of the categories worth offering
 a food tracker, exactly one (`carrot.fill`) has an honest match. There is no burger,
@@ -161,9 +183,8 @@ xcodebuild -project HydroHomie.xcodeproj -scheme HydroHomie \
 
 ## Not yet implemented
 
-- No food database yet — every food is entered by hand. The per-100 g model is
-  shaped so a USDA FoodData Central or Open Food Facts lookup can populate it
-  without conversion
+- No barcode scanning, and no lookup of branded or local products — the bundled
+  catalogue is generic foods only
 - Sugar and fibre are tracked but have no home on the Today screen; only carbs,
   protein and fat appear in the macro panel
 - History charts water only

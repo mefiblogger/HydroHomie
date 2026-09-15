@@ -91,6 +91,9 @@ struct SettingsView: View {
 
                 Section {
                     LabeledContent("Version", value: appVersion)
+                } footer: {
+                    // The Open Government Licence requires attribution; this is it.
+                    Text(FoodCatalog.attribution)
                 }
             }
             .navigationTitle("Settings")
