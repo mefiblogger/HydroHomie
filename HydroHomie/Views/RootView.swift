@@ -17,7 +17,7 @@ struct RootView: View {
             TodayView()
                 .tabItem { Label("Today", systemImage: "drop.fill") }
             HistoryView()
-                .tabItem { Label("History", systemImage: "chart.bar.fill") }
+                .tabItem { Label("History", systemImage: "calendar") }
             SettingsView()
                 .tabItem { Label("Settings", systemImage: "gearshape.fill") }
         }
