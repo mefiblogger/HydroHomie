@@ -46,28 +46,32 @@ struct TodayView: View {
     // No NavigationStack: the screen carries no title or bar buttons, so a nav bar
     // would only cost vertical space.
     var body: some View {
-        ScrollView {
-            VStack(spacing: 24) {
-                rings
-                MacroPanel(
-                    totals: HydrationStore.macros(of: todaysFood),
-                    carbsGoal: settings.dailyCarbsGoal,
-                    proteinGoal: settings.dailyProteinGoal,
-                    fatGoal: settings.dailyFatGoal
-                )
-                TodayActionRow(
-                    unit: unit,
-                    incrementML: settings.waterIncrementML,
-                    canRemove: !todaysDrinks.isEmpty,
-                    onRemove: removeLastWater,
-                    onTrackFood: {},          // Food entry is not designed yet.
-                    onAdd: { add(settings.waterIncrementML) },
-                    onCustomAmount: { showingCustomAmount = true }
-                )
-                todaysLog
+        // Only the log scrolls — the gauge, macros and buttons are pinned, so the
+        // controls stay reachable however long the day's log gets.
+        VStack(spacing: 24) {
+            rings
+            MacroPanel(
+                totals: HydrationStore.macros(of: todaysFood),
+                carbsGoal: settings.dailyCarbsGoal,
+                proteinGoal: settings.dailyProteinGoal,
+                fatGoal: settings.dailyFatGoal
+            )
+            TodayActionRow(
+                unit: unit,
+                incrementML: settings.waterIncrementML,
+                canRemove: !todaysDrinks.isEmpty,
+                onRemove: removeLastWater,
+                onTrackFood: {},          // Food entry is not designed yet.
+                onAdd: { add(settings.waterIncrementML) },
+                onCustomAmount: { showingCustomAmount = true }
+            )
+            VStack(spacing: 14) {
+                logHeader
+                logList
             }
-            .padding()
         }
+        .padding(.horizontal)
+        .padding(.top, 8)
         .sheet(isPresented: $showingCustomAmount) {
             CustomAmountSheet(unit: unit) { amount in
                 add(amount)
@@ -98,45 +102,66 @@ struct TodayView: View {
 
     // MARK: - Log
 
+    /// A rule with the caption set into the middle of it.
+    private var logHeader: some View {
+        HStack(spacing: 10) {
+            rule
+            Text("TODAY SO FAR")
+                .font(.caption2.weight(.semibold))
+                .tracking(1.0)
+                .foregroundStyle(.secondary)
+                // Without this the text would be compressed before the rules are.
+                .fixedSize()
+            rule
+        }
+    }
+
+    private var rule: some View {
+        Rectangle()
+            .fill(Color(.systemGray4))
+            .frame(height: 2)
+    }
+
     @ViewBuilder
-    private var todaysLog: some View {
+    private var logList: some View {
         if log.isEmpty {
             ContentUnavailableView(
                 "Nothing logged yet",
                 systemImage: "drop",
                 description: Text("Tap an amount above to start tracking today.")
             )
-            .padding(.top, 12)
+            .frame(maxHeight: .infinity)
         } else {
-            VStack(alignment: .leading, spacing: 12) {
-                Text("Today's log")
-                    .font(.headline)
-                ForEach(log) { item in
-                    switch item {
-                    case .water(let entry):
-                        row(
-                            icon: "drop.fill",
-                            tint: .water,
-                            title: "\(unit.format(millilitres: entry.amountML)) water",
-                            detail: nil,
-                            timestamp: entry.timestamp
-                        ) {
-                            HydrationLogger.delete(entry, context: context)
-                        }
-                    case .food(let entry):
-                        row(
-                            icon: "fork.knife",
-                            tint: .accentColor,
-                            title: entry.name,
-                            detail: "\(Int(entry.calories.rounded())) kcal",
-                            timestamp: entry.timestamp
-                        ) {
-                            HydrationLogger.delete(entry, context: context)
+            ScrollView {
+                VStack(spacing: 12) {
+                    ForEach(log) { item in
+                        switch item {
+                        case .water(let entry):
+                            row(
+                                icon: "drop.fill",
+                                tint: .water,
+                                title: "\(unit.format(millilitres: entry.amountML)) water",
+                                detail: nil,
+                                timestamp: entry.timestamp
+                            ) {
+                                HydrationLogger.delete(entry, context: context)
+                            }
+                        case .food(let entry):
+                            row(
+                                icon: "fork.knife",
+                                tint: .accentColor,
+                                title: entry.name,
+                                detail: "\(Int(entry.calories.rounded())) kcal",
+                                timestamp: entry.timestamp
+                            ) {
+                                HydrationLogger.delete(entry, context: context)
+                            }
                         }
                     }
                 }
+                .padding(.bottom, 8)
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
+            .scrollIndicators(.hidden)
         }
     }
 
