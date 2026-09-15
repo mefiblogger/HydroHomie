@@ -31,7 +31,7 @@ home screen widget.
   no API key, no network
 - Barcode scanning, or type an EAN straight into the search field
 - Branded-product search via Open Food Facts
-- A month-at-a-glance goal calendar: two rings a day, food and water, filled
+- A month-at-a-glance goal calendar: two rings a day, calories and water, filled
   when that day's goal was met
 - History by month, pageable, with a chart and summary for the month shown
 - Millilitres or US fluid ounces, switchable at any time without touching stored data

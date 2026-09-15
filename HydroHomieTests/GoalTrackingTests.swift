@@ -183,11 +183,11 @@ final class MonthProgressTests: XCTestCase {
             fallback: maintain, calendar: calendar, today: date(2026, 9, 30))
 
         let third = days.first { calendar.component(.day, from: $0.date) == 3 }
-        XCTAssertEqual(third?.food, .met)
+        XCTAssertEqual(third?.calorie, .met)
         XCTAssertEqual(third?.water, .met)
 
         let fourth = days.first { calendar.component(.day, from: $0.date) == 4 }
-        XCTAssertEqual(fourth?.food, .untracked)
+        XCTAssertEqual(fourth?.calorie, .untracked)
         XCTAssertEqual(fourth?.water, .untracked)
     }
 
@@ -219,8 +219,8 @@ final class MonthProgressTests: XCTestCase {
             of: date(2026, 9, 1), drinks: [], food: food, periods: periods,
             fallback: maintain, calendar: calendar, today: date(2026, 9, 30))
 
-        XCTAssertEqual(days.first { calendar.component(.day, from: $0.date) == 5 }?.food, .missed)
-        XCTAssertEqual(days.first { calendar.component(.day, from: $0.date) == 20 }?.food, .met)
+        XCTAssertEqual(days.first { calendar.component(.day, from: $0.date) == 5 }?.calorie, .missed)
+        XCTAssertEqual(days.first { calendar.component(.day, from: $0.date) == 20 }?.calorie, .met)
     }
 
     /// Logging later re-scores the day, because outcomes are derived from entries
@@ -230,7 +230,7 @@ final class MonthProgressTests: XCTestCase {
             HydrationStore.month(
                 of: date(2026, 9, 1), drinks: [], food: food, periods: [],
                 fallback: maintain, calendar: calendar, today: date(2026, 9, 30))
-                .first { calendar.component(.day, from: $0.date) == 7 }?.food
+                .first { calendar.component(.day, from: $0.date) == 7 }?.calorie
         }
         let partial = [FoodEntry(name: "Lunch", calories: 1200, timestamp: date(2026, 9, 7))]
         XCTAssertEqual(score(partial), .missed)

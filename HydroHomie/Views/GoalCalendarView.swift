@@ -4,8 +4,8 @@
 
 import SwiftUI
 
-/// A month at a glance: two rings per day, food outside and water inside, coloured
-/// when that day's goal was met.
+/// A month at a glance: two rings per day, calories outside and water inside,
+/// coloured when that day's goal was met.
 ///
 /// Deliberately not gauges — these say met or missed, not how close you got, so a
 /// partial arc would invite reading a precision that isn't there.
@@ -61,9 +61,9 @@ private struct DayCell: View {
 
     var body: some View {
         ZStack {
-            // Food on the outside, water within — the same order as the gauge.
+            // Calories on the outside, water within — the same order as the gauge.
             Circle()
-                .stroke(colour(day.food, active: .brand), lineWidth: 2.5)
+                .stroke(colour(day.calorie, active: .brand), lineWidth: 2.5)
                 .frame(width: 34, height: 34)
             Circle()
                 .stroke(colour(day.water, active: .water), lineWidth: 2.5)
@@ -90,7 +90,7 @@ private struct DayCell: View {
     private var label: String {
         let date = day.date.formatted(.dateTime.day().month(.wide))
         guard day.isPast else { return date }
-        return "\(date). Food \(describe(day.food)), water \(describe(day.water))."
+        return "\(date). Calories \(describe(day.calorie)), water \(describe(day.water))."
     }
 
     private func describe(_ outcome: GoalOutcome) -> String {

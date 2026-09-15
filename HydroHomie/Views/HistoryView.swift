@@ -67,19 +67,16 @@ struct HistoryView: View {
                     legend
                 }
 
-                Section("Water") {
+                Section("Summary") {
                     chart
                         .frame(height: 200)
                         .padding(.vertical, 8)
-                }
-
-                Section("Summary") {
                     LabeledContent("Water average",
                                    value: unit.format(millilitres: averageWater))
                     LabeledContent("Calorie average",
                                    value: "\(Int(averageCalories.rounded())) kcal")
-                    LabeledContent("Food goals met",
-                                   value: "\(count(\.food)) of \(trackedDays.count) days")
+                    LabeledContent("Calorie goals met",
+                                   value: "\(count(\.calorie)) of \(trackedDays.count) days")
                     LabeledContent("Water goals met",
                                    value: "\(count(\.water)) of \(trackedDays.count) days")
                 }
@@ -132,7 +129,7 @@ struct HistoryView: View {
 
     private var legend: some View {
         HStack(spacing: 16) {
-            key(colour: .brand, label: "Food")
+            key(colour: .brand, label: "Calories")
             key(colour: .water, label: "Water")
             Spacer()
         }

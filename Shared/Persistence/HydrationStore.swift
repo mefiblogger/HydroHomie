@@ -157,7 +157,7 @@ struct DayProgress: Identifiable, Sendable {
     var date: Date
     var waterML: Double
     var calories: Double
-    var food: GoalOutcome
+    var calorie: GoalOutcome
     var water: GoalOutcome
     /// False for days after today: nothing can have been logged yet, so they are
     /// blank rather than missed.
@@ -218,7 +218,7 @@ extension HydrationStore {
                 date: cursor,
                 waterML: water,
                 calories: energy,
-                food: goal.weightGoal.calorieOutcome(consumed: energy, target: goal.calorieGoal),
+                calorie: goal.weightGoal.calorieOutcome(consumed: energy, target: goal.calorieGoal),
                 water: waterOutcome(consumed: water, target: goal.waterGoalML),
                 isPast: cursor <= endOfToday
             ))
