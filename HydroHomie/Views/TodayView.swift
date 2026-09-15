@@ -6,6 +6,10 @@ import SwiftData
 import SwiftUI
 
 struct TodayView: View {
+    /// Set by RootView when the widget asked for the food sheet. Defaults to a
+    /// constant so previews and the in-app path need not supply one.
+    var foodEntryRequested: Binding<Bool> = .constant(false)
+
     @Environment(\.modelContext) private var context
     @Query(sort: \DrinkEntry.timestamp, order: .reverse) private var allDrinks: [DrinkEntry]
     @Query(sort: \FoodEntry.timestamp, order: .reverse) private var allFood: [FoodEntry]
@@ -83,6 +87,11 @@ struct TodayView: View {
         .sheet(isPresented: $showingFoodEntry) {
             FoodEntrySheet()
         }
+        .onChange(of: foodEntryRequested.wrappedValue) { _, requested in
+            guard requested else { return }
+            showingFoodEntry = true
+            foodEntryRequested.wrappedValue = false
+        }
     }
 
     // MARK: - Rings
@@ -126,7 +135,7 @@ struct TodayView: View {
         RingCenterLabel(
             caption: caption,
             calorieValue: calories,
-            calorieTint: calorieRemaining < 0 ? Color.over : Color.accentColor,
+            calorieTint: calorieRemaining < 0 ? Color.over : Color.brand,
             waterMillilitres: water,
             waterTint: waterRemaining > 0 ? Color.water : Color.goal,
             waterUnit: unit
@@ -182,7 +191,7 @@ struct TodayView: View {
                         case .food(let entry):
                             row(
                                 icon: "fork.knife",
-                                tint: .accentColor,
+                                tint: .brand,
                                 title: entry.name,
                                 detail: foodDetail(entry),
                                 timestamp: entry.timestamp

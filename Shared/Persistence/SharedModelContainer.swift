@@ -37,3 +37,27 @@ enum SharedModelContainer {
         }
     }()
 }
+
+extension AppGroup {
+    static var defaults: UserDefaults? { UserDefaults(suiteName: identifier) }
+}
+
+/// A request from the widget for the app to open a particular screen. The widget
+/// cannot present UI itself, so anything needing a form hands over like this.
+enum PendingAction: String {
+    case trackFood
+
+    private static let key = "pendingAction"
+
+    static func request(_ action: PendingAction) {
+        AppGroup.defaults?.set(action.rawValue, forKey: key)
+    }
+
+    /// Reads and clears in one go — a request is acted on once, not on every
+    /// subsequent foregrounding.
+    static func consume() -> PendingAction? {
+        guard let raw = AppGroup.defaults?.string(forKey: key) else { return nil }
+        AppGroup.defaults?.removeObject(forKey: key)
+        return PendingAction(rawValue: raw)
+    }
+}

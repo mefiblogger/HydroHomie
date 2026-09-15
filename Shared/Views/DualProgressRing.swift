@@ -23,7 +23,7 @@ struct DualProgressRing: View {
         ZStack {
             Ring(
                 progress: calorieProgress,
-                tint: .accentColor,
+                tint: .brand,
                 track: .ringTrack,
                 overflowTint: .over,
                 lineWidth: outerLineWidth,

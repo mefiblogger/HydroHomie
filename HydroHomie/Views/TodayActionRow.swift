@@ -39,7 +39,7 @@ struct TodayActionRow: View {
             }
             .buttonStyle(.borderedProminent)
             .buttonBorderShape(.roundedRectangle(radius: 14))
-            .tint(Color.accentColor)
+            .tint(Color.brand)
             .accessibilityLabel("Track food")
 
             Button {

@@ -35,3 +35,19 @@ struct AddDrinkIntent: AppIntent {
         return .result()
     }
 }
+
+/// Opens the app on the food sheet. Logging food needs a form — a name, a portion —
+/// so unlike adding water it cannot be completed inline on the widget.
+struct TrackFoodIntent: AppIntent {
+    static var title: LocalizedStringResource = "Track Food"
+    static var description = IntentDescription("Opens HydroHomie to log some food.")
+    static var openAppWhenRun: Bool = true
+
+    init() {}
+
+    @MainActor
+    func perform() async throws -> some IntentResult {
+        PendingAction.request(.trackFood)
+        return .result()
+    }
+}

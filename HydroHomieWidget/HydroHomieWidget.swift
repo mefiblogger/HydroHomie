@@ -8,15 +8,26 @@ import SwiftUI
 import WidgetKit
 
 struct HydrationEntry: TimelineEntry {
-    var date: Date
-    var totalML: Double
-    var goalML: Double
-    var unit: VolumeUnit
+    var date: Date = Date()
+    var waterML: Double = 0
+    var waterGoalML: Double = 2000
+    var calories: Double = 0
+    var calorieGoal: Double = 2000
+    var macros = MacroTotals()
+    var carbsGoal: Double = 250
+    var proteinGoal: Double = 100
+    var fatGoal: Double = 65
+    var unit: VolumeUnit = .millilitres
+    var incrementML: Double = 250
 
-    var progress: Double { goalML > 0 ? totalML / goalML : 0 }
+    /// Floors at zero: past the goal there is nothing left to drink.
+    var waterRemaining: Double { max(waterGoalML - waterML, 0) }
+    var calorieRemaining: Double { calorieGoal - calories }
 
     static let placeholder = HydrationEntry(
-        date: Date(), totalML: 1250, goalML: 2000, unit: .millilitres
+        waterML: 1250,
+        calories: 890,
+        macros: MacroTotals(carbs: 121, sugar: 40, fiber: 8, protein: 62, fat: 27)
     )
 }
 
@@ -30,7 +41,7 @@ struct HydrationProvider: TimelineProvider {
     func getTimeline(in context: Context, completion: @escaping (Timeline<HydrationEntry>) -> Void) {
         Task { @MainActor in
             let entry = currentEntry()
-            // Refresh at the next midnight so the ring resets with the new day.
+            // Refresh at the next midnight so both gauges reset with the new day.
             let midnight = Calendar.current.nextDate(
                 after: Date(),
                 matching: DateComponents(hour: 0, minute: 0),
@@ -43,14 +54,21 @@ struct HydrationProvider: TimelineProvider {
     @MainActor
     private func currentEntry() -> HydrationEntry {
         let context = SharedModelContainer.shared.mainContext
-        let entries = (try? context.fetch(HydrationStore.entriesDescriptor(on: Date()))) ?? []
-        let settings = (try? context.fetch(FetchDescriptor<UserSettings>()).first) ?? nil
+        let drinks = (try? context.fetch(HydrationStore.entriesDescriptor(on: Date()))) ?? []
+        let food = (try? context.fetch(HydrationStore.foodDescriptor(on: Date()))) ?? []
+        let settings = try? context.fetch(FetchDescriptor<UserSettings>()).first
 
         return HydrationEntry(
-            date: Date(),
-            totalML: HydrationStore.total(of: entries),
-            goalML: settings?.dailyGoalML ?? 2000,
-            unit: settings?.unit ?? .millilitres
+            waterML: HydrationStore.total(of: drinks),
+            waterGoalML: settings?.dailyGoalML ?? 2000,
+            calories: HydrationStore.calories(of: food),
+            calorieGoal: settings?.dailyCalorieGoal ?? 2000,
+            macros: HydrationStore.macros(of: food),
+            carbsGoal: settings?.dailyCarbsGoal ?? 250,
+            proteinGoal: settings?.dailyProteinGoal ?? 100,
+            fatGoal: settings?.dailyFatGoal ?? 65,
+            unit: settings?.unit ?? .millilitres,
+            incrementML: settings?.waterIncrementML ?? 250
         )
     }
 }
@@ -62,7 +80,7 @@ struct HydroHomieWidget: Widget {
                 .containerBackground(.fill.tertiary, for: .widget)
         }
         .configurationDisplayName("Hydration")
-        .description("Today's water intake, with one-tap logging.")
+        .description("Today's water and calories, with one-tap logging.")
         .supportedFamilies([.systemSmall, .systemMedium])
     }
 }
@@ -74,62 +92,84 @@ struct HydroHomieWidgetView: View {
     var body: some View {
         switch family {
         case .systemMedium:
-            HStack(spacing: 18) {
-                ring
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("Today")
-                        .font(.caption.weight(.semibold))
-                        .foregroundStyle(.secondary)
-                    Text(entry.unit.format(millilitres: entry.totalML))
-                        .font(.title2.weight(.bold))
-                    Text("of \(entry.unit.format(millilitres: entry.goalML))")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                    quickAddButtons
+            HStack(spacing: 14) {
+                gauge(diameter: 108, reclaim: 88, outer: 10, inner: 7)
+                VStack(spacing: 10) {
+                    MacroPanel(
+                        totals: entry.macros,
+                        carbsGoal: entry.carbsGoal,
+                        proteinGoal: entry.proteinGoal,
+                        fatGoal: entry.fatGoal,
+                        metrics: .compact
+                    )
+                    actions
                 }
-                Spacer(minLength: 0)
             }
         default:
-            VStack(spacing: 8) {
-                ring
-                Button(intent: AddDrinkIntent(amountML: 250)) {
-                    Label("250 ml", systemImage: "plus")
-                        .font(.caption.weight(.semibold))
-                }
-                .buttonStyle(.bordered)
+            VStack(spacing: 6) {
+                gauge(diameter: 96, reclaim: 78, outer: 9, inner: 6)
+                actions
             }
         }
     }
 
-    private var ring: some View {
+    /// The gauge's bottom gap leaves the lower part of its square empty, so the
+    /// layout reports `reclaim` rather than the full `diameter`.
+    private func gauge(
+        diameter: CGFloat,
+        reclaim: CGFloat,
+        outer: CGFloat,
+        inner: CGFloat
+    ) -> some View {
         ZStack {
-            Circle()
-                .stroke(Color.ringTrack, lineWidth: 10)
-            Circle()
-                .trim(from: 0, to: min(entry.progress, 1))
-                .stroke(
-                    Color.accentColor,
-                    style: StrokeStyle(lineWidth: 10, lineCap: .round)
-                )
-                .rotationEffect(.degrees(-90))
-            Text("\(Int((entry.progress * 100).rounded()))%")
-                .font(.callout.weight(.bold))
-                .minimumScaleFactor(0.6)
+            DualProgressRing(
+                calorieProgress: HydrationStore.progress(consumed: entry.calories, goal: entry.calorieGoal),
+                waterProgress: HydrationStore.progress(consumed: entry.waterML, goal: entry.waterGoalML),
+                outerLineWidth: outer,
+                innerLineWidth: inner,
+                ringSpacing: 4
+            )
+            RingCenterLabel(
+                caption: "LEFT",
+                calorieValue: entry.calorieRemaining,
+                calorieTint: entry.calorieRemaining < 0 ? Color.over : Color.brand,
+                waterMillilitres: entry.waterRemaining,
+                waterTint: entry.waterRemaining > 0 ? Color.water : Color.goal,
+                waterUnit: entry.unit,
+                metrics: .compact,
+                layout: .stacked
+            )
+            // Must clear both rings, not just the outer one.
+            .padding(.horizontal, outer + inner + 6)
         }
-        .frame(width: 74, height: 74)
+        .frame(width: diameter, height: diameter)
+        .frame(height: reclaim, alignment: .top)
     }
 
-    private var quickAddButtons: some View {
-        HStack(spacing: 6) {
-            ForEach([250.0, 500.0], id: \.self) { amount in
-                Button(intent: AddDrinkIntent(amountML: amount)) {
-                    Text("+\(Int(entry.unit.fromMillilitres(amount).rounded()))")
-                        .font(.caption2.weight(.semibold))
-                }
-                .buttonStyle(.bordered)
+    private var actions: some View {
+        HStack(spacing: 8) {
+            Button(intent: AddDrinkIntent(amountML: entry.incrementML)) {
+                Image(systemName: "plus")
+                    .font(.footnote.weight(.semibold))
+                    .frame(maxWidth: .infinity)
             }
+            .tint(Color.water)
+
+            Button(intent: TrackFoodIntent()) {
+                Image(systemName: "fork.knife")
+                    .font(.footnote.weight(.semibold))
+                    .frame(maxWidth: .infinity)
+            }
+            .tint(Color.brand)
         }
+        .buttonStyle(.borderedProminent)
     }
+}
+
+#Preview(as: .systemSmall) {
+    HydroHomieWidget()
+} timeline: {
+    HydrationEntry.placeholder
 }
 
 #Preview(as: .systemMedium) {

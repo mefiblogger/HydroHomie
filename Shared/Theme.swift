@@ -5,6 +5,11 @@
 import SwiftUI
 
 extension Color {
+    /// The app tint, looked up by name rather than via `Color.accentColor`: inside a
+    /// widget extension the latter resolves to the system tint, which turned every
+    /// purple in the widget blue.
+    static let brand = Color("AccentColor")
+
     /// Unfilled portion of the progress ring — a translucent tint of the accent that
     /// stays visible against both light and dark grounds.
     static let ringTrack = Color("RingTrack")

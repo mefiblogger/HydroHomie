@@ -20,6 +20,12 @@
 		AA0000000000000000000128 /* FoodEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000108 /* FoodEntry.swift */; };
 		AA0000000000000000000119 /* FoodItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000109 /* FoodItem.swift */; };
 		AA0000000000000000000129 /* FoodItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000109 /* FoodItem.swift */; };
+		AA00000000000000000011A /* DualProgressRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00000000000000000010A /* DualProgressRing.swift */; };
+		AA00000000000000000012A /* DualProgressRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00000000000000000010A /* DualProgressRing.swift */; };
+		AA00000000000000000011B /* RingCenterLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00000000000000000010B /* RingCenterLabel.swift */; };
+		AA00000000000000000012B /* RingCenterLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00000000000000000010B /* RingCenterLabel.swift */; };
+		AA00000000000000000011C /* MacroPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00000000000000000010C /* MacroPanel.swift */; };
+		AA00000000000000000012C /* MacroPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00000000000000000010C /* MacroPanel.swift */; };
 		AA0000000000000000000120 /* VolumeUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000100 /* VolumeUnit.swift */; };
 		AA0000000000000000000121 /* DrinkEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000101 /* DrinkEntry.swift */; };
 		AA0000000000000000000122 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000102 /* UserSettings.swift */; };
@@ -79,6 +85,9 @@
 		AA0000000000000000000107 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		AA0000000000000000000108 /* FoodEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodEntry.swift; sourceTree = "<group>"; };
 		AA0000000000000000000109 /* FoodItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItem.swift; sourceTree = "<group>"; };
+		AA00000000000000000010A /* DualProgressRing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DualProgressRing.swift; sourceTree = "<group>"; };
+		AA00000000000000000010B /* RingCenterLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingCenterLabel.swift; sourceTree = "<group>"; };
+		AA00000000000000000010C /* MacroPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacroPanel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -163,6 +172,7 @@
 				AA0000000000000000000091 /* Models */,
 				AA0000000000000000000092 /* Persistence */,
 				AA0000000000000000000093 /* Intents */,
+				AA0000000000000000000094 /* Views */,
 				AA0000000000000000000107 /* Theme.swift */,
 				AA0000000000000000000106 /* Assets.xcassets */,
 			);
@@ -188,6 +198,16 @@
 				AA0000000000000000000104 /* HydrationStore.swift */,
 			);
 			path = Persistence;
+			sourceTree = "<group>";
+		};
+		AA0000000000000000000094 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AA00000000000000000010A /* DualProgressRing.swift */,
+				AA00000000000000000010B /* RingCenterLabel.swift */,
+				AA00000000000000000010C /* MacroPanel.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		AA0000000000000000000093 /* Intents */ = {
@@ -347,6 +367,9 @@
 				AA0000000000000000000117 /* Theme.swift in Sources */,
 				AA0000000000000000000118 /* FoodEntry.swift in Sources */,
 				AA0000000000000000000119 /* FoodItem.swift in Sources */,
+				AA00000000000000000011A /* DualProgressRing.swift in Sources */,
+				AA00000000000000000011B /* RingCenterLabel.swift in Sources */,
+				AA00000000000000000011C /* MacroPanel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,6 +386,9 @@
 				AA0000000000000000000127 /* Theme.swift in Sources */,
 				AA0000000000000000000128 /* FoodEntry.swift in Sources */,
 				AA0000000000000000000129 /* FoodItem.swift in Sources */,
+				AA00000000000000000012A /* DualProgressRing.swift in Sources */,
+				AA00000000000000000012B /* RingCenterLabel.swift in Sources */,
+				AA00000000000000000012C /* MacroPanel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

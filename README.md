@@ -25,7 +25,8 @@ home screen widget.
 - Millilitres or US fluid ounces, switchable at any time without touching stored data
 - Configurable reminders through the day
 - Optional Apple Health sync, written as dietary water — and retracted when you undo
-- Home screen widget with one-tap logging that never launches the app
+- Home screen widget, small and medium, carrying the same gauge and buttons —
+  medium adds the macro panel
 - Light, dark or system appearance
 
 ## Requirements
@@ -125,8 +126,19 @@ silently rewrite what you ate last week, and deleting it cannot void the log. Th
 `itemID` is kept only so "log it again" can find the source.
 
 **The widget writes directly to the store.** `AddDrinkIntent` runs in the widget's own
-process, inserts the entry and reloads the timeline, so logging from the home screen
-never launches the app.
+process, inserts the entry and reloads the timeline, so adding water from the home
+screen never launches the app. Logging food does need a form, so `TrackFoodIntent`
+opens the app instead and leaves a `PendingAction` in the shared defaults, which
+`RootView` consumes on activation and turns into the food sheet.
+
+**The gauge, readout and macro panel live in `Shared/Views`** and are compiled into
+both targets, so the widget cannot drift from the app. Each takes a `Metrics` value
+for type and spacing; the readout also takes a layout, because side-by-side columns
+need about 120pt of clear space inside the rings and a widget gauge has half that.
+
+**Use `Color.brand`, never `Color.accentColor`.** Inside a widget extension the latter
+resolves to the system tint rather than the asset, which silently turned every purple
+in the widget blue.
 
 ## Tests
 
@@ -142,7 +154,7 @@ xcodebuild -project HydroHomie.xcodeproj -scheme HydroHomie \
   without conversion
 - Sugar and fibre are tracked but have no home on the Today screen; only carbs,
   protein and fat appear in the macro panel
-- History charts water only, and the widget is water-only too
+- History charts water only
 - Macro goals have sensible defaults but no Settings UI to change them yet
 - The Settings appearance picker does not affect the widget (see above)
 - Reminder scheduling is wired up but the permission flow hasn't been exercised end to end
