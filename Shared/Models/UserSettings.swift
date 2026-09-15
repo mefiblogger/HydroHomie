@@ -283,6 +283,18 @@ enum Macro: String, CaseIterable, Identifiable, Sendable {
         case .fat: 9
         }
     }
+
+    /// The Acceptable Macronutrient Distribution Range — the band most dietary
+    /// guidance puts each macro in. Outside it is not wrong, just worth noticing:
+    /// 35% protein on 2,000 kcal is 175 g, which looks like a mistake until you
+    /// know it was deliberate.
+    var usualRange: ClosedRange<Double> {
+        switch self {
+        case .carbs: 45...65
+        case .protein: 10...35
+        case .fat: 20...35
+        }
+    }
 }
 
 /// How the calorie target is divided, as whole percentages that always total 100.
@@ -312,6 +324,19 @@ struct MacroSplit: Equatable, Sendable {
     }
 
     var total: Double { carbs + protein + fat }
+
+    /// Macros sitting outside the usual guidance band, in a stable order.
+    var unusual: [Macro] {
+        Macro.allCases.filter { !$0.usualRange.contains(self[$0]) }
+    }
+
+    /// Whether a macro is below its band, above it, or within.
+    func placement(of macro: Macro) -> MacroPlacement {
+        let range = macro.usualRange
+        if self[macro] < range.lowerBound { return .below }
+        if self[macro] > range.upperBound { return .above }
+        return .usual
+    }
 
     /// Grams of `macro` implied by a calorie target.
     func grams(of macro: Macro, calories: Double) -> Double {
@@ -347,6 +372,12 @@ struct MacroSplit: Equatable, Sendable {
         }
         return result
     }
+}
+
+enum MacroPlacement: Sendable {
+    case below
+    case usual
+    case above
 }
 
 /// Single-row settings record, shared between the app and the widget through the

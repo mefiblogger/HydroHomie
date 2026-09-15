@@ -49,7 +49,13 @@ struct SettingsView: View {
                 } header: {
                     Text("Goal")
                 } footer: {
-                    Text("Macros split the calorie target and always total 100% — adjusting one moves the macro you changed least recently. They show on Today; only calories and water count toward goal tracking.")
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text("Macros split the calorie target and always total 100% — adjusting one moves the macro you changed least recently. They show on Today; only calories and water count toward goal tracking.")
+                        if let macroNote {
+                            Text(macroNote)
+                                .foregroundStyle(Color.over)
+                        }
+                    }
                 }
 
                 Section {
@@ -219,11 +225,35 @@ struct SettingsView: View {
                 Spacer(minLength: 8)
                 Text("\(Int(percent))%")
                     .monospacedDigit()
+                    // Amber when outside the usual band — a note, not an error.
+                    .foregroundStyle(settings.macroSplit.placement(of: macro) == .usual
+                                     ? Color.primary : Color.over)
                 Text("· \(Int(settings.macroGrams(macro).rounded())) g")
                     .foregroundStyle(.secondary)
             }
             .font(.callout)
         }
+    }
+
+    /// Names any macro outside the usual guidance band, so an aggressive split reads
+    /// as a choice rather than a slip.
+    private var macroNote: String? {
+        let split = settings.macroSplit
+        let odd = split.unusual
+        guard !odd.isEmpty else { return nil }
+
+        let parts = odd.map { macro -> String in
+            let range = macro.usualRange
+            let direction = split.placement(of: macro) == .below ? "below" : "above"
+            return "\(macro.displayName.lowercased()) \(direction) the usual \(Int(range.lowerBound))–\(Int(range.upperBound))%"
+        }
+        let list: String
+        switch parts.count {
+        case 1: list = parts[0]
+        case 2: list = "\(parts[0]) and \(parts[1])"
+        default: list = parts.dropLast().joined(separator: ", ") + ", and " + parts[parts.count - 1]
+        }
+        return "This split puts \(list). Fine if that is deliberate."
     }
 
     private func setMacro(_ macro: Macro, to percent: Double) {

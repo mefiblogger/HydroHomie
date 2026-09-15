@@ -115,6 +115,12 @@ goal and the gram targets follow, using the Atwater factors — 4 kcal a gram fo
 and protein, 9 for fat. They drive the Today panel only: goal tracking scores calories
 and water, so a macro change never rewrites a day's outcome.
 
+**Macros outside the usual band are flagged, not prevented.** Each carries its
+Acceptable Macronutrient Distribution Range — carbs 45–65%, protein 10–35%, fat 20–35%
+— and anything outside turns amber with a note naming it. 35% protein on 2,000 kcal is
+175 g, which reads as a mistake until you know it was chosen; the flag makes the
+difference visible without standing in the way.
+
 **Adjusting one macro moves the one you touched least recently**, rather than spreading
 the difference across both. Spreading keeps the total at 100 but makes an exact split
 unreachable — setting carbs drags protein off the number you just put there. With a

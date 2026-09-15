@@ -112,3 +112,54 @@ final class MacroSplitTests: XCTestCase {
         XCTAssertEqual(before, settings.resolvedGoal)
     }
 }
+
+/// Flagging splits that sit outside the usual guidance bands.
+final class MacroRangeTests: XCTestCase {
+
+    func testTheSuggestedSplitRaisesNothing() {
+        XCTAssertTrue(MacroSplit.suggested.unusual.isEmpty)
+    }
+
+    /// The split that prompted this. 35% protein is 175 g on a 2,000 kcal day, which
+    /// looks extreme — but it is exactly the ceiling of the band, so only the carbs
+    /// being under 45% is out of the ordinary.
+    func testTheSplitThatPromptedThisFlagsCarbsOnly() {
+        let split = MacroSplit(carbs: 35, protein: 35, fat: 30)
+        XCTAssertEqual(split.unusual, [.carbs])
+        XCTAssertEqual(split.placement(of: .carbs), .below)
+        XCTAssertEqual(split.placement(of: .protein), .usual)
+        XCTAssertEqual(split.placement(of: .fat), .usual)
+    }
+
+    /// Past the ceiling, protein is flagged.
+    func testProteinAboveTheBandIsFlagged() {
+        let split = MacroSplit(carbs: 30, protein: 45, fat: 25)
+        XCTAssertEqual(split.unusual, [.carbs, .protein])
+        XCTAssertEqual(split.placement(of: .protein), .above)
+    }
+
+    func testBoundariesCountAsUsual() {
+        XCTAssertEqual(MacroSplit(carbs: 45, protein: 20, fat: 35).placement(of: .carbs), .usual)
+        XCTAssertEqual(MacroSplit(carbs: 65, protein: 10, fat: 25).placement(of: .carbs), .usual)
+        XCTAssertEqual(MacroSplit(carbs: 55, protein: 35, fat: 10).placement(of: .protein), .usual)
+    }
+
+    func testBelowAndAboveAreDistinguished() {
+        XCTAssertEqual(MacroSplit(carbs: 20, protein: 40, fat: 40).placement(of: .carbs), .below)
+        XCTAssertEqual(MacroSplit(carbs: 20, protein: 40, fat: 40).placement(of: .protein), .above)
+    }
+
+    func testTheRangesAreTheStandardOnes() {
+        XCTAssertEqual(Macro.carbs.usualRange, 45...65)
+        XCTAssertEqual(Macro.protein.usualRange, 10...35)
+        XCTAssertEqual(Macro.fat.usualRange, 20...35)
+    }
+
+    func testFlaggingIsAdvisoryAndDoesNotAlterTheSplit() {
+        var split = MacroSplit(carbs: 10, protein: 80, fat: 10)
+        let before = split
+        _ = split.unusual
+        XCTAssertEqual(split, before)
+        XCTAssertEqual(split.total, 100)
+    }
+}
