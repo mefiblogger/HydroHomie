@@ -91,7 +91,9 @@ final class FoodEntry {
         if let portionKind {
             return portionKind.label(count: portionCount)
         }
-        return "\(Int(portionGrams.rounded())) \(measure.shortName)"
+        return String(localized: "amount.with-unit",
+                      defaultValue: "\(Quantity.whole(portionGrams)) \(measure.shortName)",
+                      comment: "An amount followed by its unit symbol, e.g. 750 ml or 150 g")
     }
 
     var nutrients: Nutrients {

@@ -17,9 +17,9 @@ enum WeightGoal: String, Codable, CaseIterable, Identifiable, Sendable {
 
     var displayName: String {
         switch self {
-        case .lose: "Lose weight"
-        case .maintain: "Maintain"
-        case .gain: "Gain weight"
+        case .lose: String(localized: "Lose weight", comment: "Weight goal")
+        case .maintain: String(localized: "Maintain", comment: "Weight goal")
+        case .gain: String(localized: "Gain weight", comment: "Weight goal")
         }
     }
 
@@ -45,21 +45,21 @@ enum ActivityLevel: String, Codable, CaseIterable, Identifiable, Sendable {
 
     var displayName: String {
         switch self {
-        case .sedentary: "Sedentary"
-        case .light: "Lightly active"
-        case .moderate: "Moderately active"
-        case .active: "Very active"
-        case .veryActive: "Extremely active"
+        case .sedentary: String(localized: "Sedentary", comment: "Activity level")
+        case .light: String(localized: "Lightly active", comment: "Activity level")
+        case .moderate: String(localized: "Moderately active", comment: "Activity level")
+        case .active: String(localized: "Very active", comment: "Activity level")
+        case .veryActive: String(localized: "Extremely active", comment: "Activity level")
         }
     }
 
     var detail: String {
         switch self {
-        case .sedentary: "Desk job, little exercise"
-        case .light: "Exercise 1–3 days a week"
-        case .moderate: "Exercise 3–5 days a week"
-        case .active: "Exercise 6–7 days a week"
-        case .veryActive: "Physical job, or training twice a day"
+        case .sedentary: String(localized: "Desk job, little exercise", comment: "Activity level detail")
+        case .light: String(localized: "Exercise 1–3 days a week", comment: "Activity level detail")
+        case .moderate: String(localized: "Exercise 3–5 days a week", comment: "Activity level detail")
+        case .active: String(localized: "Exercise 6–7 days a week", comment: "Activity level detail")
+        case .veryActive: String(localized: "Physical job, or training twice a day", comment: "Activity level detail")
         }
     }
 
@@ -84,8 +84,8 @@ enum BiologicalSex: String, Codable, CaseIterable, Identifiable, Sendable {
 
     var displayName: String {
         switch self {
-        case .female: "Female"
-        case .male: "Male"
+        case .female: String(localized: "Female", comment: "Biological sex, for the BMR formula")
+        case .male: String(localized: "Male", comment: "Biological sex, for the BMR formula")
         }
     }
 }
@@ -270,9 +270,9 @@ enum Macro: String, CaseIterable, Identifiable, Sendable {
 
     var displayName: String {
         switch self {
-        case .carbs: "Carbohydrates"
-        case .protein: "Protein"
-        case .fat: "Fat"
+        case .carbs: String(localized: "Carbohydrates", comment: "Macronutrient")
+        case .protein: String(localized: "Protein", comment: "Macronutrient")
+        case .fat: String(localized: "Fat", comment: "Macronutrient")
         }
     }
 

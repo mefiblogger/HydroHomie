@@ -84,10 +84,14 @@ struct FoodRow: View {
 
     private var subtitle: String {
         let unit = item.measure.shortName
-        let energy = "\(Int(item.energyKcal.rounded())) kcal per 100 \(unit)"
+        let energy = String(localized: "\(Quantity.whole(item.energyKcal)) kcal per 100 \(unit)",
+                            comment: "Energy density of a food, e.g. 52 kcal per 100 g")
         guard !item.availablePortions.isEmpty else { return energy }
         let measures = item.availablePortions
-            .map { "\($0.kind.singular) \(Int($0.amount.rounded())) \(unit)" }
+            .map {
+                String(localized: "\($0.kind.singular) \(Quantity.whole($0.amount)) \(unit)",
+                       comment: "A named portion and its size, e.g. bottle 500 ml")
+            }
             .joined(separator: ", ")
         return "\(energy) · \(measures)"
     }

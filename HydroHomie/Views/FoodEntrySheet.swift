@@ -425,7 +425,7 @@ private struct LogPortionView: View {
     private func resetQuantity() {
         switch measure {
         case .grams:
-            quantityText = String(Int(item.defaultPortionAmount.rounded()))
+            quantityText = Quantity.whole(item.defaultPortionAmount)
         case .named:
             quantityText = "1"
         }
@@ -437,7 +437,8 @@ private struct NutrientBreakdown: View {
     var nutrients: Nutrients
 
     var body: some View {
-        LabeledContent("Energy", value: "\(Int(nutrients.energyKcal.rounded())) kcal")
+        LabeledContent("Energy", value: String(localized: "\(Quantity.whole(nutrients.energyKcal)) kcal",
+                                               comment: "An energy amount, e.g. 240 kcal"))
         LabeledContent("Carbs", value: grams(nutrients.carbs))
         LabeledContent("of which sugar", value: grams(nutrients.sugar))
         LabeledContent("of which fibre", value: grams(nutrients.fiber))
@@ -446,7 +447,8 @@ private struct NutrientBreakdown: View {
     }
 
     private func grams(_ value: Double) -> String {
-        String(format: "%.1f g", value)
+        String(localized: "\(Quantity.oneDecimal(value)) g",
+               comment: "A nutrient amount in grams, e.g. 12.5 g")
     }
 }
 

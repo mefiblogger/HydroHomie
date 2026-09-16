@@ -1,0 +1,586 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "%@ %@ %@" : {
+      "comment" : "A named portion and its size, e.g. bottle 500 ml",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$@ %3$@"
+          }
+        }
+      }
+    },
+    "%@ g" : {
+      "comment" : "A nutrient amount in grams, e.g. 12.5 g"
+    },
+    "%@ kcal" : {
+      "comment" : "An energy amount, e.g. 240 kcal"
+    },
+    "%@ kcal per 100 %@" : {
+      "comment" : "Energy density of a food, e.g. 52 kcal per 100 g",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ kcal per 100 %2$@"
+          }
+        }
+      }
+    },
+    "%@ water" : {
+
+    },
+    "%@. Calories %@, water %@." : {
+      "comment" : "VoiceOver summary of one day in the goal calendar",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@. Calories %2$@, water %3$@."
+          }
+        }
+      }
+    },
+    "%lld" : {
+
+    },
+    "%lld kcal per 100 g" : {
+
+    },
+    "%lld%%" : {
+
+    },
+    "%lld/%lld g" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld/%2$lld g"
+          }
+        }
+      }
+    },
+    "0" : {
+
+    },
+    "About you" : {
+
+    },
+    "Activity" : {
+
+    },
+    "Add" : {
+
+    },
+    "Add %@ of water" : {
+
+    },
+    "Adds a drink to today's total." : {
+
+    },
+    "Amount" : {
+
+    },
+    "Amount (ml)" : {
+
+    },
+    "An estimate from population averages, adjusted for your goal. Individual needs vary — treat it as a starting point, and talk to a doctor or dietitian if you have health conditions or specific targets." : {
+
+    },
+    "Appearance" : {
+
+    },
+    "Apple Health isn't available on this device." : {
+
+    },
+    "Branded products, contributed by the public. Check the figures against the packaging before logging." : {
+
+    },
+    "Calorie average" : {
+
+    },
+    "Calorie goals met" : {
+
+    },
+    "Calories" : {
+
+    },
+    "Camera unavailable" : {
+
+    },
+    "Cancel" : {
+
+    },
+    "Carbohydrates" : {
+      "comment" : "Macronutrient"
+    },
+    "Carbs" : {
+
+    },
+    "Changes apply to this food from now on. Anything already logged keeps the figures it was logged with." : {
+
+    },
+    "Correcting a food changes it from now on. Anything already logged keeps the figures it was logged with." : {
+
+    },
+    "Couldn't reach Open Food Facts. Check your connection." : {
+      "comment" : "Barcode lookup failure"
+    },
+    "Custom amount" : {
+
+    },
+    "Dark" : {
+      "comment" : "Dark appearance"
+    },
+    "Day" : {
+
+    },
+    "Delete entry" : {
+
+    },
+    "Desk job, little exercise" : {
+      "comment" : "Activity level detail"
+    },
+    "Drinks are measured by volume. Labels give nutrition per 100 ml." : {
+
+    },
+    "Edit" : {
+
+    },
+    "Edit food" : {
+
+    },
+    "Energy" : {
+
+    },
+    "Enter how much you drank in %@." : {
+
+    },
+    "Entries" : {
+
+    },
+    "Every %lld h" : {
+
+    },
+    "Exercise 1–3 days a week" : {
+      "comment" : "Activity level detail"
+    },
+    "Exercise 3–5 days a week" : {
+      "comment" : "Activity level detail"
+    },
+    "Exercise 6–7 days a week" : {
+      "comment" : "Activity level detail"
+    },
+    "Extremely active" : {
+      "comment" : "Activity level"
+    },
+    "Fat" : {
+      "comment" : "Macronutrient"
+    },
+    "Female" : {
+      "comment" : "Biological sex, for the BMR formula"
+    },
+    "Fluid ounces (fl oz)" : {
+      "comment" : "Volume unit choice"
+    },
+    "Food" : {
+
+    },
+    "Food database" : {
+
+    },
+    "Food library" : {
+
+    },
+    "From" : {
+
+    },
+    "Gain weight" : {
+      "comment" : "Weight goal"
+    },
+    "Generic foods bundled with the app. Logging one adds it to your library, where you can rename or correct it." : {
+
+    },
+    "Goal" : {
+
+    },
+    "Goal tracking" : {
+
+    },
+    "Grams" : {
+      "comment" : "Food is measured by weight"
+    },
+    "Health" : {
+
+    },
+    "History" : {
+
+    },
+    "History for %@" : {
+
+    },
+    "How many" : {
+
+    },
+    "How much the water buttons add or remove. Press and hold the add button for a one-off amount." : {
+
+    },
+    "Intake" : {
+
+    },
+    "LOGGED" : {
+
+    },
+    "Library" : {
+
+    },
+    "Light" : {
+      "comment" : "Light appearance"
+    },
+    "Lightly active" : {
+      "comment" : "Activity level"
+    },
+    "Log Water" : {
+
+    },
+    "Look up barcode" : {
+
+    },
+    "Lose weight" : {
+      "comment" : "Weight goal"
+    },
+    "Macros split the calorie target and always total 100% — adjusting one moves the macro you changed least recently. They show on Today; only calories and water count toward goal tracking." : {
+
+    },
+    "Maintain" : {
+      "comment" : "Weight goal"
+    },
+    "Male" : {
+      "comment" : "Biological sex, for the BMR formula"
+    },
+    "Measured in" : {
+
+    },
+    "Millilitres" : {
+      "comment" : "Food is measured by volume"
+    },
+    "Millilitres (ml)" : {
+      "comment" : "Volume unit choice"
+    },
+    "Moderately active" : {
+      "comment" : "Activity level"
+    },
+    "Name" : {
+
+    },
+    "New entries are written to Health as dietary water." : {
+
+    },
+    "New food" : {
+
+    },
+    "Next month" : {
+
+    },
+    "No food matches “%@”." : {
+
+    },
+    "No foods yet. Foods you define while tracking show up here." : {
+
+    },
+    "Nothing logged in %@." : {
+
+    },
+    "Nothing logged yet" : {
+
+    },
+    "Nothing was logged on this day. You can still add to it." : {
+
+    },
+    "Open Food Facts" : {
+
+    },
+    "Open Food Facts has no %@ for this product. Check the packaging and fill it in." : {
+
+    },
+    "Open Food Facts is rate limiting us. Wait a moment and try again." : {
+      "comment" : "Barcode lookup failure"
+    },
+    "Opens HydroHomie to log some food." : {
+
+    },
+    "Per 100 %@" : {
+
+    },
+    "Physical job, or training twice a day" : {
+      "comment" : "Activity level detail"
+    },
+    "Portion" : {
+
+    },
+    "Portion to log now" : {
+
+    },
+    "Portions" : {
+
+    },
+    "Press and hold for a custom amount" : {
+
+    },
+    "Previous month" : {
+
+    },
+    "Protein" : {
+      "comment" : "Macronutrient"
+    },
+    "Quick add" : {
+
+    },
+    "Remind me to drink" : {
+
+    },
+    "Reminders" : {
+
+    },
+    "Remove %@ of water" : {
+
+    },
+    "Returns to today" : {
+      "comment" : "VoiceOver hint on the date header"
+    },
+    "Save" : {
+
+    },
+    "Scan barcode" : {
+
+    },
+    "Scanning needs a device with a camera, and permission to use it. Search by name instead." : {
+
+    },
+    "Search branded products" : {
+
+    },
+    "Search foods or scan a barcode" : {
+
+    },
+    "Search your foods" : {
+
+    },
+    "Searching…" : {
+
+    },
+    "Sedentary" : {
+      "comment" : "Activity level"
+    },
+    "Settings" : {
+
+    },
+    "Sex" : {
+
+    },
+    "Sex and age are needed for the Mifflin–St Jeor equation, which is what produces the estimate." : {
+
+    },
+    "Solids are weighed. Labels give nutrition per 100 g." : {
+
+    },
+    "Sugar and fibre are part of the carbohydrate figure, not extra to it. Leave anything you don't know blank." : {
+
+    },
+    "Suggested daily targets" : {
+
+    },
+    "Summary" : {
+
+    },
+    "Sync to Apple Health" : {
+
+    },
+    "System" : {
+      "comment" : "Appearance follows the device setting"
+    },
+    "TODAY SO FAR" : {
+
+    },
+    "Tap a day to open it." : {
+
+    },
+    "Tap an amount above to start tracking today." : {
+
+    },
+    "That barcode isn't in Open Food Facts yet." : {
+      "comment" : "Barcode lookup failure"
+    },
+    "That product is listed, but has no nutrition information." : {
+      "comment" : "Barcode lookup failure"
+    },
+    "The size of one. Set “glass” to 250 ml for juice and you can log 2 glasses later. Leave blank for any you don't use." : {
+
+    },
+    "The size of one. Set “piece” to 2 g for grapes and you can log 10 pieces later. Leave blank for any you don't use." : {
+
+    },
+    "Theme" : {
+
+    },
+    "This portion" : {
+
+    },
+    "Today" : {
+
+    },
+    "Track Food" : {
+
+    },
+    "Track food" : {
+
+    },
+    "Turns over to show what you have had so far" : {
+
+    },
+    "Units" : {
+
+    },
+    "Until" : {
+
+    },
+    "Use these" : {
+
+    },
+    "Version" : {
+
+    },
+    "Very active" : {
+      "comment" : "Activity level"
+    },
+    "Volume" : {
+
+    },
+    "Water" : {
+
+    },
+    "Water average" : {
+
+    },
+    "Water goals met" : {
+
+    },
+    "Weight" : {
+
+    },
+    "Work out my goals" : {
+
+    },
+    "Your food library is empty. Scan a barcode, search, or add a food." : {
+
+    },
+    "amount.with-unit" : {
+      "comment" : "An amount followed by its unit symbol, e.g. 750 ml or 150 g",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$@"
+          }
+        }
+      }
+    },
+    "bottle" : {
+      "comment" : "One portion measure"
+    },
+    "bottles" : {
+      "comment" : "Portion measure, more than one"
+    },
+    "bowl" : {
+      "comment" : "One portion measure"
+    },
+    "bowls" : {
+      "comment" : "Portion measure, more than one"
+    },
+    "can" : {
+      "comment" : "One portion measure, a drinks can"
+    },
+    "cans" : {
+      "comment" : "Portion measure, more than one"
+    },
+    "each" : {
+      "comment" : "One portion measure"
+    },
+    "each (plural)" : {
+      "comment" : "Portion measure, more than one",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "each"
+          }
+        }
+      }
+    },
+    "fl oz" : {
+      "comment" : "Fluid ounces, abbreviated"
+    },
+    "g" : {
+      "comment" : "Grams, abbreviated"
+    },
+    "glass" : {
+      "comment" : "One portion measure"
+    },
+    "glasses" : {
+      "comment" : "Portion measure, more than one"
+    },
+    "goal met" : {
+      "comment" : "VoiceOver, day outcome"
+    },
+    "goal missed" : {
+      "comment" : "VoiceOver, day outcome"
+    },
+    "ml" : {
+      "comment" : "Millilitres, abbreviated"
+    },
+    "nothing logged" : {
+      "comment" : "VoiceOver, day outcome"
+    },
+    "of which fibre" : {
+
+    },
+    "of which sugar" : {
+
+    },
+    "piece" : {
+      "comment" : "One portion measure"
+    },
+    "pieces" : {
+      "comment" : "Portion measure, more than one"
+    },
+    "portion.count-and-measure" : {
+      "comment" : "A count followed by its portion measure, e.g. 10 pieces",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$@"
+          }
+        }
+      }
+    },
+    "serving" : {
+      "comment" : "One portion measure"
+    },
+    "servings" : {
+      "comment" : "Portion measure, more than one"
+    },
+    "· %lld g" : {
+
+    },
+    "· incomplete" : {
+
+    }
+  },
+  "version" : "1.0"
+}

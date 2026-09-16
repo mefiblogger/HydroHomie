@@ -100,14 +100,15 @@ private struct DayCell: View {
     private var label: String {
         let date = day.date.formatted(.dateTime.day().month(.wide))
         guard day.isPast else { return date }
-        return "\(date). Calories \(describe(day.calorie)), water \(describe(day.water))."
+        return String(localized: "\(date). Calories \(describe(day.calorie)), water \(describe(day.water)).",
+                      comment: "VoiceOver summary of one day in the goal calendar")
     }
 
     private func describe(_ outcome: GoalOutcome) -> String {
         switch outcome {
-        case .met: "goal met"
-        case .missed: "goal missed"
-        case .untracked: "nothing logged"
+        case .met: String(localized: "goal met", comment: "VoiceOver, day outcome")
+        case .missed: String(localized: "goal missed", comment: "VoiceOver, day outcome")
+        case .untracked: String(localized: "nothing logged", comment: "VoiceOver, day outcome")
         }
     }
 }

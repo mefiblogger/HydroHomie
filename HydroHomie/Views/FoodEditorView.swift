@@ -225,9 +225,7 @@ struct FoodEditorView: View {
 
     private static func text(_ value: Double) -> String {
         guard value > 0 else { return "" }
-        return value == value.rounded()
-            ? String(Int(value))
-            : String(format: "%.1f", value)
+        return Quantity.text(value)
     }
 
     private static func positive(_ text: String) -> Double? {

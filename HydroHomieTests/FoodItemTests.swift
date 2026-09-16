@@ -64,6 +64,18 @@ final class FoodItemTests: XCTestCase {
 
 final class NamedPortionTests: XCTestCase {
 
+    /// Rendered numbers follow the user's locale, so pin one: otherwise these
+    /// assertions pass or fail according to the region the simulator is set to.
+    override func setUp() {
+        super.setUp()
+        Quantity.locale = Locale(identifier: "en_US")
+    }
+
+    override func tearDown() {
+        Quantity.locale = .autoupdatingCurrent
+        super.tearDown()
+    }
+
     private let grapes = FoodItem(
         name: "Grapes",
         per100g: Nutrients(energyKcal: 69, carbs: 18, sugar: 16, fiber: 0.9, protein: 0.7, fat: 0.2),

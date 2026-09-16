@@ -4,6 +4,34 @@
 
 import Foundation
 
+/// Locale-aware rendering for the small quantities the app shows.
+///
+/// Grouping separators are suppressed throughout: a 2000 ml goal should read
+/// "2000", not "2,000". Only the decimal separator is locale-dependent, which is
+/// the part that is currently wrong under `String(format:)` — Hungarian writes
+/// 25,4 where English writes 25.4.
+enum Quantity {
+    /// The locale every rendered number uses. Overridable only so tests do not depend
+    /// on the region the host machine or simulator happens to be set to.
+    static var locale: Locale = .autoupdatingCurrent
+
+    /// Whole values lose the decimal part; everything else keeps one digit.
+    static func text(_ value: Double) -> String {
+        let rounded = value.rounded()
+        return abs(value - rounded) < 0.0001 ? whole(value) : oneDecimal(value)
+    }
+
+    /// Always one decimal place — nutrient grams, fluid ounces.
+    static func oneDecimal(_ value: Double) -> String {
+        value.formatted(.number.precision(.fractionLength(1)).grouping(.never).locale(locale))
+    }
+
+    /// Rounded to a whole number.
+    static func whole(_ value: Double) -> String {
+        value.rounded().formatted(.number.precision(.fractionLength(0)).grouping(.never).locale(locale))
+    }
+}
+
 /// Display unit for volumes. Everything is stored in millilitres internally and
 /// converted only at the presentation layer, so switching units never mutates data.
 enum VolumeUnit: String, Codable, CaseIterable, Identifiable, Sendable {
@@ -14,15 +42,15 @@ enum VolumeUnit: String, Codable, CaseIterable, Identifiable, Sendable {
 
     var shortName: String {
         switch self {
-        case .millilitres: "ml"
-        case .fluidOunces: "fl oz"
+        case .millilitres: String(localized: "ml", comment: "Millilitres, abbreviated")
+        case .fluidOunces: String(localized: "fl oz", comment: "Fluid ounces, abbreviated")
         }
     }
 
     var displayName: String {
         switch self {
-        case .millilitres: "Millilitres (ml)"
-        case .fluidOunces: "Fluid ounces (fl oz)"
+        case .millilitres: String(localized: "Millilitres (ml)", comment: "Volume unit choice")
+        case .fluidOunces: String(localized: "Fluid ounces (fl oz)", comment: "Volume unit choice")
         }
     }
 
@@ -49,15 +77,17 @@ enum VolumeUnit: String, Codable, CaseIterable, Identifiable, Sendable {
         let value = fromMillilitres(ml)
         switch self {
         case .millilitres:
-            return "\(Int(value.rounded()))"
+            return Quantity.whole(value)
         case .fluidOunces:
-            return String(format: "%.1f", value)
+            return Quantity.oneDecimal(value)
         }
     }
 
     /// Formats a millilitre amount in this unit, e.g. `750 ml` or `25.4 fl oz`.
     func format(millilitres ml: Double) -> String {
-        "\(formatValue(millilitres: ml)) \(shortName)"
+        String(localized: "amount.with-unit",
+               defaultValue: "\(formatValue(millilitres: ml)) \(shortName)",
+               comment: "An amount followed by its unit symbol, e.g. 750 ml or 150 g")
     }
 
     /// The quick-add amounts offered on the Today screen, in millilitres.

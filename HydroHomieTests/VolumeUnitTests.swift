@@ -7,6 +7,18 @@ import XCTest
 
 final class VolumeUnitTests: XCTestCase {
 
+    /// Rendered numbers follow the user's locale, so pin one: otherwise these
+    /// assertions pass or fail according to the region the simulator is set to.
+    override func setUp() {
+        super.setUp()
+        Quantity.locale = Locale(identifier: "en_US")
+    }
+
+    override func tearDown() {
+        Quantity.locale = .autoupdatingCurrent
+        super.tearDown()
+    }
+
     func testMillilitresRoundTripIsIdentity() {
         let unit = VolumeUnit.millilitres
         XCTAssertEqual(unit.toMillilitres(unit.fromMillilitres(750)), 750, accuracy: 0.0001)

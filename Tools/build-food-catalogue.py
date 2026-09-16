@@ -62,7 +62,8 @@ def build(path):
         if kcal is None:
             continue
         foods.append({
-            "n": name,
+            # Per-language map so translations can be added as data later.
+            "n": {"en": name},
             "kcal": round(kcal, 1),
             "carb": round(number(row[COLS["carbs"]]) or 0, 2),
             "sugar": round(number(row[COLS["sugar"]]) or 0, 2),
@@ -71,8 +72,8 @@ def build(path):
             "fat": round(number(row[COLS["fat"]]) or 0, 2),
         })
 
-    bases = {food["n"].split(",")[0].strip().lower() for food in foods}
-    foods.sort(key=lambda f: f["n"])
+    bases = {food["n"]["en"].split(",")[0].strip().lower() for food in foods}
+    foods.sort(key=lambda f: f["n"]["en"])
     return foods, len(bases)
 
 

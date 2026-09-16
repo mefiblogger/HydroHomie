@@ -43,10 +43,18 @@ enum OpenFoodFacts {
 
         var errorDescription: String? {
             switch self {
-            case .notFound: "That barcode isn't in Open Food Facts yet."
-            case .noNutrition: "That product is listed, but has no nutrition information."
-            case .offline: "Couldn't reach Open Food Facts. Check your connection."
-            case .busy: "Open Food Facts is rate limiting us. Wait a moment and try again."
+            case .notFound:
+                String(localized: "That barcode isn't in Open Food Facts yet.",
+                       comment: "Barcode lookup failure")
+            case .noNutrition:
+                String(localized: "That product is listed, but has no nutrition information.",
+                       comment: "Barcode lookup failure")
+            case .offline:
+                String(localized: "Couldn't reach Open Food Facts. Check your connection.",
+                       comment: "Barcode lookup failure")
+            case .busy:
+                String(localized: "Open Food Facts is rate limiting us. Wait a moment and try again.",
+                       comment: "Barcode lookup failure")
             }
         }
     }

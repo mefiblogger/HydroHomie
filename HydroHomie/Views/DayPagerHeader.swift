@@ -37,7 +37,9 @@ struct DayPagerHeader: View {
             }
             .buttonStyle(.plain)
             .disabled(isToday)
-            .accessibilityHint(isToday ? "" : "Returns to today")
+            .accessibilityHint(isToday
+                ? ""
+                : String(localized: "Returns to today", comment: "VoiceOver hint on the date header"))
             rule
 
             arrow("chevron.right", label: "Next day") { step(1) }

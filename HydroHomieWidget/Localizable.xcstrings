@@ -1,0 +1,196 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "%lld/%lld g" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld/%2$lld g"
+          }
+        }
+      }
+    },
+    "Adds a drink to today's total." : {
+
+    },
+    "Amount (ml)" : {
+
+    },
+    "Carbohydrates" : {
+      "comment" : "Macronutrient"
+    },
+    "Dark" : {
+      "comment" : "Dark appearance"
+    },
+    "Desk job, little exercise" : {
+      "comment" : "Activity level detail"
+    },
+    "Exercise 1–3 days a week" : {
+      "comment" : "Activity level detail"
+    },
+    "Exercise 3–5 days a week" : {
+      "comment" : "Activity level detail"
+    },
+    "Exercise 6–7 days a week" : {
+      "comment" : "Activity level detail"
+    },
+    "Extremely active" : {
+      "comment" : "Activity level"
+    },
+    "Fat" : {
+      "comment" : "Macronutrient"
+    },
+    "Female" : {
+      "comment" : "Biological sex, for the BMR formula"
+    },
+    "Fluid ounces (fl oz)" : {
+      "comment" : "Volume unit choice"
+    },
+    "Gain weight" : {
+      "comment" : "Weight goal"
+    },
+    "Grams" : {
+      "comment" : "Food is measured by weight"
+    },
+    "Hydration" : {
+
+    },
+    "Light" : {
+      "comment" : "Light appearance"
+    },
+    "Lightly active" : {
+      "comment" : "Activity level"
+    },
+    "Log Water" : {
+
+    },
+    "Lose weight" : {
+      "comment" : "Weight goal"
+    },
+    "Maintain" : {
+      "comment" : "Weight goal"
+    },
+    "Male" : {
+      "comment" : "Biological sex, for the BMR formula"
+    },
+    "Millilitres" : {
+      "comment" : "Food is measured by volume"
+    },
+    "Millilitres (ml)" : {
+      "comment" : "Volume unit choice"
+    },
+    "Moderately active" : {
+      "comment" : "Activity level"
+    },
+    "Opens HydroHomie to log some food." : {
+
+    },
+    "Physical job, or training twice a day" : {
+      "comment" : "Activity level detail"
+    },
+    "Protein" : {
+      "comment" : "Macronutrient"
+    },
+    "Sedentary" : {
+      "comment" : "Activity level"
+    },
+    "System" : {
+      "comment" : "Appearance follows the device setting"
+    },
+    "Today's water and calories, with one-tap logging." : {
+
+    },
+    "Track Food" : {
+
+    },
+    "Very active" : {
+      "comment" : "Activity level"
+    },
+    "amount.with-unit" : {
+      "comment" : "An amount followed by its unit symbol, e.g. 750 ml or 150 g",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$@"
+          }
+        }
+      }
+    },
+    "bottle" : {
+      "comment" : "One portion measure"
+    },
+    "bottles" : {
+      "comment" : "Portion measure, more than one"
+    },
+    "bowl" : {
+      "comment" : "One portion measure"
+    },
+    "bowls" : {
+      "comment" : "Portion measure, more than one"
+    },
+    "can" : {
+      "comment" : "One portion measure, a drinks can"
+    },
+    "cans" : {
+      "comment" : "Portion measure, more than one"
+    },
+    "each" : {
+      "comment" : "One portion measure"
+    },
+    "each (plural)" : {
+      "comment" : "Portion measure, more than one",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "each"
+          }
+        }
+      }
+    },
+    "fl oz" : {
+      "comment" : "Fluid ounces, abbreviated"
+    },
+    "g" : {
+      "comment" : "Grams, abbreviated"
+    },
+    "glass" : {
+      "comment" : "One portion measure"
+    },
+    "glasses" : {
+      "comment" : "Portion measure, more than one"
+    },
+    "ml" : {
+      "comment" : "Millilitres, abbreviated"
+    },
+    "piece" : {
+      "comment" : "One portion measure"
+    },
+    "pieces" : {
+      "comment" : "Portion measure, more than one"
+    },
+    "portion.count-and-measure" : {
+      "comment" : "A count followed by its portion measure, e.g. 10 pieces",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$@"
+          }
+        }
+      }
+    },
+    "serving" : {
+      "comment" : "One portion measure"
+    },
+    "servings" : {
+      "comment" : "Portion measure, more than one"
+    }
+  },
+  "version" : "1.0"
+}

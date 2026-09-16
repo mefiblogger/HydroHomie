@@ -42,15 +42,15 @@ enum FoodMeasure: String, Codable, CaseIterable, Identifiable, Sendable {
 
     var shortName: String {
         switch self {
-        case .grams: "g"
-        case .millilitres: "ml"
+        case .grams: String(localized: "g", comment: "Grams, abbreviated")
+        case .millilitres: String(localized: "ml", comment: "Millilitres, abbreviated")
         }
     }
 
     var displayName: String {
         switch self {
-        case .grams: "Grams"
-        case .millilitres: "Millilitres"
+        case .grams: String(localized: "Grams", comment: "Food is measured by weight")
+        case .millilitres: String(localized: "Millilitres", comment: "Food is measured by volume")
         }
     }
 
@@ -76,27 +76,43 @@ enum PortionKind: String, Codable, CaseIterable, Identifiable, Sendable {
 
     var id: String { rawValue }
 
-    var singular: String { rawValue }
+    /// Display text for one of these. `rawValue` stays the persistence key and must
+    /// never be localised — it is stored in `FoodEntry.portionKindRaw` and inside
+    /// `NamedPortion`, so it has to mean the same thing in every language.
+    var singular: String {
+        switch self {
+        case .serving: String(localized: "serving", comment: "One portion measure")
+        case .piece: String(localized: "piece", comment: "One portion measure")
+        case .each: String(localized: "each", comment: "One portion measure")
+        case .can: String(localized: "can", comment: "One portion measure, a drinks can")
+        case .bottle: String(localized: "bottle", comment: "One portion measure")
+        case .glass: String(localized: "glass", comment: "One portion measure")
+        case .bowl: String(localized: "bowl", comment: "One portion measure")
+        }
+    }
 
+    /// The form used after any count other than one. Languages that keep the noun
+    /// singular after a numeral — Hungarian says "10 darab", not "darabok" — simply
+    /// translate this to the same word as `singular`.
     var plural: String {
         switch self {
-        case .serving: "servings"
-        case .piece: "pieces"
-        case .each: "each"
-        case .can: "cans"
-        case .bottle: "bottles"
-        case .glass: "glasses"
-        case .bowl: "bowls"
+        case .serving: String(localized: "servings", comment: "Portion measure, more than one")
+        case .piece: String(localized: "pieces", comment: "Portion measure, more than one")
+        case .each: String(localized: "each (plural)", defaultValue: "each",
+                           comment: "Portion measure, more than one")
+        case .can: String(localized: "cans", comment: "Portion measure, more than one")
+        case .bottle: String(localized: "bottles", comment: "Portion measure, more than one")
+        case .glass: String(localized: "glasses", comment: "Portion measure, more than one")
+        case .bowl: String(localized: "bowls", comment: "Portion measure, more than one")
         }
     }
 
     /// "1 piece", "10 pieces", "3 each".
     func label(count: Double) -> String {
-        let rounded = count.rounded()
-        let quantity = abs(count - rounded) < 0.0001
-            ? String(Int(rounded))
-            : String(format: "%.1f", count)
-        return "\(quantity) \(abs(count - 1) < 0.0001 ? singular : plural)"
+        let noun = abs(count - 1) < 0.0001 ? singular : plural
+        return String(localized: "portion.count-and-measure",
+                      defaultValue: "\(Quantity.text(count)) \(noun)",
+                      comment: "A count followed by its portion measure, e.g. 10 pieces")
     }
 }
 

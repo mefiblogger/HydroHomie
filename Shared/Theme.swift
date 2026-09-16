@@ -37,9 +37,9 @@ enum AppAppearance: String, CaseIterable, Identifiable, Sendable {
 
     var displayName: String {
         switch self {
-        case .system: "System"
-        case .light: "Light"
-        case .dark: "Dark"
+        case .system: String(localized: "System", comment: "Appearance follows the device setting")
+        case .light: String(localized: "Light", comment: "Light appearance")
+        case .dark: String(localized: "Dark", comment: "Dark appearance")
         }
     }
 

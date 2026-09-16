@@ -319,8 +319,8 @@ struct SettingsView: View {
     private func formattedVolume(_ millilitres: Double) -> String {
         let value = settings.unit.fromMillilitres(millilitres)
         return settings.unit == .millilitres
-            ? String(Int(value.rounded()))
-            : String(format: "%.1f", value)
+            ? Quantity.whole(value)
+            : Quantity.oneDecimal(value)
     }
 
     private func parsed(_ text: String) -> Double? {
