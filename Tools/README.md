@@ -24,3 +24,21 @@ app under Settings and in the project README.
 Chosen over USDA FoodData Central because its dairy fat classes, breads and
 cereals match European products. USDA is public domain and would carry no
 attribution obligation, but its figures describe US foods.
+
+## Launch artwork
+
+`HydroHomie/Resources/LaunchBackground{,@2x,@3x}.png` are rendered from a vector
+source at a 430x932pt base — 1290x2796 at @3x, which covers the tallest iPhone
+natively. To regenerate from a new PDF:
+
+```bash
+swift Tools/render-launch-artwork.swift launch.pdf HydroHomie/Resources/LaunchBackground.png 430 932
+swift Tools/render-launch-artwork.swift launch.pdf HydroHomie/Resources/LaunchBackground@2x.png 860 1864
+swift Tools/render-launch-artwork.swift launch.pdf HydroHomie/Resources/LaunchBackground@3x.png 1290 2796
+```
+
+Then bump `CFBundleVersion`: iOS caches the rendered launch screen per build and
+will keep showing the old one otherwise.
+
+They are loose bundle files rather than an asset catalog image on purpose — see
+the README's design notes.
