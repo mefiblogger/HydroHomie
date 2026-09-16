@@ -175,6 +175,12 @@ with no conversion. Portions scale from there.
 
 **Sugar and fibre are subsets of carbohydrate**, not siblings — never sum the three.
 
+**The launch image is a loose bundle file, not an asset-catalog image.** A launch
+storyboard that references `image="LaunchBackground"` from the catalog compiles
+cleanly, runs without an error, and renders nothing — the view is there and correctly
+sized, the image simply never resolves. Loose `LaunchBackground.png` / `@2x` / `@3x`
+in the bundle work. Do not "tidy" them into the catalogue.
+
 **The bundled catalogue is read-only and separate from your library.** ~1,900 generic
 foods ship in `HydroHomie/Resources/GenericFoods.json` (202 KB), generated from CoFID
 by `Tools/build-food-catalogue.py`. Searching offers your own foods first and the
