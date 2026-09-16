@@ -227,3 +227,41 @@ extension HydrationStore {
         return days
     }
 }
+
+// MARK: - Logging on a chosen day
+
+extension HydrationStore {
+    /// When the Today screen is showing a past day, anything logged belongs to that
+    /// day rather than to now — otherwise you could never correct yesterday.
+    ///
+    /// Keeps the current clock time so entries still sort sensibly within the day,
+    /// and never produces a future timestamp.
+    static func timestamp(
+        loggingOn day: Date,
+        now: Date = Date(),
+        calendar: Calendar = .current
+    ) -> Date {
+        if calendar.isDate(day, inSameDayAs: now) { return now }
+
+        let time = calendar.dateComponents([.hour, .minute, .second], from: now)
+        let stamped = calendar.date(
+            bySettingHour: time.hour ?? 12,
+            minute: time.minute ?? 0,
+            second: time.second ?? 0,
+            of: day
+        ) ?? calendar.startOfDay(for: day)
+
+        // A future day should never be logged ahead of the clock.
+        return min(stamped, day > now ? now : stamped)
+    }
+
+    static func drinks(_ entries: [DrinkEntry], on day: Date,
+                       calendar: Calendar = .current) -> [DrinkEntry] {
+        entries.filter { calendar.isDate($0.timestamp, inSameDayAs: day) }
+    }
+
+    static func food(_ entries: [FoodEntry], on day: Date,
+                     calendar: Calendar = .current) -> [FoodEntry] {
+        entries.filter { calendar.isDate($0.timestamp, inSameDayAs: day) }
+    }
+}

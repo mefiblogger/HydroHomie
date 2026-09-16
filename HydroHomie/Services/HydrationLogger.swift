@@ -12,8 +12,13 @@ import WidgetKit
 @MainActor
 enum HydrationLogger {
 
-    static func add(amountML: Double, settings: UserSettings, context: ModelContext) {
-        let entry = DrinkEntry(amountML: amountML, source: .app)
+    static func add(
+        amountML: Double,
+        settings: UserSettings,
+        at timestamp: Date = Date(),
+        context: ModelContext
+    ) {
+        let entry = DrinkEntry(amountML: amountML, timestamp: timestamp, source: .app)
         context.insert(entry)
         try? context.save()
 

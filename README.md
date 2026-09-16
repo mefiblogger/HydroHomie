@@ -14,6 +14,7 @@ home screen widget.
 
 - Two dashboard-style gauges counting down to your daily goals — calories outside,
   water inside; tap the readout to turn it over and see what you have had so far
+- Page back through previous days, or tap a day in the calendar to open it
 - Add or remove water in one tap; press and hold the add button for an exact amount
 - A configurable quick-add amount, so the buttons match the glass you actually use
 - One log for the day, water and food together
@@ -138,6 +139,12 @@ rather than to current settings — resolving to current settings would be the
 retroactive rewrite the whole mechanism exists to prevent. Targets are snapshotted
 alongside the goal, since judging September against October's calorie target is wrong
 in exactly the same way.
+
+**Today is a day, not today.** The screen shows whichever day is paged to, scored
+against the goal that applied *then* rather than today's. Anything logged while a past
+day is on screen lands on that day, keeping the current clock time so it sorts sensibly
+among that day's entries, and never stamping the future. Coming back to the app resets
+to today, so a session cannot be left stranded on a date.
 
 **Outcomes are derived, never frozen.** Nothing is written at midnight; a day is scored
 from whatever entries exist whenever you look. Logging a forgotten meal later

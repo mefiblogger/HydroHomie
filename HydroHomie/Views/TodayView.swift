@@ -9,11 +9,14 @@ struct TodayView: View {
     /// Set by RootView when the widget asked for the food sheet. Defaults to a
     /// constant so previews and the in-app path need not supply one.
     var foodEntryRequested: Binding<Bool> = .constant(false)
+    /// The day on show. Owned by RootView so History can jump straight to a date.
+    @Binding var day: Date
 
     @Environment(\.modelContext) private var context
     @Query(sort: \DrinkEntry.timestamp, order: .reverse) private var allDrinks: [DrinkEntry]
     @Query(sort: \FoodEntry.timestamp, order: .reverse) private var allFood: [FoodEntry]
     @Query private var settingsRows: [UserSettings]
+    @Query private var periods: [GoalPeriod]
 
     @State private var showingCustomAmount = false
     @State private var showingFoodEntry = false
@@ -23,21 +26,28 @@ struct TodayView: View {
     private var settings: UserSettings { settingsRows.first ?? UserSettings() }
     private var unit: VolumeUnit { settings.unit }
 
-    // Filtering in the view rather than in the query keeps "today" correct across
+    // Filtering in the view rather than in the query keeps the day correct across
     // midnight without having to rebuild the predicate.
     private var todaysDrinks: [DrinkEntry] {
-        allDrinks.filter { Calendar.current.isDateInToday($0.timestamp) }
+        HydrationStore.drinks(allDrinks, on: day)
     }
 
     private var todaysFood: [FoodEntry] {
-        allFood.filter { Calendar.current.isDateInToday($0.timestamp) }
+        HydrationStore.food(allFood, on: day)
+    }
+
+    private var isToday: Bool { Calendar.current.isDateInToday(day) }
+
+    /// The targets that applied on the day being shown, not today's.
+    private var goal: ResolvedGoal {
+        GoalHistory.goal(on: day, periods: periods, fallback: settings.resolvedGoal)
     }
 
     private var waterTotal: Double { HydrationStore.total(of: todaysDrinks) }
     private var calorieTotal: Double { HydrationStore.calories(of: todaysFood) }
 
-    private var waterGoal: Double { max(settings.dailyGoalML, 1) }
-    private var calorieGoal: Double { max(settings.dailyCalorieGoal, 1) }
+    private var waterGoal: Double { max(goal.waterGoalML, 1) }
+    private var calorieGoal: Double { max(goal.calorieGoal, 1) }
 
     private var waterRemaining: Double {
         HydrationStore.remaining(goal: waterGoal, consumed: waterTotal)
@@ -56,12 +66,13 @@ struct TodayView: View {
         // Only the log scrolls — the gauge, macros and buttons are pinned, so the
         // controls stay reachable however long the day's log gets.
         VStack(spacing: 24) {
+            DayPagerHeader(day: $day)
             rings
             MacroPanel(
                 totals: HydrationStore.macros(of: todaysFood),
-                carbsGoal: settings.macroGrams(.carbs),
-                proteinGoal: settings.macroGrams(.protein),
-                fatGoal: settings.macroGrams(.fat)
+                carbsGoal: settings.macroSplit.grams(of: .carbs, calories: calorieGoal),
+                proteinGoal: settings.macroSplit.grams(of: .protein, calories: calorieGoal),
+                fatGoal: settings.macroSplit.grams(of: .fat, calories: calorieGoal)
             )
             TodayActionRow(
                 unit: unit,
@@ -85,7 +96,7 @@ struct TodayView: View {
             }
         }
         .sheet(isPresented: $showingFoodEntry) {
-            FoodEntrySheet()
+            FoodEntrySheet(loggingOn: day)
         }
         .onChange(of: foodEntryRequested.wrappedValue) { _, requested in
             guard requested else { return }
@@ -148,7 +159,7 @@ struct TodayView: View {
     private var logHeader: some View {
         HStack(spacing: 10) {
             rule
-            Text("TODAY SO FAR")
+            Text(isToday ? "TODAY SO FAR" : "LOGGED")
                 .font(.caption2.weight(.semibold))
                 .tracking(1.0)
                 .foregroundStyle(.secondary)
@@ -170,7 +181,9 @@ struct TodayView: View {
             ContentUnavailableView(
                 "Nothing logged yet",
                 systemImage: "drop",
-                description: Text("Tap an amount above to start tracking today.")
+                description: Text(isToday
+                                  ? "Tap an amount above to start tracking today."
+                                  : "Nothing was logged on this day. You can still add to it.")
             )
             .frame(maxHeight: .infinity)
         } else {
@@ -246,7 +259,12 @@ struct TodayView: View {
     // MARK: - Actions
 
     private func add(_ amountML: Double) {
-        HydrationLogger.add(amountML: amountML, settings: settings, context: context)
+        HydrationLogger.add(
+            amountML: amountML,
+            settings: settings,
+            at: HydrationStore.timestamp(loggingOn: day),
+            context: context
+        )
     }
 
     private func removeLastWater() {
@@ -255,6 +273,6 @@ struct TodayView: View {
 }
 
 #Preview {
-    TodayView()
+    TodayView(day: .constant(Date()))
         .modelContainer(for: [DrinkEntry.self, FoodEntry.self, FoodItem.self, UserSettings.self], inMemory: true)
 }

@@ -15,6 +15,7 @@ enum FoodLogger {
         grams: Double,
         count: Double = 0,
         kind: PortionKind? = nil,
+        at timestamp: Date = Date(),
         context: ModelContext
     ) {
         let entry = FoodEntry(
@@ -25,6 +26,7 @@ enum FoodLogger {
             portionCount: count,
             portionKind: kind,
             icon: item.icon,
+            timestamp: timestamp,
             itemID: item.id
         )
         context.insert(entry)

@@ -12,6 +12,8 @@ struct RootView: View {
 
     @State private var selectedTab = Tab.today
     @State private var foodEntryRequested = false
+    /// The day Today is showing. Lives here so History can jump straight to a date.
+    @State private var day = Date()
 
     private enum Tab { case today, history, settings }
 
@@ -19,10 +21,13 @@ struct RootView: View {
 
     var body: some View {
         TabView(selection: $selectedTab) {
-            TodayView(foodEntryRequested: $foodEntryRequested)
+            TodayView(foodEntryRequested: $foodEntryRequested, day: $day)
                 .tabItem { Label("Today", systemImage: "drop.fill") }
                 .tag(Tab.today)
-            HistoryView()
+            HistoryView { selected in
+                day = selected
+                selectedTab = .today
+            }
                 .tabItem { Label("History", systemImage: "calendar") }
                 .tag(Tab.history)
             SettingsView()
@@ -40,6 +45,9 @@ struct RootView: View {
             if phase == .active {
                 context.processPendingChanges()
                 handOverFromWidget()
+                // Coming back to the app should land on today, not wherever the
+                // last session was left paged to.
+                if !Calendar.current.isDateInToday(day) { day = Date() }
             }
         }
     }
@@ -48,6 +56,7 @@ struct RootView: View {
     private func handOverFromWidget() {
         guard PendingAction.consume() == .trackFood else { return }
         selectedTab = .today
+        day = Date()
         foodEntryRequested = true
     }
 }

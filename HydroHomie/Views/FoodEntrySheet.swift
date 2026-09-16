@@ -9,6 +9,9 @@ import SwiftUI
 /// The library is the whole store of foods for now; a barcode or database lookup
 /// would seed the same `FoodItem` records rather than bypass them.
 struct FoodEntrySheet: View {
+    /// The day the Today screen is showing, so a correction lands on that day.
+    var loggingOn: Date = Date()
+
     @Environment(\.modelContext) private var context
     @Environment(\.dismiss) private var dismiss
     @Query(sort: \FoodItem.lastUsedAt, order: .reverse) private var items: [FoodItem]
@@ -254,7 +257,10 @@ struct FoodEntrySheet: View {
     }
 
     private func log(_ item: FoodItem, grams: Double, count: Double, kind: PortionKind?) {
-        FoodLogger.log(item, grams: grams, count: count, kind: kind, context: context)
+        FoodLogger.log(
+            item, grams: grams, count: count, kind: kind,
+            at: HydrationStore.timestamp(loggingOn: loggingOn), context: context
+        )
         dismiss()
     }
 

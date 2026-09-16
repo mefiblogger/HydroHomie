@@ -12,6 +12,8 @@ import SwiftUI
 struct GoalCalendarView: View {
     var days: [DayProgress]
     var month: Date
+    /// Tapping a day opens it on the Today screen.
+    var onSelect: (Date) -> Void = { _ in }
 
     private let calendar = Calendar.current
 
@@ -48,7 +50,14 @@ struct GoalCalendarView: View {
                     Color.clear.frame(height: 40)
                 }
                 ForEach(days) { day in
-                    DayCell(day: day, isToday: calendar.isDateInToday(day.date))
+                    Button {
+                        onSelect(day.date)
+                    } label: {
+                        DayCell(day: day, isToday: calendar.isDateInToday(day.date))
+                    }
+                    .buttonStyle(.plain)
+                    // A day that has not happened yet has nothing to open.
+                    .disabled(!day.isPast)
                 }
             }
         }
@@ -76,6 +85,7 @@ private struct DayCell: View {
         .frame(height: 40)
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(label)
+        .accessibilityAddTraits(day.isPast ? .isButton : [])
     }
 
     private func colour(_ outcome: GoalOutcome, active: Color) -> Color {

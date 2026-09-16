@@ -7,6 +7,9 @@ import SwiftData
 import SwiftUI
 
 struct HistoryView: View {
+    /// Called when a day in the calendar is tapped.
+    var onSelectDay: (Date) -> Void = { _ in }
+
     @Environment(\.modelContext) private var context
     @Query(sort: \DrinkEntry.timestamp, order: .reverse) private var allDrinks: [DrinkEntry]
     @Query(sort: \FoodEntry.timestamp, order: .reverse) private var allFood: [FoodEntry]
@@ -60,11 +63,15 @@ struct HistoryView: View {
     var body: some View {
         NavigationStack {
             List {
-                Section("Goal tracking") {
+                Section {
                     monthPager
-                    GoalCalendarView(days: days, month: month)
+                    GoalCalendarView(days: days, month: month, onSelect: onSelectDay)
                         .padding(.vertical, 4)
                     legend
+                } header: {
+                    Text("Goal tracking")
+                } footer: {
+                    Text("Tap a day to open it.")
                 }
 
                 Section("Summary") {
