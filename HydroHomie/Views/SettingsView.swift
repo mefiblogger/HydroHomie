@@ -112,7 +112,7 @@ struct SettingsView: View {
                 } footer: {
                     Text(healthKitUnavailable
                          ? "Apple Health isn't available on this device."
-                         : "New entries are written to Health as dietary water.")
+                         : "New entries are written to Health: water, and the energy and nutrients of anything you log as food.")
                 }
 
                 Section("Appearance") {
@@ -142,6 +142,15 @@ struct SettingsView: View {
                 }
             }
             .onAppear(perform: loadFields)
+            .task {
+                // Ask for the nutrition types if this install predates them. HealthKit
+                // shows nothing when every type is already decided, so this is silent
+                // for everyone else.
+                guard settings.healthKitEnabled,
+                      await !HealthKitService.shared.isAuthorizedForNutrition
+                else { return }
+                _ = await HealthKitService.shared.requestAuthorization()
+            }
             .onChange(of: settings.unitRawValue) { _, _ in loadFields() }
             .onDisappear(perform: commitFields)
         }
@@ -202,7 +211,9 @@ struct SettingsView: View {
         Binding(
             get: { settings.healthKitEnabled },
             set: { newValue in
-                Task {
+                // @MainActor because this touches @State and a SwiftData model; a bare
+                // Task here is not guaranteed to inherit the main actor.
+                Task { @MainActor in
                     if newValue {
                         let ok = await HealthKitService.shared.requestAuthorization()
                         healthKitUnavailable = !ok

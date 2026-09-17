@@ -16,11 +16,13 @@ enum FoodLogger {
         count: Double = 0,
         kind: PortionKind? = nil,
         at timestamp: Date = Date(),
+        settings: UserSettings,
         context: ModelContext
     ) {
+        let nutrients = item.nutrients(forAmount: grams)
         let entry = FoodEntry(
             name: item.name,
-            nutrients: item.nutrients(forAmount: grams),
+            nutrients: nutrients,
             portionAmount: grams,
             measure: item.measure,
             portionCount: count,
@@ -37,5 +39,16 @@ enum FoodLogger {
 
         try? context.save()
         UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+
+        guard settings.healthKitEnabled else { return }
+        Task { @MainActor in
+            // Record the sample ids so a later delete retracts exactly these.
+            let ids = await HealthKitService.shared.saveFood(
+                name: entry.name, nutrients: nutrients, date: entry.timestamp
+            )
+            guard !ids.isEmpty else { return }
+            entry.healthKitSampleIDs = ids
+            try? context.save()
+        }
     }
 }

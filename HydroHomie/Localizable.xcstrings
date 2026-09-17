@@ -653,6 +653,16 @@
         }
       }
     },
+    "Fill from Apple Health": {
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Kitöltés az Apple Health-ből"
+          }
+        }
+      }
+    },
     "Fill in weight, height and age to see a suggestion.": {
       "comment": "Prompt shown until the calculator has enough input",
       "localizations": {
@@ -660,6 +670,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Add meg a testsúlyt, a magasságot és az életkort a javaslathoz."
+          }
+        }
+      }
+    },
+    "Filled %lld of 4 from Health. Check them before accepting.": {
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "A Health 4-ből %lld mezőt töltött ki. Elfogadás előtt ellenőrizd."
           }
         }
       }
@@ -784,6 +804,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Health"
+          }
+        }
+      }
+    },
+    "Health had nothing to fill in. Enter the figures yourself.": {
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "A Health nem tudott mit kitölteni. Add meg az adatokat kézzel."
           }
         }
       }
@@ -1029,12 +1059,12 @@
         }
       }
     },
-    "New entries are written to Health as dietary water.": {
+    "New entries are written to Health: water, and the energy and nutrients of anything you log as food.": {
       "localizations": {
         "hu": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Az új bejegyzések vízbevitelként kerülnek a Health appba."
+            "state": "needs_review",
+            "value": "Az új bejegyzések bekerülnek a Health-be: a víz, valamint a naplózott ételek energia- és tápanyagtartalma."
           }
         }
       }

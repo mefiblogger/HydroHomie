@@ -36,6 +36,10 @@ final class FoodEntry {
     var portionKindRaw: String?
     /// Snapshot like the figures: an entry outlives the food it came from.
     var icon: String = FoodIcon.default.rawValue
+    /// The Health samples written for this serving — one per nutrient that was not
+    /// zero — so deleting the entry can retract exactly these and nothing else.
+    /// Empty when Health sync was off at the time, which is why it is not optional.
+    var healthKitSampleIDs: [UUID] = []
 
     init(
         name: String,

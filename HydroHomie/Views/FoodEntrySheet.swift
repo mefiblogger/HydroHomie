@@ -15,6 +15,7 @@ struct FoodEntrySheet: View {
     @Environment(\.modelContext) private var context
     @Environment(\.dismiss) private var dismiss
     @Query(sort: \FoodItem.lastUsedAt, order: .reverse) private var items: [FoodItem]
+    @Query private var settingsRows: [UserSettings]
 
     @State private var search = ""
     @State private var editing: FoodItem?
@@ -259,7 +260,8 @@ struct FoodEntrySheet: View {
     private func log(_ item: FoodItem, grams: Double, count: Double, kind: PortionKind?) {
         FoodLogger.log(
             item, grams: grams, count: count, kind: kind,
-            at: HydrationStore.timestamp(loggingOn: loggingOn), context: context
+            at: HydrationStore.timestamp(loggingOn: loggingOn),
+            settings: settingsRows.first ?? UserSettings(), context: context
         )
         dismiss()
     }

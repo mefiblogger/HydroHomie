@@ -29,6 +29,7 @@ struct EnergyCalculatorView: View {
 
     @State private var sex: BiologicalSex
     @State private var activity: ActivityLevel
+    @State private var importState: ImportState = .idle
     @State private var weight: String
     @State private var height: String
     @State private var age: String
@@ -49,6 +50,60 @@ struct EnergyCalculatorView: View {
         _height = State(initialValue: settings.bodyHeightCm > 0
                         ? String(Int(settings.bodyHeightCm.rounded())) : "")
         _age = State(initialValue: settings.age > 0 ? String(settings.age) : "")
+    }
+
+    /// Health never says whether a read was denied or simply has no data, so the
+    /// only honest outcomes are "filled something in" and "found nothing".
+    private enum ImportState: Equatable {
+        case idle
+        case loading
+        case filled(Int)
+        case empty
+    }
+
+    @ViewBuilder
+    private var importRow: some View {
+        Button {
+            Task { await importFromHealth() }
+        } label: {
+            HStack {
+                Label("Fill from Apple Health", systemImage: "heart.text.square")
+                Spacer()
+                if importState == .loading { ProgressView() }
+            }
+        }
+        .disabled(importState == .loading)
+
+        switch importState {
+        case .filled(let count):
+            Label("Filled \(count) of 4 from Health. Check them before accepting.",
+                  systemImage: "checkmark.circle")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+        case .empty:
+            Label("Health had nothing to fill in. Enter the figures yourself.",
+                  systemImage: "info.circle")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+        case .idle, .loading:
+            EmptyView()
+        }
+    }
+
+    /// Fills only the fields Health can answer, and only those still empty or
+    /// unchanged — a value typed in this session is the more deliberate one.
+    private func importFromHealth() async {
+        importState = .loading
+        _ = await HealthKitService.shared.requestAuthorization()
+        let metrics = await HealthKitService.shared.readBodyMetrics()
+
+        var filled = 0
+        if let kg = metrics.weightKg { weight = Quantity.whole(kg); filled += 1 }
+        if let cm = metrics.heightCm { height = Quantity.whole(cm); filled += 1 }
+        if let years = metrics.age { age = String(years); filled += 1 }
+        if let recorded = metrics.sex { sex = recorded; filled += 1 }
+
+        importState = filled > 0 ? .filled(filled) : .empty
     }
 
     // Bounded, so a mistyped digit cannot produce a confident-looking nonsense
@@ -79,6 +134,7 @@ struct EnergyCalculatorView: View {
                         ForEach(BiologicalSex.allCases) { Text($0.displayName).tag($0) }
                     }
                     .pickerStyle(.segmented)
+                    importRow
                     field("Weight", text: $weight,
                           suffix: String(localized: "kg", comment: "Kilograms, abbreviated"))
                     field("Height", text: $height,

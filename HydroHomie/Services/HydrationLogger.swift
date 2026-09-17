@@ -51,9 +51,14 @@ enum HydrationLogger {
     }
 
     static func delete(_ entry: FoodEntry, context: ModelContext) {
+        let sampleIDs = entry.healthKitSampleIDs
         context.delete(entry)
         try? context.save()
         UIImpactFeedbackGenerator(style: .light).impactOccurred()
+
+        if !sampleIDs.isEmpty {
+            Task { await HealthKitService.shared.deleteFood(sampleIDs: sampleIDs) }
+        }
     }
 
     /// Removes the most recent water entry of the day. The quick-add buttons are
