@@ -22,7 +22,8 @@ struct DayPagerHeader: View {
 
     var body: some View {
         HStack(spacing: 10) {
-            arrow("chevron.left", label: "Previous day") { step(-1) }
+            arrow("chevron.left",
+                  label: String(localized: "Previous day", comment: "VoiceOver, paging arrow")) { step(-1) }
 
             rule
             Button {
@@ -42,7 +43,8 @@ struct DayPagerHeader: View {
                 : String(localized: "Returns to today", comment: "VoiceOver hint on the date header"))
             rule
 
-            arrow("chevron.right", label: "Next day") { step(1) }
+            arrow("chevron.right",
+                  label: String(localized: "Next day", comment: "VoiceOver, paging arrow")) { step(1) }
                 // Nothing to see beyond today, but the space is kept so the date
                 // does not jump sideways when paging.
                 .opacity(isToday ? 0 : 1)

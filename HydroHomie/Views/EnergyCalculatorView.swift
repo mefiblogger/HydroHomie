@@ -79,9 +79,12 @@ struct EnergyCalculatorView: View {
                         ForEach(BiologicalSex.allCases) { Text($0.displayName).tag($0) }
                     }
                     .pickerStyle(.segmented)
-                    field("Weight", text: $weight, suffix: "kg")
-                    field("Height", text: $height, suffix: "cm")
-                    field("Age", text: $age, suffix: "years")
+                    field("Weight", text: $weight,
+                          suffix: String(localized: "kg", comment: "Kilograms, abbreviated"))
+                    field("Height", text: $height,
+                          suffix: String(localized: "cm", comment: "Centimetres, abbreviated"))
+                    field("Age", text: $age,
+                          suffix: String(localized: "years", comment: "Unit after an age"))
                 } header: {
                     Text("About you")
                 } footer: {
@@ -148,13 +151,23 @@ struct EnergyCalculatorView: View {
     /// Names the field that is wrong rather than saying "fill it in" at someone who
     /// already has.
     private var prompt: String {
-        if weightKg == nil && !weight.isEmpty { return "That weight looks wrong — expected 20 to 400 kg." }
-        if heightCm == nil && !height.isEmpty { return "That height looks wrong — expected 50 to 250 cm." }
-        if years == nil && !age.isEmpty { return "That age looks wrong — expected 10 to 120." }
-        return "Fill in weight, height and age to see a suggestion."
+        if weightKg == nil && !weight.isEmpty {
+            return String(localized: "That weight looks wrong — expected 20 to 400 kg.",
+                          comment: "Validation message")
+        }
+        if heightCm == nil && !height.isEmpty {
+            return String(localized: "That height looks wrong — expected 50 to 250 cm.",
+                          comment: "Validation message")
+        }
+        if years == nil && !age.isEmpty {
+            return String(localized: "That age looks wrong — expected 10 to 120.",
+                          comment: "Validation message")
+        }
+        return String(localized: "Fill in weight, height and age to see a suggestion.",
+                      comment: "Prompt shown until the calculator has enough input")
     }
 
-    private func field(_ title: String, text: Binding<String>, suffix: String) -> some View {
+    private func field(_ title: LocalizedStringKey, text: Binding<String>, suffix: String) -> some View {
         HStack {
             Text(title)
             Spacer(minLength: 12)

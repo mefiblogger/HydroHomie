@@ -117,12 +117,14 @@ struct FoodEditorView: View {
             }
 
             Section {
-                field("Energy", text: $energy, suffix: "kcal")
-                field("Carbs", text: $carbs, suffix: "g")
-                field("of which sugar", text: $sugar, suffix: "g")
-                field("of which fibre", text: $fiber, suffix: "g")
-                field("Protein", text: $protein, suffix: "g")
-                field("Fat", text: $fat, suffix: "g")
+                let kcal = String(localized: "kcal", comment: "Kilocalories, abbreviated")
+                let g = String(localized: "g", comment: "Grams, abbreviated")
+                field(String(localized: "Energy", comment: "Nutrient field"), text: $energy, suffix: kcal)
+                field(String(localized: "Carbs", comment: "Macronutrient"), text: $carbs, suffix: g)
+                field(String(localized: "of which sugar", comment: "Nutrient field"), text: $sugar, suffix: g)
+                field(String(localized: "of which fibre", comment: "Nutrient field"), text: $fiber, suffix: g)
+                field(String(localized: "Protein", comment: "Macronutrient"), text: $protein, suffix: g)
+                field(String(localized: "Fat", comment: "Macronutrient"), text: $fat, suffix: g)
             } header: {
                 Text("Per 100 \(measure.shortName)")
             } footer: {

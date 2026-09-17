@@ -130,7 +130,7 @@ struct HydroHomieWidgetView: View {
                 ringSpacing: 4
             )
             RingCenterLabel(
-                caption: "LEFT",
+                caption: String(localized: "LEFT", comment: "Widget gauge caption, capitalised"),
                 calorieValue: entry.calorieRemaining,
                 calorieTint: entry.calorieRemaining < 0 ? Color.over : Color.brand,
                 waterMillilitres: entry.waterRemaining,

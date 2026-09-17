@@ -1,196 +1,773 @@
 {
-  "sourceLanguage" : "en",
-  "strings" : {
-    "%lld/%lld g" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$lld/%2$lld g"
+  "sourceLanguage": "en",
+  "strings": {
+    "%lld/%lld g": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$lld/%2$lld g"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%lld/%lld g"
           }
         }
       }
     },
-    "Adds a drink to today's total." : {
-
-    },
-    "Amount (ml)" : {
-
-    },
-    "Carbohydrates" : {
-      "comment" : "Macronutrient"
-    },
-    "Dark" : {
-      "comment" : "Dark appearance"
-    },
-    "Desk job, little exercise" : {
-      "comment" : "Activity level detail"
-    },
-    "Exercise 1–3 days a week" : {
-      "comment" : "Activity level detail"
-    },
-    "Exercise 3–5 days a week" : {
-      "comment" : "Activity level detail"
-    },
-    "Exercise 6–7 days a week" : {
-      "comment" : "Activity level detail"
-    },
-    "Extremely active" : {
-      "comment" : "Activity level"
-    },
-    "Fat" : {
-      "comment" : "Macronutrient"
-    },
-    "Female" : {
-      "comment" : "Biological sex, for the BMR formula"
-    },
-    "Fluid ounces (fl oz)" : {
-      "comment" : "Volume unit choice"
-    },
-    "Gain weight" : {
-      "comment" : "Weight goal"
-    },
-    "Grams" : {
-      "comment" : "Food is measured by weight"
-    },
-    "Hydration" : {
-
-    },
-    "Light" : {
-      "comment" : "Light appearance"
-    },
-    "Lightly active" : {
-      "comment" : "Activity level"
-    },
-    "Log Water" : {
-
-    },
-    "Lose weight" : {
-      "comment" : "Weight goal"
-    },
-    "Maintain" : {
-      "comment" : "Weight goal"
-    },
-    "Male" : {
-      "comment" : "Biological sex, for the BMR formula"
-    },
-    "Millilitres" : {
-      "comment" : "Food is measured by volume"
-    },
-    "Millilitres (ml)" : {
-      "comment" : "Volume unit choice"
-    },
-    "Moderately active" : {
-      "comment" : "Activity level"
-    },
-    "Opens HydroHomie to log some food." : {
-
-    },
-    "Physical job, or training twice a day" : {
-      "comment" : "Activity level detail"
-    },
-    "Protein" : {
-      "comment" : "Macronutrient"
-    },
-    "Sedentary" : {
-      "comment" : "Activity level"
-    },
-    "System" : {
-      "comment" : "Appearance follows the device setting"
-    },
-    "Today's water and calories, with one-tap logging." : {
-
-    },
-    "Track Food" : {
-
-    },
-    "Very active" : {
-      "comment" : "Activity level"
-    },
-    "amount.with-unit" : {
-      "comment" : "An amount followed by its unit symbol, e.g. 750 ml or 150 g",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$@ %2$@"
+    "Adds a drink to today's total.": {
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Hozzáad egy italt a mai összesítéshez."
           }
         }
       }
     },
-    "bottle" : {
-      "comment" : "One portion measure"
-    },
-    "bottles" : {
-      "comment" : "Portion measure, more than one"
-    },
-    "bowl" : {
-      "comment" : "One portion measure"
-    },
-    "bowls" : {
-      "comment" : "Portion measure, more than one"
-    },
-    "can" : {
-      "comment" : "One portion measure, a drinks can"
-    },
-    "cans" : {
-      "comment" : "Portion measure, more than one"
-    },
-    "each" : {
-      "comment" : "One portion measure"
-    },
-    "each (plural)" : {
-      "comment" : "Portion measure, more than one",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "each"
+    "Amount (ml)": {
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Mennyiség (ml)"
           }
         }
       }
     },
-    "fl oz" : {
-      "comment" : "Fluid ounces, abbreviated"
-    },
-    "g" : {
-      "comment" : "Grams, abbreviated"
-    },
-    "glass" : {
-      "comment" : "One portion measure"
-    },
-    "glasses" : {
-      "comment" : "Portion measure, more than one"
-    },
-    "ml" : {
-      "comment" : "Millilitres, abbreviated"
-    },
-    "piece" : {
-      "comment" : "One portion measure"
-    },
-    "pieces" : {
-      "comment" : "Portion measure, more than one"
-    },
-    "portion.count-and-measure" : {
-      "comment" : "A count followed by its portion measure, e.g. 10 pieces",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$@ %2$@"
+    "Burger": {
+      "comment": "Food icon",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Hamburger"
           }
         }
       }
     },
-    "serving" : {
-      "comment" : "One portion measure"
+    "Candy": {
+      "comment": "Food icon",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Cukorka"
+          }
+        }
+      }
     },
-    "servings" : {
-      "comment" : "Portion measure, more than one"
+    "Carbohydrates": {
+      "comment": "Macronutrient",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Szénhidrát"
+          }
+        }
+      }
+    },
+    "Carbs": {
+      "comment": "Macronutrient",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Szénhidrát"
+          }
+        }
+      }
+    },
+    "Chips": {
+      "comment": "Food icon, fries or crisps",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Hasábburgonya"
+          }
+        }
+      }
+    },
+    "Chocolate": {
+      "comment": "Food icon",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Csokoládé"
+          }
+        }
+      }
+    },
+    "Coffee": {
+      "comment": "Food icon",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Kávé"
+          }
+        }
+      }
+    },
+    "Dark": {
+      "comment": "Dark appearance",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sötét"
+          }
+        }
+      }
+    },
+    "Desk job, little exercise": {
+      "comment": "Activity level detail",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Irodai munka, kevés mozgás"
+          }
+        }
+      }
+    },
+    "Exercise 1–3 days a week": {
+      "comment": "Activity level detail",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Heti 1–3 nap mozgás"
+          }
+        }
+      }
+    },
+    "Exercise 3–5 days a week": {
+      "comment": "Activity level detail",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Heti 3–5 nap mozgás"
+          }
+        }
+      }
+    },
+    "Exercise 6–7 days a week": {
+      "comment": "Activity level detail",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Heti 6–7 nap mozgás"
+          }
+        }
+      }
+    },
+    "Extremely active": {
+      "comment": "Activity level",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Rendkívül aktív"
+          }
+        }
+      }
+    },
+    "Fat": {
+      "comment": "Macronutrient",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Zsír"
+          }
+        }
+      }
+    },
+    "Female": {
+      "comment": "Biological sex, for the BMR formula",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Nő"
+          }
+        }
+      }
+    },
+    "Fluid ounces (fl oz)": {
+      "comment": "Volume unit choice",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Folyadékuncia (fl oz)"
+          }
+        }
+      }
+    },
+    "Fruit": {
+      "comment": "Food icon",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Gyümölcs"
+          }
+        }
+      }
+    },
+    "Gain weight": {
+      "comment": "Weight goal",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Hízás"
+          }
+        }
+      }
+    },
+    "Grams": {
+      "comment": "Food is measured by weight",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Gramm"
+          }
+        }
+      }
+    },
+    "Hydration": {
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Hidratáltság"
+          }
+        }
+      }
+    },
+    "LEFT": {
+      "comment": "Widget gauge caption, capitalised",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "HÁTRA"
+          }
+        }
+      }
+    },
+    "Light": {
+      "comment": "Light appearance",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Világos"
+          }
+        }
+      }
+    },
+    "Lightly active": {
+      "comment": "Activity level",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Kissé aktív"
+          }
+        }
+      }
+    },
+    "Log Water": {
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Víz naplózása"
+          }
+        }
+      }
+    },
+    "Lose weight": {
+      "comment": "Weight goal",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Fogyás"
+          }
+        }
+      }
+    },
+    "Maintain": {
+      "comment": "Weight goal",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Szinten tartás"
+          }
+        }
+      }
+    },
+    "Male": {
+      "comment": "Biological sex, for the BMR formula",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Férfi"
+          }
+        }
+      }
+    },
+    "Meal": {
+      "comment": "Food icon",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Étkezés"
+          }
+        }
+      }
+    },
+    "Milk": {
+      "comment": "Food icon",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Tej"
+          }
+        }
+      }
+    },
+    "Millilitres": {
+      "comment": "Food is measured by volume",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Milliliter"
+          }
+        }
+      }
+    },
+    "Millilitres (ml)": {
+      "comment": "Volume unit choice",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Milliliter (ml)"
+          }
+        }
+      }
+    },
+    "Moderately active": {
+      "comment": "Activity level",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Mérsékelten aktív"
+          }
+        }
+      }
+    },
+    "Noodles": {
+      "comment": "Food icon",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Tésztaleves"
+          }
+        }
+      }
+    },
+    "Opens HydroHomie to log some food.": {
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Megnyitja a HydroHomie-t ételnaplózáshoz."
+          }
+        }
+      }
+    },
+    "Pasta": {
+      "comment": "Food icon",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Tészta"
+          }
+        }
+      }
+    },
+    "Physical job, or training twice a day": {
+      "comment": "Activity level detail",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Fizikai munka vagy napi két edzés"
+          }
+        }
+      }
+    },
+    "Protein": {
+      "comment": "Macronutrient",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Fehérje"
+          }
+        }
+      }
+    },
+    "Sedentary": {
+      "comment": "Activity level",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ülő életmód"
+          }
+        }
+      }
+    },
+    "Soft drink": {
+      "comment": "Food icon",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Üdítő"
+          }
+        }
+      }
+    },
+    "System": {
+      "comment": "Appearance follows the device setting",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Rendszer"
+          }
+        }
+      }
+    },
+    "Takeaway": {
+      "comment": "Food icon",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Elvitel"
+          }
+        }
+      }
+    },
+    "Tea": {
+      "comment": "Food icon",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Tea"
+          }
+        }
+      }
+    },
+    "Today's water and calories, with one-tap logging.": {
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "A mai víz és kalória, egy koppintással naplózva."
+          }
+        }
+      }
+    },
+    "Track Food": {
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Étel naplózása"
+          }
+        }
+      }
+    },
+    "Vegetable": {
+      "comment": "Food icon",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Zöldség"
+          }
+        }
+      }
+    },
+    "Very active": {
+      "comment": "Activity level",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Nagyon aktív"
+          }
+        }
+      }
+    },
+    "amount.with-unit": {
+      "comment": "An amount followed by its unit symbol, e.g. 750 ml or 150 g",
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@ %2$@"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%1$@ %2$@"
+          }
+        }
+      }
+    },
+    "bottle": {
+      "comment": "One portion measure",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "üveg"
+          }
+        }
+      }
+    },
+    "bottles": {
+      "comment": "Portion measure, more than one",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "üveg"
+          }
+        }
+      }
+    },
+    "bowl": {
+      "comment": "One portion measure",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "tál"
+          }
+        }
+      }
+    },
+    "bowls": {
+      "comment": "Portion measure, more than one",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "tál"
+          }
+        }
+      }
+    },
+    "can": {
+      "comment": "One portion measure, a drinks can",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "doboz"
+          }
+        }
+      }
+    },
+    "cans": {
+      "comment": "Portion measure, more than one",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "doboz"
+          }
+        }
+      }
+    },
+    "each": {
+      "comment": "One portion measure",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "db"
+          }
+        }
+      }
+    },
+    "each (plural)": {
+      "comment": "Portion measure, more than one",
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "each"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "db"
+          }
+        }
+      }
+    },
+    "fl oz": {
+      "comment": "Fluid ounces, abbreviated",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "fl oz"
+          }
+        }
+      }
+    },
+    "g": {
+      "comment": "Grams, abbreviated",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "g"
+          }
+        }
+      }
+    },
+    "glass": {
+      "comment": "One portion measure",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "pohár"
+          }
+        }
+      }
+    },
+    "glasses": {
+      "comment": "Portion measure, more than one",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "pohár"
+          }
+        }
+      }
+    },
+    "ml": {
+      "comment": "Millilitres, abbreviated",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ml"
+          }
+        }
+      }
+    },
+    "piece": {
+      "comment": "One portion measure",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "darab"
+          }
+        }
+      }
+    },
+    "pieces": {
+      "comment": "Portion measure, more than one",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "darab"
+          }
+        }
+      }
+    },
+    "portion.count-and-measure": {
+      "comment": "A count followed by its portion measure, e.g. 10 pieces",
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@ %2$@"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%1$@ %2$@"
+          }
+        }
+      }
+    },
+    "serving": {
+      "comment": "One portion measure",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "adag"
+          }
+        }
+      }
+    },
+    "servings": {
+      "comment": "Portion measure, more than one",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "adag"
+          }
+        }
+      }
     }
   },
-  "version" : "1.0"
+  "version": "1.0"
 }

@@ -126,10 +126,12 @@ struct TodayView: View {
     /// flip has something on its back; only one is visible at a time.
     private var readout: some View {
         ZStack {
-            face(caption: "REMAINING", calories: calorieRemaining, water: max(waterRemaining, 0))
+            face(caption: String(localized: "REMAINING", comment: "Gauge caption, capitalised"),
+                 calories: calorieRemaining, water: max(waterRemaining, 0))
                 .opacity(showingSoFar ? 0 : 1)
 
-            face(caption: "SO FAR", calories: calorieTotal, water: waterTotal)
+            face(caption: String(localized: "SO FAR", comment: "Gauge caption, capitalised"),
+                 calories: calorieTotal, water: waterTotal)
                 .rotation3DEffect(.degrees(180), axis: (x: 1, y: 0, z: 0))
                 .opacity(showingSoFar ? 1 : 0)
         }

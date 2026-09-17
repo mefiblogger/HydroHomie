@@ -34,7 +34,8 @@ struct SettingsView: View {
 
                     field("Water", text: $goalText, suffix: settings.unit.shortName,
                           onCommit: commitGoal)
-                    field("Calories", text: $calorieText, suffix: "kcal",
+                    field("Calories", text: $calorieText,
+                          suffix: String(localized: "kcal", comment: "Kilocalories, abbreviated"),
                           onCommit: commitCalorieGoal)
 
                     ForEach(Macro.allCases) { macro in
@@ -244,16 +245,19 @@ struct SettingsView: View {
 
         let parts = odd.map { macro -> String in
             let range = macro.usualRange
-            let direction = split.placement(of: macro) == .below ? "below" : "above"
-            return "\(macro.displayName.lowercased()) \(direction) the usual \(Int(range.lowerBound))–\(Int(range.upperBound))%"
+            let name = macro.displayName.lowercased()
+            let low = Int(range.lowerBound), high = Int(range.upperBound)
+            return split.placement(of: macro) == .below
+                ? String(localized: "\(name) below the usual \(low)–\(high)%",
+                         comment: "One item in the unusual-macro list")
+                : String(localized: "\(name) above the usual \(low)–\(high)%",
+                         comment: "One item in the unusual-macro list")
         }
-        let list: String
-        switch parts.count {
-        case 1: list = parts[0]
-        case 2: list = "\(parts[0]) and \(parts[1])"
-        default: list = parts.dropLast().joined(separator: ", ") + ", and " + parts[parts.count - 1]
-        }
-        return "This split puts \(list). Fine if that is deliberate."
+        // Joining with ", " and "and" is English punctuation; ListFormatter knows
+        // what each locale actually does.
+        let list = parts.formatted(.list(type: .and))
+        return String(localized: "This split puts \(list). Fine if that is deliberate.",
+                      comment: "Note shown when a macro split sits outside the usual range")
     }
 
     private func setMacro(_ macro: Macro, to percent: Double) {
@@ -282,7 +286,7 @@ struct SettingsView: View {
 
     /// A label with a trailing numeric field and a unit suffix.
     private func field(
-        _ title: String,
+        _ title: LocalizedStringKey,
         text: Binding<String>,
         suffix: String,
         onCommit: @escaping () -> Void

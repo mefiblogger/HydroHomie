@@ -31,8 +31,10 @@ enum NotificationScheduler {
 
         for hour in stride(from: start, through: end, by: interval) {
             let content = UNMutableNotificationContent()
-            content.title = "Time for water"
-            content.body = "A quick glass keeps you on track for today's goal."
+            content.title = String(localized: "Time for water",
+                                   comment: "Reminder notification title")
+            content.body = String(localized: "A quick glass keeps you on track for today's goal.",
+                                  comment: "Reminder notification body")
             content.sound = .default
 
             var components = DateComponents()

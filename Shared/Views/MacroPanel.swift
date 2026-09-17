@@ -44,9 +44,12 @@ struct MacroPanel: View {
 
     var body: some View {
         HStack(alignment: .top, spacing: metrics.columnSpacing) {
-            column("Carbs", value: totals.carbs, goal: carbsGoal)
-            column("Protein", value: totals.protein, goal: proteinGoal)
-            column("Fat", value: totals.fat, goal: fatGoal)
+            column(String(localized: "Carbs", comment: "Macronutrient"),
+                   value: totals.carbs, goal: carbsGoal)
+            column(String(localized: "Protein", comment: "Macronutrient"),
+                   value: totals.protein, goal: proteinGoal)
+            column(String(localized: "Fat", comment: "Macronutrient"),
+                   value: totals.fat, goal: fatGoal)
         }
         .padding(.vertical, metrics.verticalPadding)
         .padding(.horizontal, metrics.horizontalPadding)

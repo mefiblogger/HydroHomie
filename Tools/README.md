@@ -77,7 +77,23 @@ catalogs stay correct from the command line.
 No Swift changes are needed for any of this. Do steps 1 and 2 together: a region
 with no translations makes iOS advertise a language that renders entirely in English.
 
+`./Tools/sync-localizations.sh` also reports coverage per language and exits
+non-zero if any string is untranslated, so it works as a CI check.
+
 ### Things to watch
+
+- **`Text(someString)` does not localize.** `Text` has two initializers: one takes
+  `LocalizedStringKey` (literals, extracted automatically) and one takes `String`
+  (passed straight through). A literal handed to a helper whose parameter is typed
+  `String` silently stops being translatable — it still appears in the catalog if
+  some other call site uses it as a literal, which makes the bug invisible there
+  too. Prefer `LocalizedStringKey` parameters on view helpers; use
+  `String(localized:)` at the call site when the helper must also accept runtime
+  text.
+- **Tests run in the language the scheme pins.** `HydroHomie.xcscheme` sets
+  `language = "en"`; without it the suite asserts English strings while running in
+  whatever the simulator is set to, which fails or passes by accident. Check another
+  language deliberately with `xcodebuild test -testLanguage hu -testRegion hu_HU`.
 
 - **Numbers** go through `Quantity` (in `VolumeUnit.swift`), which is locale-aware —
   Hungarian writes `25,4` where English writes `25.4`. Never use `String(format:)`.

@@ -159,20 +159,20 @@ enum FoodIcon: String, CaseIterable, Identifiable, Sendable {
     /// Spoken by VoiceOver in the picker, where a bare glyph is a poor target.
     var name: String {
         switch self {
-        case .meal: "Meal"
-        case .burger: "Burger"
-        case .takeaway: "Takeaway"
-        case .pasta: "Pasta"
-        case .noodles: "Noodles"
-        case .candy: "Candy"
-        case .chocolate: "Chocolate"
-        case .vegetable: "Vegetable"
-        case .fruit: "Fruit"
-        case .chips: "Chips"
-        case .softDrink: "Soft drink"
-        case .milk: "Milk"
-        case .coffee: "Coffee"
-        case .tea: "Tea"
+        case .meal: String(localized: "Meal", comment: "Food icon")
+        case .burger: String(localized: "Burger", comment: "Food icon")
+        case .takeaway: String(localized: "Takeaway", comment: "Food icon")
+        case .pasta: String(localized: "Pasta", comment: "Food icon")
+        case .noodles: String(localized: "Noodles", comment: "Food icon")
+        case .candy: String(localized: "Candy", comment: "Food icon")
+        case .chocolate: String(localized: "Chocolate", comment: "Food icon")
+        case .vegetable: String(localized: "Vegetable", comment: "Food icon")
+        case .fruit: String(localized: "Fruit", comment: "Food icon")
+        case .chips: String(localized: "Chips", comment: "Food icon, fries or crisps")
+        case .softDrink: String(localized: "Soft drink", comment: "Food icon")
+        case .milk: String(localized: "Milk", comment: "Food icon")
+        case .coffee: String(localized: "Coffee", comment: "Food icon")
+        case .tea: String(localized: "Tea", comment: "Food icon")
         }
     }
 }
