@@ -1,57 +1,57 @@
 {
-  "sourceLanguage": "en",
-  "strings": {
-    "NSCameraUsageDescription": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "HydroHomie uses the camera to scan barcodes on food packaging, so it can look up nutrition information."
+  "sourceLanguage" : "en",
+  "strings" : {
+    "NSCameraUsageDescription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HydroHomie uses the camera to scan barcodes on food packaging, so it can look up nutrition information."
           }
         },
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "A HydroHomie a kamerát az élelmiszerek csomagolásán lévő vonalkódok beolvasására használja, hogy megkeresse a tápértékadatokat."
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A HydroHomie a kamerát a vonalkódok beolvasására használja, hogy megkeresse az adott termék tápértékadatait."
           }
         }
       }
     },
-    "NSHealthShareUsageDescription": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "HydroHomie reads your water intake so your totals stay in sync with Apple Health."
+    "NSHealthShareUsageDescription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HydroHomie reads your water intake so your totals stay in sync with Apple Health."
           }
         },
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "A HydroHomie beolvassa a vízbeviteledet, hogy az összesítésed szinkronban maradjon az Apple Healthszel."
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A HydroHomie beolvassa a vízbeviteledet, hogy az összesítésed szinkronban maradjon az Apple Health-szel."
           }
         }
       }
     },
-    "NSHealthUpdateUsageDescription": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "HydroHomie saves the drinks you log to Apple Health as dietary water."
+    "NSHealthUpdateUsageDescription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HydroHomie saves the drinks you log to Apple Health as dietary water."
           }
         },
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "A HydroHomie a naplózott italokat vízbevitelként menti az Apple Healthbe."
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A HydroHomie a naplózott italokat vízbevitelként menti az Apple Healthbe."
           }
         }
       }
     }
   },
-  "version": "1.0"
+  "version" : "1.0"
 }
