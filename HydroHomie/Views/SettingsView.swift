@@ -4,6 +4,7 @@
 
 import SwiftData
 import SwiftUI
+import UniformTypeIdentifiers
 import WidgetKit
 
 struct SettingsView: View {
@@ -18,6 +19,14 @@ struct SettingsView: View {
     /// Most recently edited first. The macro nobody has touched lately absorbs the
     /// difference, which is what makes an exact split reachable.
     @State private var macroRecency: [Macro] = Macro.allCases
+
+    @State private var exporting = false
+    @State private var importing = false
+    @State private var backupFile: BackupFile?
+    /// Held between picking a file and confirming, so nothing is written until the
+    /// user has seen what is in it.
+    @State private var pendingImport: (archive: BackupArchive, summary: BackupSummary)?
+    @State private var backupMessage: BackupMessage?
 
     private var settings: UserSettings { settingsRows.first ?? UserSettings() }
 
@@ -125,6 +134,23 @@ struct SettingsView: View {
                 }
 
                 Section {
+                    Button {
+                        prepareExport()
+                    } label: {
+                        Label("Export a backup", systemImage: "square.and.arrow.up")
+                    }
+                    Button {
+                        importing = true
+                    } label: {
+                        Label("Restore from a backup", systemImage: "square.and.arrow.down")
+                    }
+                } header: {
+                    Text("Backup")
+                } footer: {
+                    Text("A backup holds everything: your log, your food library, your goals and your settings. Restoring adds what is missing and never removes anything already here.")
+                }
+
+                Section {
                     LabeledContent("Version", value: appVersion)
                 } footer: {
                     // The Open Government Licence requires attribution; this is it.
@@ -153,7 +179,142 @@ struct SettingsView: View {
             }
             .onChange(of: settings.unitRawValue) { _, _ in loadFields() }
             .onDisappear(perform: commitFields)
+            .fileExporter(
+                isPresented: $exporting,
+                document: backupFile,
+                contentType: .json,
+                defaultFilename: backupFile?.suggestedFilename
+            ) { result in
+                if case .failure = result {
+                    backupMessage = .init(text: String(localized: "Couldn't write the backup.",
+                                                       comment: "Export failure"))
+                }
+            }
+            .fileImporter(
+                isPresented: $importing,
+                allowedContentTypes: [.json]
+            ) { result in
+                inspect(result)
+            }
+            // Deliberately a confirmation rather than an immediate restore: the user
+            // sees what the file holds before anything touches the store.
+            .alert("Restore this backup?", isPresented: restoreConfirmationBinding) {
+                Button("Cancel", role: .cancel) { pendingImport = nil }
+                Button("Restore") { performImport() }
+            } message: {
+                Text(pendingImport.map(describe) ?? "")
+            }
+            .alert("Backup", isPresented: backupMessageBinding) {
+                Button("OK", role: .cancel) { backupMessage = nil }
+            } message: {
+                Text(backupMessage?.text ?? "")
+            }
         }
+    }
+
+    // MARK: - Backup
+
+    private var restoreConfirmationBinding: Binding<Bool> {
+        Binding(get: { pendingImport != nil },
+                set: { if !$0 { pendingImport = nil } })
+    }
+
+    private var backupMessageBinding: Binding<Bool> {
+        Binding(get: { backupMessage != nil },
+                set: { if !$0 { backupMessage = nil } })
+    }
+
+    private func prepareExport() {
+        do {
+            let archive = try BackupService.export(from: context, appVersion: appVersion)
+            backupFile = BackupFile(archive: archive, data: try archive.encoded())
+            exporting = true
+        } catch {
+            backupMessage = .init(text: String(localized: "Couldn't build the backup.",
+                                               comment: "Export failure"))
+        }
+    }
+
+    /// Reads and validates the picked file. Nothing is written yet — this only
+    /// decides whether there is something worth confirming.
+    private func inspect(_ result: Result<URL, Error>) {
+        guard case .success(let url) = result else { return }
+
+        // A file picked from Files or iCloud Drive lives outside the sandbox.
+        let scoped = url.startAccessingSecurityScopedResource()
+        defer { if scoped { url.stopAccessingSecurityScopedResource() } }
+
+        do {
+            let archive = try BackupArchive.decoded(from: try Data(contentsOf: url))
+            guard !archive.isEmpty else { throw BackupError.empty }
+            pendingImport = (archive, BackupService.summarize(archive))
+        } catch {
+            backupMessage = .init(
+                text: (error as? BackupError)?.errorDescription
+                    ?? String(localized: "Couldn't read that file.", comment: "Import failure")
+            )
+        }
+    }
+
+    private func performImport() {
+        guard let pending = pendingImport else { return }
+        pendingImport = nil
+        do {
+            let result = try BackupService.restore(pending.archive, into: context)
+            loadFields()
+            WidgetCenter.shared.reloadAllTimelines()
+            backupMessage = .init(text: describe(result))
+        } catch {
+            backupMessage = .init(text: String(localized: "Couldn't restore that backup.",
+                                               comment: "Import failure"))
+        }
+    }
+
+    /// Built a line at a time, each with its own count, so every language gets its
+    /// own plural rule instead of an "1 foods" produced by concatenation.
+    private func describe(_ pending: (archive: BackupArchive, summary: BackupSummary)) -> String {
+        let summary = pending.summary
+        var lines: [String] = []
+
+        let entries = String(localized: "\(summary.totalEntries) entries",
+                             comment: "Number of log entries in a backup")
+        if let earliest = summary.earliest, let latest = summary.latest {
+            let range = earliest.formatted(date: .abbreviated, time: .omitted)
+                + " – " + latest.formatted(date: .abbreviated, time: .omitted)
+            lines.append(String(localized: "\(entries) from \(range)",
+                                comment: "Log entries and the dates they span"))
+        } else {
+            lines.append(entries)
+        }
+
+        lines.append(String(localized: "\(summary.foodItems) foods",
+                            comment: "Number of library foods in a backup"))
+        if summary.hasSettings {
+            lines.append(String(localized: "Goals and settings",
+                                comment: "A backup also carries these"))
+        }
+        return lines.joined(separator: "\n")
+    }
+
+    private func describe(_ result: ImportResult) -> String {
+        guard !result.isEmpty else {
+            return String(localized: "Everything in that backup was already here.",
+                          comment: "Import added nothing")
+        }
+        let added = result.drinkEntries + result.foodEntries + result.foodItems
+        // Reporting "0 entries and 0 foods" would understate an import that did
+        // restore the settings, which is the common case for a second run.
+        guard added > 0 else {
+            return String(
+                localized: "Your goals and settings were restored. Everything else was already here.",
+                comment: "Import restored only the settings")
+        }
+        let entries = String(localized: "\(result.drinkEntries + result.foodEntries) entries",
+                             comment: "Number of log entries in a backup")
+        let foods = String(localized: "\(result.foodItems) foods",
+                           comment: "Number of library foods in a backup")
+        return String(localized: "Restored \(entries) and \(foods).",
+                      comment: "What an import added")
     }
 
     // MARK: - Bindings

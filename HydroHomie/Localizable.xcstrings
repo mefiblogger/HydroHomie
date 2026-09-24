@@ -52,6 +52,23 @@
         }
       }
     },
+    "%@ from %@": {
+      "comment": "Log entries and the dates they span",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@ from %2$@"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%1$@ innen: %2$@"
+          }
+        }
+      }
+    },
     "%@ g": {
       "comment": "A nutrient amount in grams, e.g. 12.5 g",
       "localizations": {
@@ -128,6 +145,88 @@
         }
       }
     },
+    "%lld entries": {
+      "comment": "Number of log entries in a backup",
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld entry"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld entries"
+                }
+              }
+            }
+          }
+        },
+        "hu": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "needs_review",
+                  "value": "%lld bejegyzés"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "needs_review",
+                  "value": "%lld bejegyzés"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%lld foods": {
+      "comment": "Number of library foods in a backup",
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld food"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld foods"
+                }
+              }
+            }
+          }
+        },
+        "hu": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "needs_review",
+                  "value": "%lld étel"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "needs_review",
+                  "value": "%lld étel"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "%lld kcal per 100 g": {
       "localizations": {
         "hu": {
@@ -170,6 +269,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "0"
+          }
+        }
+      }
+    },
+    "A backup holds everything: your log, your food library, your goals and your settings. Restoring adds what is missing and never removes anything already here.": {
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "A mentés mindent tartalmaz: a naplót, az ételtárat, a célokat és a beállításokat. A visszaállítás csak a hiányzókat adja hozzá, és soha nem töröl semmit."
           }
         }
       }
@@ -292,6 +401,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Az Apple Health nem érhető el ezen az eszközön."
+          }
+        }
+      }
+    },
+    "Backup": {
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Biztonsági mentés"
           }
         }
       }
@@ -453,6 +572,17 @@
         }
       }
     },
+    "Couldn't build the backup.": {
+      "comment": "Export failure",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Nem sikerült létrehozni a mentést."
+          }
+        }
+      }
+    },
     "Couldn't reach Open Food Facts. Check your connection.": {
       "comment": "Barcode lookup failure",
       "localizations": {
@@ -460,6 +590,39 @@
           "stringUnit": {
             "state": "translated",
             "value": "Nem sikerült elérni az Open Food Factsot. Ellenőrizd a kapcsolatot."
+          }
+        }
+      }
+    },
+    "Couldn't read that file.": {
+      "comment": "Import failure",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Nem sikerült beolvasni a fájlt."
+          }
+        }
+      }
+    },
+    "Couldn't restore that backup.": {
+      "comment": "Import failure",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Nem sikerült visszaállítani a mentést."
+          }
+        }
+      }
+    },
+    "Couldn't write the backup.": {
+      "comment": "Export failure",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Nem sikerült kiírni a mentést."
           }
         }
       }
@@ -587,6 +750,17 @@
         }
       }
     },
+    "Everything in that backup was already here.": {
+      "comment": "Import added nothing",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "A mentés minden eleme már megvolt."
+          }
+        }
+      }
+    },
     "Exercise 1–3 days a week": {
       "comment": "Activity level detail",
       "localizations": {
@@ -616,6 +790,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Heti 6–7 nap mozgás"
+          }
+        }
+      }
+    },
+    "Export a backup": {
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Mentés exportálása"
           }
         }
       }
@@ -783,6 +967,17 @@
           "stringUnit": {
             "state": "translated",
             "value": "Célkövetés"
+          }
+        }
+      }
+    },
+    "Goals and settings": {
+      "comment": "A backup also carries these",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Célok és beállítások"
           }
         }
       }
@@ -1161,6 +1356,16 @@
         }
       }
     },
+    "OK": {
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "OK"
+          }
+        }
+      }
+    },
     "Open Food Facts": {
       "localizations": {
         "hu": {
@@ -1353,6 +1558,53 @@
           "stringUnit": {
             "state": "translated",
             "value": "%@ víz levonása"
+          }
+        }
+      }
+    },
+    "Restore": {
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Visszaállítás"
+          }
+        }
+      }
+    },
+    "Restore from a backup": {
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Visszaállítás mentésből"
+          }
+        }
+      }
+    },
+    "Restore this backup?": {
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Visszaállítod ezt a mentést?"
+          }
+        }
+      }
+    },
+    "Restored %@ and %@.": {
+      "comment": "What an import added",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Restored %1$@ and %2$@."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Visszaállítva: %1$@ és %2$@."
           }
         }
       }
@@ -1625,6 +1877,28 @@
         }
       }
     },
+    "That backup is empty.": {
+      "comment": "Import failure",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ez a mentés üres."
+          }
+        }
+      }
+    },
+    "That backup was made by a newer version of HydroHomie.": {
+      "comment": "Import failure",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ez a mentés a HydroHomie egy újabb verziójával készült."
+          }
+        }
+      }
+    },
     "That barcode isn't in Open Food Facts yet.": {
       "comment": "Barcode lookup failure",
       "localizations": {
@@ -1632,6 +1906,17 @@
           "stringUnit": {
             "state": "translated",
             "value": "Ez a vonalkód még nincs benne az Open Food Factsban."
+          }
+        }
+      }
+    },
+    "That file isn't a HydroHomie backup.": {
+      "comment": "Import failure",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ez a fájl nem HydroHomie-mentés."
           }
         }
       }
@@ -1900,6 +2185,17 @@
           "stringUnit": {
             "state": "translated",
             "value": "Még nem adtál hozzá ételeket. Olvass be vonalkódot, keress, vagy adj hozzá egy újat."
+          }
+        }
+      }
+    },
+    "Your goals and settings were restored. Everything else was already here.": {
+      "comment": "Import restored only the settings",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "A célok és a beállítások visszaálltak. Minden más már megvolt."
           }
         }
       }
