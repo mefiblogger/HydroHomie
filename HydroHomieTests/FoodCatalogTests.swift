@@ -102,6 +102,72 @@ final class FoodCatalogTests: XCTestCase {
         XCTAssertTrue(food.names.values.contains { $0.lowercased().contains("alma") })
     }
 
+
+    // MARK: - Colloquial matching
+
+    /// What the whole recognition path rests on: a name a person would say has to
+    /// reach a CoFID descriptor, which never phrases anything the same way.
+    func testSpokenNamesReachTheRightCatalogueEntry() {
+        let expected = [
+            "beef stew": "Beef",
+            "white rice": "Rice, white",
+            "potato chips": "Potato chips",
+            "beef burger": "Burger, beef",
+            "scrambled eggs": "Eggs",
+            "chicken breast": "Chicken",
+        ]
+        for (spoken, prefix) in expected {
+            guard let best = FoodCatalog.bestMatches(for: spoken).first else {
+                return XCTFail("no catalogue match for \(spoken)")
+            }
+            XCTAssertTrue(best.name.hasPrefix(prefix),
+                          "\(spoken) matched \(best.name), expected something starting \(prefix)")
+        }
+    }
+
+    /// The entry a word leads must beat one that merely mentions it — otherwise
+    /// "chips" lands on chocolate chips and "milk" on a milk-chocolate bar.
+    func testAnEntryAboutTheFoodBeatsOneThatMerelyMentionsIt() {
+        let chips = FoodCatalog.bestMatches(for: "potato chips").first
+        XCTAssertEqual(chips?.name.contains("chocolate"), false)
+
+        let milk = FoodCatalog.bestMatches(for: "milk").first
+        XCTAssertTrue(milk?.name.hasPrefix("Milk") == true)
+    }
+
+    /// A compound dish is the model's job to break up, not the matcher's. The
+    /// catalogue holds components, so "cheeseburger" legitimately matches nothing —
+    /// and must not fall through to every cheese in the database.
+    func testCompoundDishesDoNotMatchTheirParts() {
+        XCTAssertTrue(FoodCatalog.bestMatches(for: "cheeseburger").isEmpty)
+    }
+
+    /// CoFID lists the raw, dried and powdered form of nearly everything. A food log
+    /// is about what was eaten, so those must lose to the prepared entry — "milk"
+    /// landing on milkshake powder is a fivefold calorie error.
+    func testFormsNobodyEatsLoseToThePreparedOne() {
+        let milk = FoodCatalog.bestMatches(for: "milk").first?.name
+        XCTAssertEqual(milk?.localizedCaseInsensitiveContains("powder"), false,
+                       "milk matched \(milk ?? "nothing")")
+
+        let burger = FoodCatalog.bestMatches(for: "beef burger").first?.name
+        XCTAssertEqual(burger?.localizedCaseInsensitiveContains("raw"), false,
+                       "beef burger matched \(burger ?? "nothing")")
+    }
+
+    func testWordsWithNoFoodMeaningAreIgnored() {
+        // "with" and "and" would otherwise match hundreds of rows on their own.
+        XCTAssertTrue(FoodCatalog.bestMatches(for: "with and the").isEmpty)
+    }
+
+    /// Ordering must not depend on where an entry happens to sit in the file.
+    func testMatchOrderIsTotal() {
+        let once = FoodCatalog.bestMatches(for: "chicken breast").map(\.name)
+        let twice = FoodCatalog.bestMatches(for: "chicken breast").map(\.name)
+        XCTAssertEqual(once, twice)
+        XCTAssertEqual(Set(once).count, once.count, "a food should not appear twice")
+    }
+
     func testACatalogueFoodConvertsToALibraryItem() {
         guard let milk = FoodCatalog.search("Milk, whole").first else {
             return XCTFail("no whole milk in the catalogue")

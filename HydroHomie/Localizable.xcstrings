@@ -334,6 +334,17 @@
         }
       }
     },
+    "Add manually": {
+      "comment": "Food source button",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Kézi felvitel"
+          }
+        }
+      }
+    },
     "Adds a drink to today's total.": {
       "localizations": {
         "hu": {
@@ -401,6 +412,39 @@
           "stringUnit": {
             "state": "translated",
             "value": "Az Apple Health nem érhető el ezen az eszközön."
+          }
+        }
+      }
+    },
+    "Apple Intelligence is getting ready": {
+      "comment": "Recognition unavailable",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Az Apple Intelligence még készülődik"
+          }
+        }
+      }
+    },
+    "Apple Intelligence is off": {
+      "comment": "Recognition unavailable",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Az Apple Intelligence ki van kapcsolva"
+          }
+        }
+      }
+    },
+    "Apple Intelligence is still getting ready. Try again shortly.": {
+      "comment": "Recognition unavailable",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Az Apple Intelligence még készülődik. Próbáld újra kicsit később."
           }
         }
       }
@@ -529,6 +573,26 @@
         }
       }
     },
+    "Check and add": {
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ellenőrzés és hozzáadás"
+          }
+        }
+      }
+    },
+    "Cheeseburger with fries": {
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sajtburger hasábburgonyával"
+          }
+        }
+      }
+    },
     "Chips": {
       "comment": "Food icon, fries or crisps",
       "localizations": {
@@ -583,6 +647,17 @@
         }
       }
     },
+    "Couldn't make out any food in that.": {
+      "comment": "Recognition found nothing",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Nem sikerült ételt felismerni benne."
+          }
+        }
+      }
+    },
     "Couldn't reach Open Food Facts. Check your connection.": {
       "comment": "Barcode lookup failure",
       "localizations": {
@@ -601,6 +676,17 @@
           "stringUnit": {
             "state": "needs_review",
             "value": "Nem sikerült beolvasni a fájlt."
+          }
+        }
+      }
+    },
+    "Couldn't read that. Try describing it differently.": {
+      "comment": "Recognition failed",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Nem sikerült értelmezni. Próbáld másképp leírni."
           }
         }
       }
@@ -664,6 +750,27 @@
           "stringUnit": {
             "state": "translated",
             "value": "Bejegyzés törlése"
+          }
+        }
+      }
+    },
+    "Describe": {
+      "comment": "Food source button",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Leírás"
+          }
+        }
+      }
+    },
+    "Describe the meal in your own words, in any language. Everything stays on your phone.": {
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Írd le az ételt a saját szavaiddal, bármilyen nyelven. Minden a telefonodon marad."
           }
         }
       }
@@ -736,6 +843,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Bejegyzések"
+          }
+        }
+      }
+    },
+    "Estimated from what you described. Check the amounts — a portion is the easiest thing to get wrong.": {
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "A leírásod alapján becsülve. Ellenőrizd a mennyiségeket — az adagot a legkönnyebb elvéteni."
           }
         }
       }
@@ -1315,6 +1432,17 @@
         }
       }
     },
+    "No match": {
+      "comment": "Recognised food the catalogue has no entry for",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Nincs találat"
+          }
+        }
+      }
+    },
     "Noodles": {
       "comment": "Food icon",
       "localizations": {
@@ -1322,6 +1450,17 @@
           "stringUnit": {
             "state": "translated",
             "value": "Tésztaleves"
+          }
+        }
+      }
+    },
+    "Not available on this device": {
+      "comment": "Recognition unavailable",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ezen az eszközön nem érhető el"
           }
         }
       }
@@ -1393,6 +1532,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Az Open Food Facts korlátozza a kéréseinket. Várj egy kicsit, és próbáld újra."
+          }
+        }
+      }
+    },
+    "Open Settings": {
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Beállítások megnyitása"
           }
         }
       }
@@ -1532,6 +1681,16 @@
         }
       }
     },
+    "Recognised": {
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Felismerve"
+          }
+        }
+      }
+    },
     "Remind me to drink": {
       "localizations": {
         "hu": {
@@ -1642,6 +1801,7 @@
       }
     },
     "Scan barcode": {
+      "comment": "Food source button",
       "localizations": {
         "hu": {
           "stringUnit": {
@@ -1677,6 +1837,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Étel keresése vagy vonalkód beolvasása"
+          }
+        }
+      }
+    },
+    "Search the food database": {
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Keresés az ételadatbázisban"
           }
         }
       }
@@ -1793,6 +1963,17 @@
         }
       }
     },
+    "Switch it on in Settings to describe or photograph a meal. Everything is worked out on your phone.": {
+      "comment": "Recognition unavailable",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Kapcsold be a Beállításokban, hogy leírhass vagy lefényképezhess egy ételt. Minden a telefonodon dől el."
+          }
+        }
+      }
+    },
     "Sync to Apple Health": {
       "localizations": {
         "hu": {
@@ -1820,6 +2001,27 @@
           "stringUnit": {
             "state": "translated",
             "value": "MA EDDIG"
+          }
+        }
+      }
+    },
+    "Take another photo": {
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Új fénykép"
+          }
+        }
+      }
+    },
+    "Take photo": {
+      "comment": "Food source button",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Fénykép"
           }
         }
       }
@@ -1954,6 +2156,27 @@
         }
       }
     },
+    "The model is still downloading. Try again in a little while.": {
+      "comment": "Recognition unavailable",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "A modell még töltődik. Próbáld újra kicsit később."
+          }
+        }
+      }
+    },
+    "The photo is read on your phone and is not saved or sent anywhere.": {
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "A fényképet a telefonod dolgozza fel, nem menti és nem küldi el sehová."
+          }
+        }
+      }
+    },
     "The size of one. Set “glass” to 250 ml for juice and you can log 2 glasses later. Leave blank for any you don't use.": {
       "localizations": {
         "hu": {
@@ -1980,6 +2203,28 @@
           "stringUnit": {
             "state": "translated",
             "value": "Téma"
+          }
+        }
+      }
+    },
+    "This device can't do on-device food recognition.": {
+      "comment": "Recognition unavailable",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ez az eszköz nem tud helyben ételt felismerni."
+          }
+        }
+      }
+    },
+    "This iPhone can't run Apple Intelligence. Search the food database instead.": {
+      "comment": "Recognition unavailable",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ez az iPhone nem tudja futtatni az Apple Intelligence-t. Keress helyette az ételadatbázisban."
           }
         }
       }
@@ -2026,6 +2271,16 @@
         }
       }
     },
+    "Total": {
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Összesen"
+          }
+        }
+      }
+    },
     "Track Food": {
       "localizations": {
         "hu": {
@@ -2042,6 +2297,17 @@
           "stringUnit": {
             "state": "translated",
             "value": "Étel naplózása"
+          }
+        }
+      }
+    },
+    "Turn on Apple Intelligence in Settings to use this.": {
+      "comment": "Recognition unavailable",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Kapcsold be az Apple Intelligence-t a Beállításokban."
           }
         }
       }
@@ -2175,6 +2441,37 @@
           "stringUnit": {
             "state": "translated",
             "value": "Céljaim kiszámítása"
+          }
+        }
+      }
+    },
+    "Work out the food": {
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Étel felismerése"
+          }
+        }
+      }
+    },
+    "Working out a meal from a description needs a newer version of iOS. Search the food database instead.": {
+      "comment": "Recognition unavailable",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Az étel leírásból való felismeréséhez újabb iOS szükséges. Keress helyette az ételadatbázisban."
+          }
+        }
+      }
+    },
+    "Working out what's on the plate…": {
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Kitaláljuk, mi van a tányéron…"
           }
         }
       }
@@ -2386,6 +2683,17 @@
           "stringUnit": {
             "state": "translated",
             "value": "cél nem teljesült"
+          }
+        }
+      }
+    },
+    "heard “%@”": {
+      "comment": "The term the model produced for a food",
+      "localizations": {
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ezt hallotta: „%@”"
           }
         }
       }

@@ -23,7 +23,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>HydroHomie uses the camera to scan barcodes on food packaging, so it can look up nutrition information.</string>
+	<string>HydroHomie uses the camera to scan barcodes on food packaging and, if you ask it to, to photograph a meal so it can work out what is on the plate. Photos are read on your phone and are not saved or sent anywhere.</string>
 	<key>NSHealthShareUsageDescription</key>
 	<string>HydroHomie reads your weight, height, age and sex to suggest daily targets, and your water and nutrition so your totals stay in sync with Apple Health.</string>
 	<key>NSHealthUpdateUsageDescription</key>

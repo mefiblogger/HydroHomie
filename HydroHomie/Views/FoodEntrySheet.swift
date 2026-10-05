@@ -24,6 +24,9 @@ struct FoodEntrySheet: View {
     @State private var picked: FoodItem?
 
     @State private var scanning = false
+    @State private var addingManually = false
+    @State private var describing = false
+    @State private var photographing = false
     @FocusState private var searchFocused: Bool
     /// A product from Open Food Facts, on its way to the editor for checking.
     @State private var scanned: RemoteFood?
@@ -67,21 +70,16 @@ struct FoodEntrySheet: View {
         NavigationStack {
             List {
                 Section {
-                    Button {
-                        scanning = true
-                    } label: {
-                        Label("Scan barcode", systemImage: "barcode.viewfinder")
-                    }
-
-                    NavigationLink {
-                        FoodEditorView(creatingNamed: search) { item, grams in
-                            log(item, grams: grams ?? item.defaultPortionAmount,
-                                count: 0, kind: nil)
-                        }
-                    } label: {
-                        Label("New food", systemImage: "plus.circle.fill")
-                    }
+                    FoodSourceRow(
+                        onScan: { scanning = true },
+                        onPhoto: { photographing = true },
+                        onDescribe: { describing = true },
+                        onManual: { addingManually = true }
+                    )
                 }
+                .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
+                .listRowBackground(Color.clear)
+                .listRowSeparator(.hidden)
 
                 if matches.isEmpty && catalogueMatches.isEmpty && online.isEmpty
                     && !searchingOnline && barcode == nil {
@@ -186,6 +184,11 @@ struct FoodEntrySheet: View {
                 try? await Task.sleep(for: .milliseconds(120))
                 searchFocused = true
             }
+            .navigationDestination(isPresented: $addingManually) {
+                FoodEditorView(creatingNamed: search) { item, grams in
+                    log(item, grams: grams ?? item.defaultPortionAmount, count: 0, kind: nil)
+                }
+            }
             .navigationDestination(item: $editing) { item in
                 FoodEditorView(editing: item)
             }
@@ -205,6 +208,12 @@ struct FoodEntrySheet: View {
                 ) { item, grams in
                     log(item, grams: grams ?? item.defaultPortionAmount, count: 0, kind: nil)
                 }
+            }
+            .sheet(isPresented: $describing) {
+                DescribeFoodView(loggingOn: loggingOn) { dismiss() }
+            }
+            .sheet(isPresented: $photographing) {
+                MealPhotoView(loggingOn: loggingOn) { dismiss() }
             }
             .sheet(isPresented: $scanning) {
                 // A scan just fills the search field; the lookup below picks it up.

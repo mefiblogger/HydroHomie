@@ -7,13 +7,13 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "HydroHomie uses the camera to scan barcodes on food packaging, so it can look up nutrition information."
+            "value": "HydroHomie uses the camera to scan barcodes on food packaging and, if you ask it to, to photograph a meal so it can work out what is on the plate. Photos are read on your phone and are not saved or sent anywhere."
           }
         },
         "hu": {
           "stringUnit": {
-            "state": "translated",
-            "value": "A HydroHomie a kamerát a vonalkódok beolvasására használja, hogy megkeresse az adott termék tápértékadatait."
+            "state": "needs_review",
+            "value": "A HydroHomie a kamerát a csomagoláson lévő vonalkódok beolvasására használja, és ha kéred, egy étel lefényképezésére, hogy kitalálja, mi van a tányéron. A fényképeket a telefonod dolgozza fel, nem menti és nem küldi el sehová."
           }
         }
       }
