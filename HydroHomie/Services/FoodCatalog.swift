@@ -110,6 +110,11 @@ enum FoodCatalog {
                 let position = have.firstIndex { have in wanted.contains { related(have, $0) } } ?? have.count
                 let score = Score(
                     coverage: Double(matched) / Double(wanted.count),
+                    // CoFID writes a staple as the food, a comma, then qualifiers:
+                    // "Eggs, chicken, scrambled". A composite dish has no such comma:
+                    // "Egg fu yung". Without this, a one-word term picks the shortest
+                    // entry, and "eggs" lands on egg fu yung.
+                    baseEntry: isBaseEntry(candidate, matching: wanted),
                     unprepared: have.contains { unprepared.contains($0) },
                     position: position,
                     length: have.count,
@@ -129,6 +134,7 @@ enum FoodCatalog {
 
     private struct Score {
         var coverage: Double
+        var baseEntry: Bool
         var unprepared: Bool
         var position: Int
         var length: Int
@@ -140,11 +146,20 @@ enum FoodCatalog {
         /// so the order is total and a shuffle of the catalogue cannot change it.
         func beats(_ other: Score) -> Bool {
             if coverage != other.coverage { return coverage > other.coverage }
+            if baseEntry != other.baseEntry { return baseEntry }
             if unprepared != other.unprepared { return !unprepared }
             if position != other.position { return position < other.position }
             if length != other.length { return length < other.length }
             return name < other.name
         }
+    }
+
+    /// Whether this entry names the food itself rather than a dish containing it —
+    /// true when the part before the first comma is what was asked for.
+    private static func isBaseEntry(_ name: String, matching wanted: [String]) -> Bool {
+        guard let head = name.split(separator: ",").first else { return false }
+        guard head.count < name.count else { return false }  // no comma: a dish name
+        return tokens(String(head)).contains { have in wanted.contains { related(have, $0) } }
     }
 
     /// Whether two words are close enough to count as the same one. A prefix match
@@ -157,7 +172,14 @@ enum FoodCatalog {
         // A prefix alone is too loose: it makes "cheeseburger" a kind of "cheese" and
         // matches every cheese in the catalogue. Allowing only a short tail keeps the
         // inflections and rejects the compounds.
-        guard shorter.count >= 4, longer.count - shorter.count <= 3 else { return false }
+        //
+        // Short words need a tighter tail than long ones. At three letters the food
+        // words are everywhere — egg, pea, oat — and two spare letters is the
+        // difference between "egg"/"eggs", which must match, and "pea"/"peach",
+        // which must not.
+        guard shorter.count >= 3 else { return false }
+        let allowance = shorter.count <= 4 ? 1 : 3
+        guard longer.count - shorter.count <= allowance else { return false }
         return longer.hasPrefix(shorter)
     }
 

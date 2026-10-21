@@ -155,6 +155,21 @@ final class FoodCatalogTests: XCTestCase {
                        "beef burger matched \(burger ?? "nothing")")
     }
 
+    /// The model says "egg" where CoFID says "Eggs". Three-letter food words are
+    /// common enough that failing to pair them sent scrambled eggs to egg fu yung.
+    func testShortFoodWordsPairWithTheirPlurals() {
+        let egg = FoodCatalog.bestMatches(for: "eggs").first?.name
+        XCTAssertTrue(egg?.hasPrefix("Egg") == true, "eggs matched \(egg ?? "nothing")")
+        XCTAssertEqual(egg?.localizedCaseInsensitiveContains("fu yung"), false)
+    }
+
+    /// The same loosening must not make a pea a kind of peach.
+    func testShortWordsDoNotMatchLongerUnrelatedOnes() {
+        let pea = FoodCatalog.bestMatches(for: "peas").first?.name
+        XCTAssertEqual(pea?.localizedCaseInsensitiveContains("peach"), false,
+                       "peas matched \(pea ?? "nothing")")
+    }
+
     func testWordsWithNoFoodMeaningAreIgnored() {
         // "with" and "and" would otherwise match hundreds of rows on their own.
         XCTAssertTrue(FoodCatalog.bestMatches(for: "with and the").isEmpty)

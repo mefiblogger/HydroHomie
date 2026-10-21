@@ -37,14 +37,29 @@ struct DescribeFoodView: View {
                         Button {
                             Task { await recognise() }
                         } label: {
-                            HStack {
+                            HStack(spacing: 8) {
+                                if thinking {
+                                    ProgressView().tint(.white)
+                                } else {
+                                    Image(systemName: "sparkles")
+                                }
                                 Text("Work out the food")
-                                Spacer()
-                                if thinking { ProgressView() }
                             }
+                            // Matches the fixed-height treatment the other button rows
+                            // use, so a spinner swapping in for a glyph cannot resize it.
+                            .font(.body.weight(.semibold))
+                            .frame(height: 22)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 10)
                         }
+                        .buttonStyle(.borderedProminent)
+                        .buttonBorderShape(.roundedRectangle(radius: 14))
+                        .tint(Color.brand)
                         .disabled(text.trimmingCharacters(in: .whitespaces).count < 3 || thinking)
                     }
+                    .listRowInsets(EdgeInsets(top: 4, leading: 16, bottom: 4, trailing: 16))
+                    .listRowBackground(Color.clear)
+                    .listRowSeparator(.hidden)
                 } else {
                     Section {
                         UnavailableNotice(status: status)
