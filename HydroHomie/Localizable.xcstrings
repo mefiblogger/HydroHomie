@@ -1,225 +1,184 @@
 {
-  "sourceLanguage": "en",
-  "strings": {
-    "%@ %@ %@": {
-      "comment": "A named portion and its size, e.g. bottle 500 ml",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "%1$@ %2$@ %3$@"
+  "sourceLanguage" : "en",
+  "strings" : {
+    "%@ %@ %@" : {
+      "comment" : "A named portion and its size, e.g. bottle 500 ml",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$@ %3$@"
           }
         },
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$@ %2$@ %3$@"
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ %2$@ %3$@"
           }
         }
       }
     },
-    "%@ above the usual %lld–%lld%%": {
-      "comment": "One item in the unusual-macro list",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "%1$@ above the usual %2$lld–%3$lld%%"
+    "%@ above the usual %lld–%lld%%" : {
+      "comment" : "One item in the unusual-macro list",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ above the usual %2$lld–%3$lld%%"
           }
         },
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$@ a szokásos %2$lld–%3$lld%% felett"
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ a szokásos %2$lld–%3$lld%% felett"
           }
         }
       }
     },
-    "%@ below the usual %lld–%lld%%": {
-      "comment": "One item in the unusual-macro list",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "%1$@ below the usual %2$lld–%3$lld%%"
+    "%@ below the usual %lld–%lld%%" : {
+      "comment" : "One item in the unusual-macro list",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ below the usual %2$lld–%3$lld%%"
           }
         },
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$@ a szokásos %2$lld–%3$lld%% alatt"
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ a szokásos %2$lld–%3$lld%% alatt"
           }
         }
       }
     },
-    "%@ from %@": {
-      "comment": "Log entries and the dates they span",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "%1$@ from %2$@"
+    "%@ from %@" : {
+      "comment" : "Log entries and the dates they span",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ from %2$@"
           }
         },
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "%1$@ innen: %2$@"
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "%1$@ innen: %2$@"
           }
         }
       }
     },
-    "%@ g": {
-      "comment": "A nutrient amount in grams, e.g. 12.5 g",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ g"
+    "%@ g" : {
+      "comment" : "A nutrient amount in grams, e.g. 12.5 g",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ g"
           }
         }
       }
     },
-    "%@ kcal": {
-      "comment": "An energy amount, e.g. 240 kcal",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ kcal"
+    "%@ kcal" : {
+      "comment" : "An energy amount, e.g. 240 kcal",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ kcal"
           }
         }
       }
     },
-    "%@ kcal per 100 %@": {
-      "comment": "Energy density of a food, e.g. 52 kcal per 100 g",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "%1$@ kcal per 100 %2$@"
+    "%@ kcal per 100 %@" : {
+      "comment" : "Energy density of a food, e.g. 52 kcal per 100 g",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ kcal per 100 %2$@"
           }
         },
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$@ kcal / 100 %2$@"
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ kcal / 100 %2$@"
           }
         }
       }
     },
-    "%@ water": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ víz"
+    "%@ water" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ víz"
           }
         }
       }
     },
-    "%@. Calories %@, water %@.": {
-      "comment": "VoiceOver summary of one day in the goal calendar",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "%1$@. Calories %2$@, water %3$@."
+    "%@. Calories %@, water %@." : {
+      "comment" : "VoiceOver summary of one day in the goal calendar",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@. Calories %2$@, water %3$@."
           }
         },
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$@. Kalória: %2$@, víz: %3$@."
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@. Kalória: %2$@, víz: %3$@."
           }
         }
       }
     },
-    "%lld": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld"
+    "%lld" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld"
           }
         }
       }
     },
-    "%lld entries": {
-      "comment": "Number of log entries in a backup",
-      "localizations": {
-        "en": {
-          "variations": {
-            "plural": {
-              "one": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "%lld entry"
+    "%lld entries" : {
+      "comment" : "Number of log entries in a backup",
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld entry"
                 }
               },
-              "other": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "%lld entries"
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld entries"
                 }
               }
             }
           }
         },
-        "hu": {
-          "variations": {
-            "plural": {
-              "one": {
-                "stringUnit": {
-                  "state": "needs_review",
-                  "value": "%lld bejegyzés"
+        "hu" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "%lld bejegyzés"
                 }
               },
-              "other": {
-                "stringUnit": {
-                  "state": "needs_review",
-                  "value": "%lld bejegyzés"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "%lld foods": {
-      "comment": "Number of library foods in a backup",
-      "localizations": {
-        "en": {
-          "variations": {
-            "plural": {
-              "one": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "%lld food"
-                }
-              },
-              "other": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "%lld foods"
-                }
-              }
-            }
-          }
-        },
-        "hu": {
-          "variations": {
-            "plural": {
-              "one": {
-                "stringUnit": {
-                  "state": "needs_review",
-                  "value": "%lld étel"
-                }
-              },
-              "other": {
-                "stringUnit": {
-                  "state": "needs_review",
-                  "value": "%lld étel"
+              "other" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "%lld bejegyzés"
                 }
               }
             }
@@ -227,2636 +186,2678 @@
         }
       }
     },
-    "%lld kcal per 100 g": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld kcal / 100 g"
-          }
-        }
-      }
-    },
-    "%lld%%": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld%%"
-          }
-        }
-      }
-    },
-    "%lld/%lld g": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "%1$lld/%2$lld g"
+    "%lld foods" : {
+      "comment" : "Number of library foods in a backup",
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld food"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld foods"
+                }
+              }
+            }
           }
         },
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld/%lld g"
+        "hu" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "%lld étel"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "%lld étel"
+                }
+              }
+            }
           }
         }
       }
     },
-    "0": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "0"
+    "%lld kcal per 100 g" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld kcal / 100 g"
           }
         }
       }
     },
-    "A backup holds everything: your log, your food library, your goals and your settings. Restoring adds what is missing and never removes anything already here.": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "A mentés mindent tartalmaz: a naplót, az ételtárat, a célokat és a beállításokat. A visszaállítás csak a hiányzókat adja hozzá, és soha nem töröl semmit."
+    "%lld%%" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld%%"
           }
         }
       }
     },
-    "A quick glass keeps you on track for today's goal.": {
-      "comment": "Reminder notification body",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Egy pohár víz segít tartani a mai célt."
-          }
-        }
-      }
-    },
-    "About you": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Rólad"
-          }
-        }
-      }
-    },
-    "Activity": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Aktivitás"
-          }
-        }
-      }
-    },
-    "Add": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hozzáadás"
-          }
-        }
-      }
-    },
-    "Add %@ of water": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ víz hozzáadása"
-          }
-        }
-      }
-    },
-    "Add manually": {
-      "comment": "Food source button",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Kézi felvitel"
-          }
-        }
-      }
-    },
-    "Adds a drink to today's total.": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hozzáad egy italt a mai összesítéshez."
-          }
-        }
-      }
-    },
-    "Age": {
-      "comment": "Age in years field",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Életkor"
-          }
-        }
-      }
-    },
-    "Amount": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mennyiség"
-          }
-        }
-      }
-    },
-    "Amount (ml)": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mennyiség (ml)"
-          }
-        }
-      }
-    },
-    "An estimate from population averages, adjusted for your goal. Individual needs vary — treat it as a starting point, and talk to a doctor or dietitian if you have health conditions or specific targets.": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Becslés populációs átlagok alapján, a célodhoz igazítva. Az egyéni szükséglet eltérő — tekintsd kiindulópontnak, és fordulj orvoshoz vagy dietetikushoz, ha betegséged vagy konkrét célod van."
-          }
-        }
-      }
-    },
-    "Appearance": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Megjelenés"
-          }
-        }
-      }
-    },
-    "Apple Health isn't available on this device.": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Az Apple Health nem érhető el ezen az eszközön."
-          }
-        }
-      }
-    },
-    "Apple Intelligence is getting ready": {
-      "comment": "Recognition unavailable",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Az Apple Intelligence még készülődik"
-          }
-        }
-      }
-    },
-    "Apple Intelligence is off": {
-      "comment": "Recognition unavailable",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Az Apple Intelligence ki van kapcsolva"
-          }
-        }
-      }
-    },
-    "Apple Intelligence is still getting ready. Try again shortly.": {
-      "comment": "Recognition unavailable",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Az Apple Intelligence még készülődik. Próbáld újra kicsit később."
-          }
-        }
-      }
-    },
-    "Backup": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Biztonsági mentés"
-          }
-        }
-      }
-    },
-    "Branded products, contributed by the public. Check the figures against the packaging before logging.": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Márkás termékek, közösségi adatokból. Naplózás előtt vesd össze az értékeket a csomagolással."
-          }
-        }
-      }
-    },
-    "Burger": {
-      "comment": "Food icon",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hamburger"
-          }
-        }
-      }
-    },
-    "Calorie average": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Átlagos kalória"
-          }
-        }
-      }
-    },
-    "Calorie goals met": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Teljesített kalóriacélok"
-          }
-        }
-      }
-    },
-    "Calories": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kalória"
-          }
-        }
-      }
-    },
-    "Camera unavailable": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "A kamera nem érhető el"
-          }
-        }
-      }
-    },
-    "Cancel": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mégse"
-          }
-        }
-      }
-    },
-    "Candy": {
-      "comment": "Food icon",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cukorka"
-          }
-        }
-      }
-    },
-    "Carbohydrates": {
-      "comment": "Macronutrient",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Szénhidrát"
-          }
-        }
-      }
-    },
-    "Carbs": {
-      "comment": "Macronutrient",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Szénhidrát"
-          }
-        }
-      }
-    },
-    "Changes apply to this food from now on. Anything already logged keeps the figures it was logged with.": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "A módosítás mostantól érvényes erre az ételre. A már naplózott bejegyzések megtartják az akkori értékeiket."
-          }
-        }
-      }
-    },
-    "Check and add": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Ellenőrzés és hozzáadás"
-          }
-        }
-      }
-    },
-    "Cheeseburger with fries": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Sajtburger hasábburgonyával"
-          }
-        }
-      }
-    },
-    "Chips": {
-      "comment": "Food icon, fries or crisps",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hasábburgonya"
-          }
-        }
-      }
-    },
-    "Chocolate": {
-      "comment": "Food icon",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Csokoládé"
-          }
-        }
-      }
-    },
-    "Coffee": {
-      "comment": "Food icon",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kávé"
-          }
-        }
-      }
-    },
-    "Correcting a food changes it from now on. Anything already logged keeps the figures it was logged with.": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "A javítás mostantól érvényes. A már naplózott bejegyzések megtartják az akkori értékeiket."
-          }
-        }
-      }
-    },
-    "Couldn't build the backup.": {
-      "comment": "Export failure",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Nem sikerült létrehozni a mentést."
-          }
-        }
-      }
-    },
-    "Couldn't make out any food in that.": {
-      "comment": "Recognition found nothing",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Nem sikerült ételt felismerni benne."
-          }
-        }
-      }
-    },
-    "Couldn't reach Open Food Facts. Check your connection.": {
-      "comment": "Barcode lookup failure",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nem sikerült elérni az Open Food Factsot. Ellenőrizd a kapcsolatot."
-          }
-        }
-      }
-    },
-    "Couldn't read that file.": {
-      "comment": "Import failure",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Nem sikerült beolvasni a fájlt."
-          }
-        }
-      }
-    },
-    "Couldn't read that. Try describing it differently.": {
-      "comment": "Recognition failed",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Nem sikerült értelmezni. Próbáld másképp leírni."
-          }
-        }
-      }
-    },
-    "Couldn't restore that backup.": {
-      "comment": "Import failure",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Nem sikerült visszaállítani a mentést."
-          }
-        }
-      }
-    },
-    "Couldn't write the backup.": {
-      "comment": "Export failure",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Nem sikerült kiírni a mentést."
-          }
-        }
-      }
-    },
-    "Custom amount": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Egyéni mennyiség"
-          }
-        }
-      }
-    },
-    "Dark": {
-      "comment": "Dark appearance",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sötét"
-          }
-        }
-      }
-    },
-    "Day": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nap"
-          }
-        }
-      }
-    },
-    "Delete entry": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bejegyzés törlése"
-          }
-        }
-      }
-    },
-    "Describe": {
-      "comment": "Food source button",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Leírás"
-          }
-        }
-      }
-    },
-    "Describe the meal in your own words, in any language. Everything stays on your phone.": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Írd le az ételt a saját szavaiddal, bármilyen nyelven. Minden a telefonodon marad."
-          }
-        }
-      }
-    },
-    "Desk job, little exercise": {
-      "comment": "Activity level detail",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Irodai munka, kevés mozgás"
-          }
-        }
-      }
-    },
-    "Drinks are measured by volume. Labels give nutrition per 100 ml.": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Az italokat térfogatban mérjük. A címkék 100 ml-re adják meg a tápértéket."
-          }
-        }
-      }
-    },
-    "Edit": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Szerkesztés"
-          }
-        }
-      }
-    },
-    "Edit food": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Étel szerkesztése"
-          }
-        }
-      }
-    },
-    "Energy": {
-      "comment": "Nutrient field",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Energia"
-          }
-        }
-      }
-    },
-    "Enter how much you drank in %@.": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Add meg, mennyit ittál (%@)."
-          }
-        }
-      }
-    },
-    "Entries": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bejegyzések"
-          }
-        }
-      }
-    },
-    "Estimated from what you described. Check the amounts — a portion is the easiest thing to get wrong.": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "A leírásod alapján becsülve. Ellenőrizd a mennyiségeket — az adagot a legkönnyebb elvéteni."
-          }
-        }
-      }
-    },
-    "Every %lld h": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld óránként"
-          }
-        }
-      }
-    },
-    "Everything in that backup was already here.": {
-      "comment": "Import added nothing",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "A mentés minden eleme már megvolt."
-          }
-        }
-      }
-    },
-    "Exercise 1–3 days a week": {
-      "comment": "Activity level detail",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Heti 1–3 nap mozgás"
-          }
-        }
-      }
-    },
-    "Exercise 3–5 days a week": {
-      "comment": "Activity level detail",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Heti 3–5 nap mozgás"
-          }
-        }
-      }
-    },
-    "Exercise 6–7 days a week": {
-      "comment": "Activity level detail",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Heti 6–7 nap mozgás"
-          }
-        }
-      }
-    },
-    "Export a backup": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Mentés exportálása"
-          }
-        }
-      }
-    },
-    "Extremely active": {
-      "comment": "Activity level",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Rendkívül aktív"
-          }
-        }
-      }
-    },
-    "Fat": {
-      "comment": "Macronutrient",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zsír"
-          }
-        }
-      }
-    },
-    "Female": {
-      "comment": "Biological sex, for the BMR formula",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nő"
-          }
-        }
-      }
-    },
-    "Fill from Apple Health": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Kitöltés az Apple Health-ből"
-          }
-        }
-      }
-    },
-    "Fill in weight, height and age to see a suggestion.": {
-      "comment": "Prompt shown until the calculator has enough input",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Add meg a testsúlyt, a magasságot és az életkort a javaslathoz."
-          }
-        }
-      }
-    },
-    "Filled %lld of 4 from Health. Check them before accepting.": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "A Health 4-ből %lld mezőt töltött ki. Elfogadás előtt ellenőrizd."
-          }
-        }
-      }
-    },
-    "Fluid ounces (fl oz)": {
-      "comment": "Volume unit choice",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Folyadékuncia (fl oz)"
-          }
-        }
-      }
-    },
-    "Food": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Étel"
-          }
-        }
-      }
-    },
-    "Food database": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ételadatbázis"
-          }
-        }
-      }
-    },
-    "Food library": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ételtár"
-          }
-        }
-      }
-    },
-    "From": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ettől"
-          }
-        }
-      }
-    },
-    "Fruit": {
-      "comment": "Food icon",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gyümölcs"
-          }
-        }
-      }
-    },
-    "Gain weight": {
-      "comment": "Weight goal",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hízás"
-          }
-        }
-      }
-    },
-    "Generic foods bundled with the app. Logging one adds it to your library, where you can rename or correct it.": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Az alkalmazásba épített általános ételek. Ha naplózol egyet, bekerül az ételtáradba, ahol átnevezheted vagy javíthatod."
-          }
-        }
-      }
-    },
-    "Goal": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cél"
-          }
-        }
-      }
-    },
-    "Goal tracking": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Célkövetés"
-          }
-        }
-      }
-    },
-    "Goals and settings": {
-      "comment": "A backup also carries these",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Célok és beállítások"
-          }
-        }
-      }
-    },
-    "Grams": {
-      "comment": "Food is measured by weight",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gramm"
-          }
-        }
-      }
-    },
-    "Health": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Health"
-          }
-        }
-      }
-    },
-    "Health had nothing to fill in. Enter the figures yourself.": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "A Health nem tudott mit kitölteni. Add meg az adatokat kézzel."
-          }
-        }
-      }
-    },
-    "Height": {
-      "comment": "Body height field",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Magasság"
-          }
-        }
-      }
-    },
-    "History": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Előzmények"
-          }
-        }
-      }
-    },
-    "History for %@": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ előzményei"
-          }
-        }
-      }
-    },
-    "How many": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mennyi"
-          }
-        }
-      }
-    },
-    "How much the water buttons add or remove. Press and hold the add button for a one-off amount.": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mennyit adnak hozzá vagy vonnak le a vízgombok. Egyedi mennyiséghez tartsd nyomva a hozzáadás gombot."
-          }
-        }
-      }
-    },
-    "Intake": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bevitel"
-          }
-        }
-      }
-    },
-    "LOGGED": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "NAPLÓZVA"
-          }
-        }
-      }
-    },
-    "Library": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Saját ételek"
-          }
-        }
-      }
-    },
-    "Light": {
-      "comment": "Light appearance",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Világos"
-          }
-        }
-      }
-    },
-    "Lightly active": {
-      "comment": "Activity level",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kissé aktív"
-          }
-        }
-      }
-    },
-    "Log Water": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Víz naplózása"
-          }
-        }
-      }
-    },
-    "Look up barcode": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Vonalkód keresése"
-          }
-        }
-      }
-    },
-    "Lose weight": {
-      "comment": "Weight goal",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fogyás"
-          }
-        }
-      }
-    },
-    "Macros split the calorie target and always total 100% — adjusting one moves the macro you changed least recently. They show on Today; only calories and water count toward goal tracking.": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "A makrók felosztják a kalóriacélt, és mindig 100%-ot adnak ki — az egyik módosítása a legrégebben változtatott makrót mozgatja. A Ma képernyőn jelennek meg; a célkövetésbe csak a kalória és a víz számít bele."
-          }
-        }
-      }
-    },
-    "Maintain": {
-      "comment": "Weight goal",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Szinten tartás"
-          }
-        }
-      }
-    },
-    "Male": {
-      "comment": "Biological sex, for the BMR formula",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Férfi"
-          }
-        }
-      }
-    },
-    "Meal": {
-      "comment": "Food icon",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Étkezés"
-          }
-        }
-      }
-    },
-    "Measured in": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mértékegység"
-          }
-        }
-      }
-    },
-    "Milk": {
-      "comment": "Food icon",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tej"
-          }
-        }
-      }
-    },
-    "Millilitres": {
-      "comment": "Food is measured by volume",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Milliliter"
-          }
-        }
-      }
-    },
-    "Millilitres (ml)": {
-      "comment": "Volume unit choice",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Milliliter (ml)"
-          }
-        }
-      }
-    },
-    "Moderately active": {
-      "comment": "Activity level",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mérsékelten aktív"
-          }
-        }
-      }
-    },
-    "Name": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Név"
-          }
-        }
-      }
-    },
-    "New entries are written to Health: water, and the energy and nutrients of anything you log as food.": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Az új bejegyzések bekerülnek a Health-be: a víz, valamint a naplózott ételek energia- és tápanyagtartalma."
-          }
-        }
-      }
-    },
-    "New food": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Új étel"
-          }
-        }
-      }
-    },
-    "Next day": {
-      "comment": "VoiceOver, paging arrow",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Következő nap"
-          }
-        }
-      }
-    },
-    "Next month": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Következő hónap"
-          }
-        }
-      }
-    },
-    "No food matches “%@”.": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nincs találat erre: „%@”."
-          }
-        }
-      }
-    },
-    "No foods yet. Foods you define while tracking show up here.": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Még nincs étel. A követés közben megadott ételek itt jelennek meg."
-          }
-        }
-      }
-    },
-    "No match": {
-      "comment": "Recognised food the catalogue has no entry for",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Nincs találat"
-          }
-        }
-      }
-    },
-    "Noodles": {
-      "comment": "Food icon",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tésztaleves"
-          }
-        }
-      }
-    },
-    "Not available on this device": {
-      "comment": "Recognition unavailable",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Ezen az eszközön nem érhető el"
-          }
-        }
-      }
-    },
-    "Nothing logged in %@.": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nincs bejegyzés ekkor: %@."
-          }
-        }
-      }
-    },
-    "Nothing logged yet": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Még nincs bejegyzés"
-          }
-        }
-      }
-    },
-    "Nothing was logged on this day. You can still add to it.": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ezen a napon nem volt bejegyzés. Utólag is hozzáadhatsz."
-          }
-        }
-      }
-    },
-    "OK": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "OK"
-          }
-        }
-      }
-    },
-    "Open Food Facts": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Open Food Facts"
-          }
-        }
-      }
-    },
-    "Open Food Facts has no %@ for this product. Check the packaging and fill it in.": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Az Open Food Factsban nincs %@ ehhez a termékhez. Nézd meg a csomagoláson, és írd be."
-          }
-        }
-      }
-    },
-    "Open Food Facts is rate limiting us. Wait a moment and try again.": {
-      "comment": "Barcode lookup failure",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Az Open Food Facts korlátozza a kéréseinket. Várj egy kicsit, és próbáld újra."
-          }
-        }
-      }
-    },
-    "Open Settings": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Beállítások megnyitása"
-          }
-        }
-      }
-    },
-    "Opens HydroHomie to log some food.": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Megnyitja a HydroHomie-t ételnaplózáshoz."
-          }
-        }
-      }
-    },
-    "Pasta": {
-      "comment": "Food icon",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tészta"
-          }
-        }
-      }
-    },
-    "Per 100 %@": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tápérték 100 %@"
-          }
-        }
-      }
-    },
-    "Physical job, or training twice a day": {
-      "comment": "Activity level detail",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fizikai munka vagy napi két edzés"
-          }
-        }
-      }
-    },
-    "Portion": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Adag"
-          }
-        }
-      }
-    },
-    "Portion to log now": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Most naplózandó adag"
-          }
-        }
-      }
-    },
-    "Portions": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Adagok"
-          }
-        }
-      }
-    },
-    "Press and hold for a custom amount": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tartsd nyomva egyéni mennyiséghez"
-          }
-        }
-      }
-    },
-    "Previous day": {
-      "comment": "VoiceOver, paging arrow",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Előző nap"
-          }
-        }
-      }
-    },
-    "Previous month": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Előző hónap"
-          }
-        }
-      }
-    },
-    "Protein": {
-      "comment": "Macronutrient",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fehérje"
-          }
-        }
-      }
-    },
-    "Quick add": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gyors hozzáadás"
-          }
-        }
-      }
-    },
-    "REMAINING": {
-      "comment": "Gauge caption, capitalised",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "MÉG MARADT"
-          }
-        }
-      }
-    },
-    "Recognised": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Felismerve"
-          }
-        }
-      }
-    },
-    "Remind me to drink": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Emlékeztessen ivásra"
-          }
-        }
-      }
-    },
-    "Reminders": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Emlékeztetők"
-          }
-        }
-      }
-    },
-    "Remove %@ of water": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ víz levonása"
-          }
-        }
-      }
-    },
-    "Restore": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Visszaállítás"
-          }
-        }
-      }
-    },
-    "Restore from a backup": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Visszaállítás mentésből"
-          }
-        }
-      }
-    },
-    "Restore this backup?": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Visszaállítod ezt a mentést?"
-          }
-        }
-      }
-    },
-    "Restored %@ and %@.": {
-      "comment": "What an import added",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "Restored %1$@ and %2$@."
+    "%lld/%lld g" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld/%2$lld g"
           }
         },
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Visszaállítva: %1$@ és %2$@."
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld/%lld g"
           }
         }
       }
     },
-    "Returns to today": {
-      "comment": "VoiceOver hint on the date header",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Visszatér a mai napra"
+    "0" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "0"
           }
         }
       }
     },
-    "SO FAR": {
-      "comment": "Gauge caption, capitalised",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "EDDIG"
+    "A backup holds everything: your log, your food library, your goals and your settings. Restoring adds what is missing and never removes anything already here." : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "A mentés mindent tartalmaz: a naplót, az ételtárat, a célokat és a beállításokat. A visszaállítás csak a hiányzókat adja hozzá, és soha nem töröl semmit."
           }
         }
       }
     },
-    "Save": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mentés"
+    "A quick glass keeps you on track for today's goal." : {
+      "comment" : "Reminder notification body",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Egy pohár víz segít tartani a mai célt."
           }
         }
       }
     },
-    "Scan barcode": {
-      "comment": "Food source button",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Vonalkód beolvasása"
+    "About you" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rólad"
           }
         }
       }
     },
-    "Scanning needs a device with a camera, and permission to use it. Search by name instead.": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "A beolvasáshoz kamerás eszköz és engedély szükséges. Keress helyette név alapján."
+    "Activity" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktivitás"
           }
         }
       }
     },
-    "Search branded products": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Márkás termékek keresése"
+    "Add" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hozzáadás"
           }
         }
       }
     },
-    "Search foods or scan a barcode": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Étel keresése vagy vonalkód beolvasása"
+    "Add %@ of water" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ víz hozzáadása"
           }
         }
       }
     },
-    "Search the food database": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Keresés az ételadatbázisban"
+    "Add manually" : {
+      "comment" : "Food source button",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Kézi felvitel"
           }
         }
       }
     },
-    "Search your foods": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Keresés a saját ételeid között"
+    "Adds a drink to today's total." : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hozzáad egy italt a mai összesítéshez."
           }
         }
       }
     },
-    "Searching…": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Keresés…"
+    "Age" : {
+      "comment" : "Age in years field",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Életkor"
           }
         }
       }
     },
-    "Sedentary": {
-      "comment": "Activity level",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ülő életmód"
+    "Amount" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mennyiség"
           }
         }
       }
     },
-    "Settings": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Beállítások"
+    "Amount (ml)" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mennyiség (ml)"
           }
         }
       }
     },
-    "Sex": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nem"
+    "An estimate from population averages, adjusted for your goal. Individual needs vary — treat it as a starting point, and talk to a doctor or dietitian if you have health conditions or specific targets." : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Becslés populációs átlagok alapján, a célodhoz igazítva. Az egyéni szükséglet eltérő — tekintsd kiindulópontnak, és fordulj orvoshoz vagy dietetikushoz, ha betegséged vagy konkrét célod van."
           }
         }
       }
     },
-    "Sex and age are needed for the Mifflin–St Jeor equation, which is what produces the estimate.": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "A nem és az életkor a Mifflin–St Jeor képlethez kell, amely a becslést adja."
+    "Appearance" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Megjelenés"
           }
         }
       }
     },
-    "Soft drink": {
-      "comment": "Food icon",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Üdítő"
+    "Apple Health isn't available on this device." : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Az Apple Health nem érhető el ezen az eszközön."
           }
         }
       }
     },
-    "Solids are weighed. Labels give nutrition per 100 g.": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "A szilárd ételeket tömegben mérjük. A címkék 100 g-ra adják meg a tápértéket."
+    "Apple Intelligence is getting ready" : {
+      "comment" : "Recognition unavailable",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Az Apple Intelligence még készülődik"
           }
         }
       }
     },
-    "Sugar and fibre are part of the carbohydrate figure, not extra to it. Leave anything you don't know blank.": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "A cukor és a rost a szénhidrát része, nem jön hozzá. Amit nem tudsz, hagyd üresen."
+    "Apple Intelligence is off" : {
+      "comment" : "Recognition unavailable",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Az Apple Intelligence ki van kapcsolva"
           }
         }
       }
     },
-    "Suggested daily targets": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Javasolt napi célok"
+    "Apple Intelligence is still getting ready. Try again shortly." : {
+      "comment" : "Recognition unavailable",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Az Apple Intelligence még készülődik. Próbáld újra kicsit később."
           }
         }
       }
     },
-    "Summary": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Összegzés"
+    "Backup" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Biztonsági mentés"
           }
         }
       }
     },
-    "Switch it on in Settings to describe or photograph a meal. Everything is worked out on your phone.": {
-      "comment": "Recognition unavailable",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Kapcsold be a Beállításokban, hogy leírhass vagy lefényképezhess egy ételt. Minden a telefonodon dől el."
+    "Branded products, contributed by the public. Check the figures against the packaging before logging." : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Márkás termékek, közösségi adatokból. Naplózás előtt vesd össze az értékeket a csomagolással."
           }
         }
       }
     },
-    "Sync to Apple Health": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Szinkronizálás az Apple Healthbe"
+    "Burger" : {
+      "comment" : "Food icon",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hamburger"
           }
         }
       }
     },
-    "System": {
-      "comment": "Appearance follows the device setting",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Rendszer"
+    "Calorie average" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Átlagos kalória"
           }
         }
       }
     },
-    "TODAY SO FAR": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "MA EDDIG"
+    "Calorie goals met" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teljesített kalóriacélok"
           }
         }
       }
     },
-    "Take another photo": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Új fénykép"
+    "Calories" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kalória"
           }
         }
       }
     },
-    "Take photo": {
-      "comment": "Food source button",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Fénykép"
+    "Camera unavailable" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A kamera nem érhető el"
           }
         }
       }
     },
-    "Takeaway": {
-      "comment": "Food icon",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Elvitel"
+    "Cancel" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mégse"
           }
         }
       }
     },
-    "Tap a day to open it.": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Koppints egy napra a megnyitásához."
+    "Candy" : {
+      "comment" : "Food icon",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cukorka"
           }
         }
       }
     },
-    "Tap an amount above to start tracking today.": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Koppints fent egy mennyiségre a mai követés indításához."
+    "Carbohydrates" : {
+      "comment" : "Macronutrient",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szénhidrát"
           }
         }
       }
     },
-    "Tea": {
-      "comment": "Food icon",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tea"
+    "Carbs" : {
+      "comment" : "Macronutrient",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szénhidrát"
           }
         }
       }
     },
-    "That age looks wrong — expected 10 to 120.": {
-      "comment": "Validation message",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Az életkor hibásnak tűnik — 10 és 120 között várható."
+    "Changes apply to this food from now on. Anything already logged keeps the figures it was logged with." : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A módosítás mostantól érvényes erre az ételre. A már naplózott bejegyzések megtartják az akkori értékeiket."
           }
         }
       }
     },
-    "That backup is empty.": {
-      "comment": "Import failure",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Ez a mentés üres."
+    "Check and add" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ellenőrzés és hozzáadás"
           }
         }
       }
     },
-    "That backup was made by a newer version of HydroHomie.": {
-      "comment": "Import failure",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Ez a mentés a HydroHomie egy újabb verziójával készült."
+    "Cheeseburger with fries" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sajtburger hasábburgonyával"
           }
         }
       }
     },
-    "That barcode isn't in Open Food Facts yet.": {
-      "comment": "Barcode lookup failure",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ez a vonalkód még nincs benne az Open Food Factsban."
+    "Chips" : {
+      "comment" : "Food icon, fries or crisps",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hasábburgonya"
           }
         }
       }
     },
-    "That file isn't a HydroHomie backup.": {
-      "comment": "Import failure",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Ez a fájl nem HydroHomie-mentés."
+    "Chocolate" : {
+      "comment" : "Food icon",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Csokoládé"
           }
         }
       }
     },
-    "That height looks wrong — expected 50 to 250 cm.": {
-      "comment": "Validation message",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "A magasság hibásnak tűnik — 50 és 250 cm között várható."
+    "Coffee" : {
+      "comment" : "Food icon",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kávé"
           }
         }
       }
     },
-    "That product is listed, but has no nutrition information.": {
-      "comment": "Barcode lookup failure",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "A termék szerepel, de nincs hozzá tápértékadat."
+    "Correcting a food changes it from now on. Anything already logged keeps the figures it was logged with." : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A javítás mostantól érvényes. A már naplózott bejegyzések megtartják az akkori értékeiket."
           }
         }
       }
     },
-    "That weight looks wrong — expected 20 to 400 kg.": {
-      "comment": "Validation message",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "A testsúly hibásnak tűnik — 20 és 400 kg között várható."
+    "Couldn't build the backup." : {
+      "comment" : "Export failure",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Nem sikerült létrehozni a mentést."
           }
         }
       }
     },
-    "The model is still downloading. Try again in a little while.": {
-      "comment": "Recognition unavailable",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "A modell még töltődik. Próbáld újra kicsit később."
+    "Couldn't make out any food in that." : {
+      "comment" : "Recognition found nothing",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Nem sikerült ételt felismerni benne."
           }
         }
       }
     },
-    "The photo is read on your phone and is not saved or sent anywhere.": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "A fényképet a telefonod dolgozza fel, nem menti és nem küldi el sehová."
+    "Couldn't reach Open Food Facts. Check your connection." : {
+      "comment" : "Barcode lookup failure",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nem sikerült elérni az Open Food Factsot. Ellenőrizd a kapcsolatot."
           }
         }
       }
     },
-    "The size of one. Set “glass” to 250 ml for juice and you can log 2 glasses later. Leave blank for any you don't use.": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Egy adag mérete. Állítsd a „pohár” értékét 250 ml-re a gyümölcslénél, és később 2 pohárt naplózhatsz. Amit nem használsz, hagyd üresen."
+    "Couldn't read that file." : {
+      "comment" : "Import failure",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Nem sikerült beolvasni a fájlt."
           }
         }
       }
     },
-    "The size of one. Set “piece” to 2 g for grapes and you can log 10 pieces later. Leave blank for any you don't use.": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Egy darab mérete. Állítsd a „darab” értékét 2 g-ra a szőlőnél, és később 10 darabot naplózhatsz. Amit nem használsz, hagyd üresen."
+    "Couldn't read that. Try describing it differently." : {
+      "comment" : "Recognition failed",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Nem sikerült értelmezni. Próbáld másképp leírni."
           }
         }
       }
     },
-    "Theme": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Téma"
+    "Couldn't restore that backup." : {
+      "comment" : "Import failure",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Nem sikerült visszaállítani a mentést."
           }
         }
       }
     },
-    "This device can't do on-device food recognition.": {
-      "comment": "Recognition unavailable",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Ez az eszköz nem tud helyben ételt felismerni."
+    "Couldn't write the backup." : {
+      "comment" : "Export failure",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Nem sikerült kiírni a mentést."
           }
         }
       }
     },
-    "This iPhone can't run Apple Intelligence. Search the food database instead.": {
-      "comment": "Recognition unavailable",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Ez az iPhone nem tudja futtatni az Apple Intelligence-t. Keress helyette az ételadatbázisban."
+    "Custom amount" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Egyéni mennyiség"
           }
         }
       }
     },
-    "This portion": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ez az adag"
+    "Dark" : {
+      "comment" : "Dark appearance",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sötét"
           }
         }
       }
     },
-    "This split puts %@. Fine if that is deliberate.": {
-      "comment": "Note shown when a macro split sits outside the usual range",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ez a felosztás a következőt adja: %@. Rendben, ha szándékos."
+    "Day" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nap"
           }
         }
       }
     },
-    "Time for water": {
-      "comment": "Reminder notification title",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Itt az ideje inni"
+    "Delete entry" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bejegyzés törlése"
           }
         }
       }
     },
-    "Today": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ma"
+    "Describe" : {
+      "comment" : "Food source button",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Leírás"
           }
         }
       }
     },
-    "Total": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Összesen"
+    "Describe the meal in your own words, in any language. Everything stays on your phone." : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Írd le az ételt a saját szavaiddal, bármilyen nyelven. Minden a telefonodon marad."
           }
         }
       }
     },
-    "Track Food": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Étel naplózása"
+    "Desk job, little exercise" : {
+      "comment" : "Activity level detail",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Irodai munka, kevés mozgás"
           }
         }
       }
     },
-    "Track food": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Étel naplózása"
+    "Drinks are measured by volume. Labels give nutrition per 100 ml." : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Az italokat térfogatban mérjük. A címkék 100 ml-re adják meg a tápértéket."
           }
         }
       }
     },
-    "Turn on Apple Intelligence in Settings to use this.": {
-      "comment": "Recognition unavailable",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Kapcsold be az Apple Intelligence-t a Beállításokban."
+    "Edit" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szerkesztés"
           }
         }
       }
     },
-    "Turns over to show what you have had so far": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Megfordítva megmutatja, mennyit fogyasztottál eddig"
+    "Edit food" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Étel szerkesztése"
           }
         }
       }
     },
-    "Units": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mértékegységek"
+    "Energy" : {
+      "comment" : "Nutrient field",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Energia"
           }
         }
       }
     },
-    "Until": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Eddig"
+    "Enter how much you drank in %@." : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add meg, mennyit ittál (%@)."
           }
         }
       }
     },
-    "Use these": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ezek használata"
+    "Entries" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bejegyzések"
           }
         }
       }
     },
-    "Vegetable": {
-      "comment": "Food icon",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zöldség"
+    "Estimated from what you described. Check the amounts — a portion is the easiest thing to get wrong." : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "A leírásod alapján becsülve. Ellenőrizd a mennyiségeket — az adagot a legkönnyebb elvéteni."
           }
         }
       }
     },
-    "Version": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Verzió"
+    "Every %lld h" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld óránként"
           }
         }
       }
     },
-    "Very active": {
-      "comment": "Activity level",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nagyon aktív"
+    "Everything in that backup was already here." : {
+      "comment" : "Import added nothing",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "A mentés minden eleme már megvolt."
           }
         }
       }
     },
-    "Volume": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Térfogat"
+    "Exercise 1–3 days a week" : {
+      "comment" : "Activity level detail",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heti 1–3 nap mozgás"
           }
         }
       }
     },
-    "Water": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Víz"
+    "Exercise 3–5 days a week" : {
+      "comment" : "Activity level detail",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heti 3–5 nap mozgás"
           }
         }
       }
     },
-    "Water average": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Átlagos vízfogyasztás"
+    "Exercise 6–7 days a week" : {
+      "comment" : "Activity level detail",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heti 6–7 nap mozgás"
           }
         }
       }
     },
-    "Water goals met": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Teljesített vízcélok"
+    "Export a backup" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mentés exportálása"
           }
         }
       }
     },
-    "Weight": {
-      "comment": "Body weight field",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Testsúly"
+    "Extremely active" : {
+      "comment" : "Activity level",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rendkívül aktív"
           }
         }
       }
     },
-    "Work out my goals": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Céljaim kiszámítása"
+    "Fat" : {
+      "comment" : "Macronutrient",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zsír"
           }
         }
       }
     },
-    "Work out the food": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Étel felismerése"
+    "Female" : {
+      "comment" : "Biological sex, for the BMR formula",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nő"
           }
         }
       }
     },
-    "Working out a meal from a description needs a newer version of iOS. Search the food database instead.": {
-      "comment": "Recognition unavailable",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Az étel leírásból való felismeréséhez újabb iOS szükséges. Keress helyette az ételadatbázisban."
+    "Fill from Apple Health" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Kitöltés az Apple Health-ből"
           }
         }
       }
     },
-    "Working out what's on the plate…": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Kitaláljuk, mi van a tányéron…"
+    "Fill in weight, height and age to see a suggestion." : {
+      "comment" : "Prompt shown until the calculator has enough input",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add meg a testsúlyt, a magasságot és az életkort a javaslathoz."
           }
         }
       }
     },
-    "Your food library is empty. Scan a barcode, search, or add a food.": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Még nem adtál hozzá ételeket. Olvass be vonalkódot, keress, vagy adj hozzá egy újat."
+    "Filled %lld of 4 from Health. Check them before accepting." : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "A Health 4-ből %lld mezőt töltött ki. Elfogadás előtt ellenőrizd."
           }
         }
       }
     },
-    "Your goals and settings were restored. Everything else was already here.": {
-      "comment": "Import restored only the settings",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "A célok és a beállítások visszaálltak. Minden más már megvolt."
+    "Fluid ounces (fl oz)" : {
+      "comment" : "Volume unit choice",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Folyadékuncia (fl oz)"
           }
         }
       }
     },
-    "amount.with-unit": {
-      "comment": "An amount followed by its unit symbol, e.g. 750 ml or 150 g",
-      "extractionState": "extracted_with_value",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "%1$@ %2$@"
+    "Food" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Étel"
+          }
+        }
+      }
+    },
+    "Food database" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ételadatbázis"
+          }
+        }
+      }
+    },
+    "Food library" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ételtár"
+          }
+        }
+      }
+    },
+    "From" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ettől"
+          }
+        }
+      }
+    },
+    "Fruit" : {
+      "comment" : "Food icon",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gyümölcs"
+          }
+        }
+      }
+    },
+    "Gain weight" : {
+      "comment" : "Weight goal",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hízás"
+          }
+        }
+      }
+    },
+    "Generic foods bundled with the app. Logging one adds it to your library, where you can rename or correct it." : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Az alkalmazásba épített általános ételek. Ha naplózol egyet, bekerül az ételtáradba, ahol átnevezheted vagy javíthatod."
+          }
+        }
+      }
+    },
+    "Goal" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cél"
+          }
+        }
+      }
+    },
+    "Goal tracking" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Célkövetés"
+          }
+        }
+      }
+    },
+    "Goals and settings" : {
+      "comment" : "A backup also carries these",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Célok és beállítások"
+          }
+        }
+      }
+    },
+    "Grams" : {
+      "comment" : "Food is measured by weight",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gramm"
+          }
+        }
+      }
+    },
+    "Health" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Health"
+          }
+        }
+      }
+    },
+    "Health had nothing to fill in. Enter the figures yourself." : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "A Health nem tudott mit kitölteni. Add meg az adatokat kézzel."
+          }
+        }
+      }
+    },
+    "Height" : {
+      "comment" : "Body height field",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Magasság"
+          }
+        }
+      }
+    },
+    "History" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Előzmények"
+          }
+        }
+      }
+    },
+    "History for %@" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ előzményei"
+          }
+        }
+      }
+    },
+    "How many" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mennyi"
+          }
+        }
+      }
+    },
+    "How much the water buttons add or remove. Press and hold the add button for a one-off amount." : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mennyit adnak hozzá vagy vonnak le a vízgombok. Egyedi mennyiséghez tartsd nyomva a hozzáadás gombot."
+          }
+        }
+      }
+    },
+    "Intake" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bevitel"
+          }
+        }
+      }
+    },
+    "LOGGED" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NAPLÓZVA"
+          }
+        }
+      }
+    },
+    "Library" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saját ételek"
+          }
+        }
+      }
+    },
+    "Light" : {
+      "comment" : "Light appearance",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Világos"
+          }
+        }
+      }
+    },
+    "Lightly active" : {
+      "comment" : "Activity level",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kissé aktív"
+          }
+        }
+      }
+    },
+    "Log Water" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Víz naplózása"
+          }
+        }
+      }
+    },
+    "Look up barcode" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vonalkód keresése"
+          }
+        }
+      }
+    },
+    "Lose weight" : {
+      "comment" : "Weight goal",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fogyás"
+          }
+        }
+      }
+    },
+    "Macros split the calorie target and always total 100% — adjusting one moves the macro you changed least recently. They show on Today; only calories and water count toward goal tracking." : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A makrók felosztják a kalóriacélt, és mindig 100%-ot adnak ki — az egyik módosítása a legrégebben változtatott makrót mozgatja. A Ma képernyőn jelennek meg; a célkövetésbe csak a kalória és a víz számít bele."
+          }
+        }
+      }
+    },
+    "Maintain" : {
+      "comment" : "Weight goal",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szinten tartás"
+          }
+        }
+      }
+    },
+    "Male" : {
+      "comment" : "Biological sex, for the BMR formula",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Férfi"
+          }
+        }
+      }
+    },
+    "Meal" : {
+      "comment" : "Food icon",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Étkezés"
+          }
+        }
+      }
+    },
+    "Measured in" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mértékegység"
+          }
+        }
+      }
+    },
+    "Milk" : {
+      "comment" : "Food icon",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tej"
+          }
+        }
+      }
+    },
+    "Millilitres" : {
+      "comment" : "Food is measured by volume",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Milliliter"
+          }
+        }
+      }
+    },
+    "Millilitres (ml)" : {
+      "comment" : "Volume unit choice",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Milliliter (ml)"
+          }
+        }
+      }
+    },
+    "Moderately active" : {
+      "comment" : "Activity level",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mérsékelten aktív"
+          }
+        }
+      }
+    },
+    "Name" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Név"
+          }
+        }
+      }
+    },
+    "New entries are written to Health: water, and the energy and nutrients of anything you log as food." : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Az új bejegyzések bekerülnek a Health-be: a víz, valamint a naplózott ételek energia- és tápanyagtartalma."
+          }
+        }
+      }
+    },
+    "New food" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Új étel"
+          }
+        }
+      }
+    },
+    "Next day" : {
+      "comment" : "VoiceOver, paging arrow",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Következő nap"
+          }
+        }
+      }
+    },
+    "Next month" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Következő hónap"
+          }
+        }
+      }
+    },
+    "No food matches “%@”." : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nincs találat erre: „%@”."
+          }
+        }
+      }
+    },
+    "No foods yet. Foods you define while tracking show up here." : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Még nincs étel. A követés közben megadott ételek itt jelennek meg."
+          }
+        }
+      }
+    },
+    "No match" : {
+      "comment" : "Recognised food the catalogue has no entry for",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Nincs találat"
+          }
+        }
+      }
+    },
+    "Noodles" : {
+      "comment" : "Food icon",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tésztaleves"
+          }
+        }
+      }
+    },
+    "Not available on this device" : {
+      "comment" : "Recognition unavailable",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ezen az eszközön nem érhető el"
+          }
+        }
+      }
+    },
+    "Nothing logged in %@." : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nincs bejegyzés ekkor: %@."
+          }
+        }
+      }
+    },
+    "Nothing logged yet" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Még nincs bejegyzés"
+          }
+        }
+      }
+    },
+    "Nothing was logged on this day. You can still add to it." : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ezen a napon nem volt bejegyzés. Utólag is hozzáadhatsz."
+          }
+        }
+      }
+    },
+    "OK" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "OK"
+          }
+        }
+      }
+    },
+    "Open Food Facts" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open Food Facts"
+          }
+        }
+      }
+    },
+    "Open Food Facts has no %@ for this product. Check the packaging and fill it in." : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Az Open Food Factsban nincs %@ ehhez a termékhez. Nézd meg a csomagoláson, és írd be."
+          }
+        }
+      }
+    },
+    "Open Food Facts is rate limiting us. Wait a moment and try again." : {
+      "comment" : "Barcode lookup failure",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Az Open Food Facts korlátozza a kéréseinket. Várj egy kicsit, és próbáld újra."
+          }
+        }
+      }
+    },
+    "Open Settings" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Beállítások megnyitása"
+          }
+        }
+      }
+    },
+    "Opens HydroHomie to log some food." : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Megnyitja a HydroHomie-t ételnaplózáshoz."
+          }
+        }
+      }
+    },
+    "Pasta" : {
+      "comment" : "Food icon",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tészta"
+          }
+        }
+      }
+    },
+    "Per 100 %@" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tápérték 100 %@"
+          }
+        }
+      }
+    },
+    "Physical job, or training twice a day" : {
+      "comment" : "Activity level detail",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fizikai munka vagy napi két edzés"
+          }
+        }
+      }
+    },
+    "Portion" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adag"
+          }
+        }
+      }
+    },
+    "Portion to log now" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Most naplózandó adag"
+          }
+        }
+      }
+    },
+    "Portions" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adagok"
+          }
+        }
+      }
+    },
+    "Press and hold for a custom amount" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tartsd nyomva egyéni mennyiséghez"
+          }
+        }
+      }
+    },
+    "Previous day" : {
+      "comment" : "VoiceOver, paging arrow",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Előző nap"
+          }
+        }
+      }
+    },
+    "Previous month" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Előző hónap"
+          }
+        }
+      }
+    },
+    "Protein" : {
+      "comment" : "Macronutrient",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fehérje"
+          }
+        }
+      }
+    },
+    "Quick add" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gyors hozzáadás"
+          }
+        }
+      }
+    },
+    "REMAINING" : {
+      "comment" : "Gauge caption, capitalised",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "MÉG MARADT"
+          }
+        }
+      }
+    },
+    "Recognised" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Felismerve"
+          }
+        }
+      }
+    },
+    "Remind me to drink" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Emlékeztessen ivásra"
+          }
+        }
+      }
+    },
+    "Reminders" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Emlékeztetők"
+          }
+        }
+      }
+    },
+    "Remove %@ of water" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ víz levonása"
+          }
+        }
+      }
+    },
+    "Restore" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Visszaállítás"
+          }
+        }
+      }
+    },
+    "Restore from a backup" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Visszaállítás mentésből"
+          }
+        }
+      }
+    },
+    "Restore this backup?" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Visszaállítod ezt a mentést?"
+          }
+        }
+      }
+    },
+    "Restored %@ and %@." : {
+      "comment" : "What an import added",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Restored %1$@ and %2$@."
           }
         },
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$@ %2$@"
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Visszaállítva: %1$@ és %2$@."
           }
         }
       }
     },
-    "bottle": {
-      "comment": "One portion measure",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "palack"
+    "Returns to today" : {
+      "comment" : "VoiceOver hint on the date header",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visszatér a mai napra"
           }
         }
       }
     },
-    "bottles": {
-      "comment": "Portion measure, more than one",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "palack"
+    "SO FAR" : {
+      "comment" : "Gauge caption, capitalised",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "EDDIG"
           }
         }
       }
     },
-    "bowl": {
-      "comment": "One portion measure",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "tál"
+    "Save" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mentés"
           }
         }
       }
     },
-    "bowls": {
-      "comment": "Portion measure, more than one",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "tál"
+    "Scan barcode" : {
+      "comment" : "Food source button",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vonalkód beolvasása"
           }
         }
       }
     },
-    "can": {
-      "comment": "One portion measure, a drinks can",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "doboz"
+    "Scanning needs a device with a camera, and permission to use it. Search by name instead." : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A beolvasáshoz kamerás eszköz és engedély szükséges. Keress helyette név alapján."
           }
         }
       }
     },
-    "cans": {
-      "comment": "Portion measure, more than one",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "doboz"
+    "Search branded products" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Márkás termékek keresése"
           }
         }
       }
     },
-    "cm": {
-      "comment": "Centimetres, abbreviated",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "cm"
+    "Search foods or scan a barcode" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Étel keresése vagy vonalkód beolvasása"
           }
         }
       }
     },
-    "each": {
-      "comment": "One portion measure",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "db"
+    "Search the food database" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Keresés az ételadatbázisban"
           }
         }
       }
     },
-    "each (plural)": {
-      "comment": "Portion measure, more than one",
-      "extractionState": "extracted_with_value",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "each"
+    "Search your foods" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keresés a saját ételeid között"
+          }
+        }
+      }
+    },
+    "Searching…" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keresés…"
+          }
+        }
+      }
+    },
+    "Sedentary" : {
+      "comment" : "Activity level",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ülő életmód"
+          }
+        }
+      }
+    },
+    "Settings" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beállítások"
+          }
+        }
+      }
+    },
+    "Sex" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nem"
+          }
+        }
+      }
+    },
+    "Sex and age are needed for the Mifflin–St Jeor equation, which is what produces the estimate." : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A nem és az életkor a Mifflin–St Jeor képlethez kell, amely a becslést adja."
+          }
+        }
+      }
+    },
+    "Soft drink" : {
+      "comment" : "Food icon",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Üdítő"
+          }
+        }
+      }
+    },
+    "Solids are weighed. Labels give nutrition per 100 g." : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A szilárd ételeket tömegben mérjük. A címkék 100 g-ra adják meg a tápértéket."
+          }
+        }
+      }
+    },
+    "Sugar and fibre are part of the carbohydrate figure, not extra to it. Leave anything you don't know blank." : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A cukor és a rost a szénhidrát része, nem jön hozzá. Amit nem tudsz, hagyd üresen."
+          }
+        }
+      }
+    },
+    "Suggested daily targets" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Javasolt napi célok"
+          }
+        }
+      }
+    },
+    "Summary" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Összegzés"
+          }
+        }
+      }
+    },
+    "Switch it on in Settings to describe or photograph a meal. Everything is worked out on your phone." : {
+      "comment" : "Recognition unavailable",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Kapcsold be a Beállításokban, hogy leírhass vagy lefényképezhess egy ételt. Minden a telefonodon dől el."
+          }
+        }
+      }
+    },
+    "Sync to Apple Health" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szinkronizálás az Apple Healthbe"
+          }
+        }
+      }
+    },
+    "System" : {
+      "comment" : "Appearance follows the device setting",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rendszer"
+          }
+        }
+      }
+    },
+    "TODAY SO FAR" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "MA EDDIG"
+          }
+        }
+      }
+    },
+    "Take another photo" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Új fénykép"
+          }
+        }
+      }
+    },
+    "Take photo" : {
+      "comment" : "Food source button",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Fénykép"
+          }
+        }
+      }
+    },
+    "Takeaway" : {
+      "comment" : "Food icon",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elvitel"
+          }
+        }
+      }
+    },
+    "Tap a day to open it." : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Koppints egy napra a megnyitásához."
+          }
+        }
+      }
+    },
+    "Tap an amount above to start tracking today." : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Koppints fent egy mennyiségre a mai követés indításához."
+          }
+        }
+      }
+    },
+    "Tea" : {
+      "comment" : "Food icon",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tea"
+          }
+        }
+      }
+    },
+    "That age looks wrong — expected 10 to 120." : {
+      "comment" : "Validation message",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Az életkor hibásnak tűnik — 10 és 120 között várható."
+          }
+        }
+      }
+    },
+    "That backup is empty." : {
+      "comment" : "Import failure",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ez a mentés üres."
+          }
+        }
+      }
+    },
+    "That backup was made by a newer version of HydroHomie." : {
+      "comment" : "Import failure",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ez a mentés a HydroHomie egy újabb verziójával készült."
+          }
+        }
+      }
+    },
+    "That barcode isn't in Open Food Facts yet." : {
+      "comment" : "Barcode lookup failure",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ez a vonalkód még nincs benne az Open Food Factsban."
+          }
+        }
+      }
+    },
+    "That file isn't a HydroHomie backup." : {
+      "comment" : "Import failure",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ez a fájl nem HydroHomie-mentés."
+          }
+        }
+      }
+    },
+    "That height looks wrong — expected 50 to 250 cm." : {
+      "comment" : "Validation message",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A magasság hibásnak tűnik — 50 és 250 cm között várható."
+          }
+        }
+      }
+    },
+    "That product is listed, but has no nutrition information." : {
+      "comment" : "Barcode lookup failure",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A termék szerepel, de nincs hozzá tápértékadat."
+          }
+        }
+      }
+    },
+    "That weight looks wrong — expected 20 to 400 kg." : {
+      "comment" : "Validation message",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A testsúly hibásnak tűnik — 20 és 400 kg között várható."
+          }
+        }
+      }
+    },
+    "The model is still downloading. Try again in a little while." : {
+      "comment" : "Recognition unavailable",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "A modell még töltődik. Próbáld újra kicsit később."
+          }
+        }
+      }
+    },
+    "The photo is read on your phone and is not saved or sent anywhere." : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "A fényképet a telefonod dolgozza fel, nem menti és nem küldi el sehová."
+          }
+        }
+      }
+    },
+    "The size of one. Set “glass” to 250 ml for juice and you can log 2 glasses later. Leave blank for any you don't use." : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Egy adag mérete. Állítsd a „pohár” értékét 250 ml-re a gyümölcslénél, és később 2 pohárt naplózhatsz. Amit nem használsz, hagyd üresen."
+          }
+        }
+      }
+    },
+    "The size of one. Set “piece” to 2 g for grapes and you can log 10 pieces later. Leave blank for any you don't use." : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Egy darab mérete. Állítsd a „darab” értékét 2 g-ra a szőlőnél, és később 10 darabot naplózhatsz. Amit nem használsz, hagyd üresen."
+          }
+        }
+      }
+    },
+    "Theme" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Téma"
+          }
+        }
+      }
+    },
+    "This device can't do on-device food recognition." : {
+      "comment" : "Recognition unavailable",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ez az eszköz nem tud helyben ételt felismerni."
+          }
+        }
+      }
+    },
+    "This iPhone can't run Apple Intelligence. Search the food database instead." : {
+      "comment" : "Recognition unavailable",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ez az iPhone nem tudja futtatni az Apple Intelligence-t. Keress helyette az ételadatbázisban."
+          }
+        }
+      }
+    },
+    "This portion" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ez az adag"
+          }
+        }
+      }
+    },
+    "This split puts %@. Fine if that is deliberate." : {
+      "comment" : "Note shown when a macro split sits outside the usual range",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ez a felosztás a következőt adja: %@. Rendben, ha szándékos."
+          }
+        }
+      }
+    },
+    "Time for water" : {
+      "comment" : "Reminder notification title",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Itt az ideje inni"
+          }
+        }
+      }
+    },
+    "Today" : {
+      "comment" : "Day pager header on the current day",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ma"
+          }
+        }
+      }
+    },
+    "Total" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Összesen"
+          }
+        }
+      }
+    },
+    "Track Food" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Étel naplózása"
+          }
+        }
+      }
+    },
+    "Track food" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Étel naplózása"
+          }
+        }
+      }
+    },
+    "Turn on Apple Intelligence in Settings to use this." : {
+      "comment" : "Recognition unavailable",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Kapcsold be az Apple Intelligence-t a Beállításokban."
+          }
+        }
+      }
+    },
+    "Turns over to show what you have had so far" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Megfordítva megmutatja, mennyit fogyasztottál eddig"
+          }
+        }
+      }
+    },
+    "Units" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mértékegységek"
+          }
+        }
+      }
+    },
+    "Until" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eddig"
+          }
+        }
+      }
+    },
+    "Use these" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ezek használata"
+          }
+        }
+      }
+    },
+    "Vegetable" : {
+      "comment" : "Food icon",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zöldség"
+          }
+        }
+      }
+    },
+    "Version" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verzió"
+          }
+        }
+      }
+    },
+    "Very active" : {
+      "comment" : "Activity level",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nagyon aktív"
+          }
+        }
+      }
+    },
+    "Volume" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Térfogat"
+          }
+        }
+      }
+    },
+    "Water" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Víz"
+          }
+        }
+      }
+    },
+    "Water average" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Átlagos vízfogyasztás"
+          }
+        }
+      }
+    },
+    "Water goals met" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teljesített vízcélok"
+          }
+        }
+      }
+    },
+    "Weight" : {
+      "comment" : "Body weight field",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Testsúly"
+          }
+        }
+      }
+    },
+    "Work out my goals" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Céljaim kiszámítása"
+          }
+        }
+      }
+    },
+    "Work out the food" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Étel felismerése"
+          }
+        }
+      }
+    },
+    "Working out a meal from a description needs a newer version of iOS. Search the food database instead." : {
+      "comment" : "Recognition unavailable",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Az étel leírásból való felismeréséhez újabb iOS szükséges. Keress helyette az ételadatbázisban."
+          }
+        }
+      }
+    },
+    "Working out what's on the plate…" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Kitaláljuk, mi van a tányéron…"
+          }
+        }
+      }
+    },
+    "Your food library is empty. Scan a barcode, search, or add a food." : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Még nem adtál hozzá ételeket. Olvass be vonalkódot, keress, vagy adj hozzá egy újat."
+          }
+        }
+      }
+    },
+    "Your goals and settings were restored. Everything else was already here." : {
+      "comment" : "Import restored only the settings",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "A célok és a beállítások visszaálltak. Minden más már megvolt."
+          }
+        }
+      }
+    },
+    "amount.with-unit" : {
+      "comment" : "An amount followed by its unit symbol, e.g. 750 ml or 150 g",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$@"
           }
         },
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "db"
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ %2$@"
           }
         }
       }
     },
-    "fl oz": {
-      "comment": "Fluid ounces, abbreviated",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "fl oz"
+    "bottle" : {
+      "comment" : "One portion measure",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "palack"
           }
         }
       }
     },
-    "g": {
-      "comment": "Grams, abbreviated",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "g"
+    "bottles" : {
+      "comment" : "Portion measure, more than one",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "palack"
           }
         }
       }
     },
-    "glass": {
-      "comment": "One portion measure",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "pohár"
+    "bowl" : {
+      "comment" : "One portion measure",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "tál"
           }
         }
       }
     },
-    "glasses": {
-      "comment": "Portion measure, more than one",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "pohár"
+    "bowls" : {
+      "comment" : "Portion measure, more than one",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "tál"
           }
         }
       }
     },
-    "goal met": {
-      "comment": "VoiceOver, day outcome",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "cél teljesítve"
+    "can" : {
+      "comment" : "One portion measure, a drinks can",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "doboz"
           }
         }
       }
     },
-    "goal missed": {
-      "comment": "VoiceOver, day outcome",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "cél nem teljesült"
+    "cans" : {
+      "comment" : "Portion measure, more than one",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "doboz"
           }
         }
       }
     },
-    "heard “%@”": {
-      "comment": "The term the model produced for a food",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "ezt hallotta: „%@”"
+    "cm" : {
+      "comment" : "Centimetres, abbreviated",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "cm"
           }
         }
       }
     },
-    "kcal": {
-      "comment": "Kilocalories, abbreviated",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "kcal"
+    "each" : {
+      "comment" : "One portion measure",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "db"
           }
         }
       }
     },
-    "kg": {
-      "comment": "Kilograms, abbreviated",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "kg"
-          }
-        }
-      }
-    },
-    "ml": {
-      "comment": "Millilitres, abbreviated",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ml"
-          }
-        }
-      }
-    },
-    "nothing logged": {
-      "comment": "VoiceOver, day outcome",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "nincs bejegyzés"
-          }
-        }
-      }
-    },
-    "of which fibre": {
-      "comment": "Nutrient field",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ebből rost"
-          }
-        }
-      }
-    },
-    "of which sugar": {
-      "comment": "Nutrient field",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ebből cukor"
-          }
-        }
-      }
-    },
-    "piece": {
-      "comment": "One portion measure",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "darab"
-          }
-        }
-      }
-    },
-    "pieces": {
-      "comment": "Portion measure, more than one",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "darab"
-          }
-        }
-      }
-    },
-    "portion.count-and-measure": {
-      "comment": "A count followed by its portion measure, e.g. 10 pieces",
-      "extractionState": "extracted_with_value",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "%1$@ %2$@"
+    "each (plural)" : {
+      "comment" : "Portion measure, more than one",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "each"
           }
         },
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$@ %2$@"
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "db"
           }
         }
       }
     },
-    "serving": {
-      "comment": "One portion measure",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "adag"
+    "fl oz" : {
+      "comment" : "Fluid ounces, abbreviated",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "fl oz"
           }
         }
       }
     },
-    "servings": {
-      "comment": "Portion measure, more than one",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "adag"
+    "g" : {
+      "comment" : "Grams, abbreviated",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "g"
           }
         }
       }
     },
-    "years": {
-      "comment": "Unit after an age",
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "év"
+    "glass" : {
+      "comment" : "One portion measure",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "pohár"
           }
         }
       }
     },
-    "· %lld g": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "· %lld g"
+    "glasses" : {
+      "comment" : "Portion measure, more than one",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "pohár"
           }
         }
       }
     },
-    "· incomplete": {
-      "localizations": {
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "· hiányos"
+    "goal met" : {
+      "comment" : "VoiceOver, day outcome",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "cél teljesítve"
+          }
+        }
+      }
+    },
+    "goal missed" : {
+      "comment" : "VoiceOver, day outcome",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "cél nem teljesült"
+          }
+        }
+      }
+    },
+    "heard “%@”" : {
+      "comment" : "The term the model produced for a food",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "ezt hallotta: „%@”"
+          }
+        }
+      }
+    },
+    "kcal" : {
+      "comment" : "Kilocalories, abbreviated",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "kcal"
+          }
+        }
+      }
+    },
+    "kg" : {
+      "comment" : "Kilograms, abbreviated",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "kg"
+          }
+        }
+      }
+    },
+    "ml" : {
+      "comment" : "Millilitres, abbreviated",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ml"
+          }
+        }
+      }
+    },
+    "nothing logged" : {
+      "comment" : "VoiceOver, day outcome",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "nincs bejegyzés"
+          }
+        }
+      }
+    },
+    "of which fibre" : {
+      "comment" : "Nutrient field",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ebből rost"
+          }
+        }
+      }
+    },
+    "of which sugar" : {
+      "comment" : "Nutrient field",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ebből cukor"
+          }
+        }
+      }
+    },
+    "piece" : {
+      "comment" : "One portion measure",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "darab"
+          }
+        }
+      }
+    },
+    "pieces" : {
+      "comment" : "Portion measure, more than one",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "darab"
+          }
+        }
+      }
+    },
+    "portion.count-and-measure" : {
+      "comment" : "A count followed by its portion measure, e.g. 10 pieces",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$@"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ %2$@"
+          }
+        }
+      }
+    },
+    "serving" : {
+      "comment" : "One portion measure",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "adag"
+          }
+        }
+      }
+    },
+    "servings" : {
+      "comment" : "Portion measure, more than one",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "adag"
+          }
+        }
+      }
+    },
+    "years" : {
+      "comment" : "Unit after an age",
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "év"
+          }
+        }
+      }
+    },
+    "· %lld g" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "· %lld g"
+          }
+        }
+      }
+    },
+    "· incomplete" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "· hiányos"
           }
         }
       }
     }
   },
-  "version": "1.0"
+  "version" : "1.0"
 }

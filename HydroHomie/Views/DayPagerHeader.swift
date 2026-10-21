@@ -16,8 +16,11 @@ struct DayPagerHeader: View {
     private var isToday: Bool { calendar.isDateInToday(day) }
 
     private var label: String {
+        guard !isToday else {
+            return String(localized: "Today", comment: "Day pager header on the current day")
+        }
         // "Wed, 16 Sept"
-        day.formatted(.dateTime.weekday(.abbreviated).day().month(.abbreviated))
+        return day.formatted(.dateTime.weekday(.abbreviated).day().month(.abbreviated))
     }
 
     var body: some View {
@@ -32,12 +35,15 @@ struct DayPagerHeader: View {
             } label: {
                 Text(label)
                     .font(.subheadline.weight(.semibold))
-                    .foregroundStyle(.primary)
+                    // Today is where the screen is anchored, so it reads full
+                    // strength and a day you have paged back to recedes.
+                    .foregroundStyle(isToday ? .primary : .secondary)
                     .contentTransition(.identity)
                     .fixedSize()
             }
             .buttonStyle(.plain)
-            .disabled(isToday)
+            // Not `.disabled` on today: that dims the label, which inverts the
+            // emphasis. Tapping is already a no-op above.
             .accessibilityHint(isToday
                 ? ""
                 : String(localized: "Returns to today", comment: "VoiceOver hint on the date header"))
